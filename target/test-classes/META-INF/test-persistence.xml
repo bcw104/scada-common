@@ -3,6 +3,7 @@
 	<persistence-unit name="primary">
 <!-- 		<class>com.ht.domain.User</class> -->
 		<class>com.ht.scada.common.user.entity.User</class>
+		<class>com.ht.scada.common.user.entity.UserExtInfo</class>
 		<class>com.ht.scada.common.user.entity.UserRole</class>
 	</persistence-unit>
 </persistence>
