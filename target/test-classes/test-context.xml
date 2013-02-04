@@ -24,6 +24,7 @@
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan" value="com.ht.scada.common.user.entity"/>
 		<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
 				<property name="showSql" value="true" />
@@ -44,9 +45,9 @@
 	</bean>
 
 	<context:annotation-config />
-	<context:component-scan base-package="com.ht.user.entity, com.ht.user.service.impl, com.ht.user.security" />
+	<context:component-scan base-package="com.ht.scada.common.user.entity, com.ht.scada.common.user.service.impl" />
 
-	<jpa:repositories base-package="com.ht.user.dao" />
+	<jpa:repositories base-package="com.ht.scada.common.user.dao" />
 
 	<!-- 用于指定一些高级特性 -->
 	<bean id="jpaDialect" class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
@@ -61,48 +62,19 @@
     <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"/>
     <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor"/>
     
-	<!-- =========================================================
-         Shiro Components
-         ========================================================= -->
 
-    <!-- Shiro's main business-tier object for web-enabled applications
-         (use org.apache.shiro.web.mgt.DefaultWebSecurityManager instead when there is no web environment)-->
-    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-        <!-- Single realm app (realm configured next, below).  If you have multiple realms, use the 'realms'
-      property instead. -->
-        <property name="realm" ref="simpleRealm"/>
-        <!-- Uncomment this next property if you want heterogenous session access or clusterable/distributable
-             sessions.  The default value is 'http' which uses the Servlet container's HttpSession as the underlying
-             Session implementation.
-        <property name="sessionMode" value="native"/> -->
-    </bean>
+	<!-- Shiro's main business-tier object for web-enabled applications -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="shiroDbRealm" />
+<!-- 		<property name="cacheManager" ref="shiroEhcacheManager" /> -->
+	</bean>
+
+	<!-- 項目自定义的Realm, 所有accountService依赖的dao都需要用depends-on声明 -->
+	<bean id="shiroDbRealm" class="com.ht.scada.common.user.security.ShiroDbRealm" depends-on="userDao,userRoleDao">
+		<property name="userService" ref="userService"/>
+	</bean>
 
     <!-- Post processor that automatically invokes init() and destroy() methods -->
     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
-
-    <!-- Define the Shiro Filter here (as a FactoryBean) instead of directly in web.xml -
-         web.xml uses the DelegatingFilterProxy to access this bean.  This allows us
-         to wire things with more control as well utilize nice Spring things such as
-         PropertiesPlaceholderConfigurer and abstract beans or anything else we might need: -->
-<!--     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
-        <property name="securityManager" ref="securityManager"/>
-        <property name="loginUrl" value="/s/login"/>
-        <property name="successUrl" value="/s/home"/>
-        <property name="unauthorizedUrl" value="/unauthorized"/>
-        <property name="filters">
-            <util:map>
-                <entry key="authc">
-                    <bean class="org.apache.shiro.web.filter.authc.PassThruAuthenticationFilter"/>
-                </entry>
-            </util:map>
-        </property>
-        <property name="filterChainDefinitions">
-            <value>
-                /s/signup = anon
-                /s/manageUsers = perms[user:manage]
-                /s/** = authc
-            </value>
-        </property>
-    </bean> -->
 
 </beans>

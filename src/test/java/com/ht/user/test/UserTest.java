@@ -12,17 +12,15 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.mgt.DefaultSecurityManager;
 import org.apache.shiro.subject.Subject;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.ht.scada.common.user.entity.User;
 import com.ht.scada.common.user.entity.UserRole;
-import com.ht.scada.common.user.security.SimpleRealm;
+import com.ht.scada.common.user.security.ShiroDbRealm;
 import com.ht.scada.common.user.service.UserService;
 
-//@ContextConfiguration(locations = "file:WebContent/WEB-INF/applicationContext.xml")
 @ContextConfiguration(locations={"classpath:test-context.xml"})
 public class UserTest extends AbstractTestNGSpringContextTests {
 
@@ -30,9 +28,8 @@ public class UserTest extends AbstractTestNGSpringContextTests {
 	private UserService userService;
 	
 	@Inject
-	private SimpleRealm simpleRealm;
+	private ShiroDbRealm shiroDbRealm;
 	
-//	@Inject
 //	private DefaultWebSecurityManager securityManager;
 	private DefaultSecurityManager securityManager;
 	
@@ -44,7 +41,7 @@ public class UserTest extends AbstractTestNGSpringContextTests {
 
 	@Test
 	public void baseTest() {
-		securityManager = new DefaultSecurityManager(simpleRealm);
+		securityManager = new DefaultSecurityManager(shiroDbRealm);
 		
 		SecurityUtils.setSecurityManager(securityManager);
 		
