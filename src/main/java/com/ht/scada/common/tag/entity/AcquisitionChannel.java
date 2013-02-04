@@ -50,7 +50,7 @@ public class AcquisitionChannel extends AbstractPersistable<Integer> {
 	private String portInfo = "10.67.111.176:4660";
 	
 	/**
-	 * 通讯帧: 【设备地址】|【功能码】-【数据地址】-【数据长度】|【优先级】|【帧名称(可省略)】
+	 * 通讯帧(modbus): 【设备地址】|【功能码】-【数据地址】-【数据长度】|【优先级】|【帧名称(可省略)】
 	 * 多个通讯帧用逗号隔开
 	 * 1|3-1-10|3|
 	 * 1|3-100-10|0|soe

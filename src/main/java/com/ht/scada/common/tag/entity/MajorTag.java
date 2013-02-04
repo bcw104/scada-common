@@ -3,6 +3,7 @@ package com.ht.scada.common.tag.entity;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,7 +18,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 
 /**
  * 主索引节点
- * @author user
+ * @author 薄成文
  *
  */
 @Entity
@@ -42,6 +43,12 @@ public class MajorTag extends AbstractPersistable<Integer> {
 	 * type=="水井"			TagExtWater.class 
 	 */
 	private String type;	// 节点类型
+	
+	/**
+	 * 变量模版名称
+	 */
+	@Column(name="tpl_name")
+	private String tplName;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="channel_id")
@@ -80,6 +87,14 @@ public class MajorTag extends AbstractPersistable<Integer> {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public String getTplName() {
+		return tplName;
+	}
+
+	public void setTplName(String tplName) {
+		this.tplName = tplName;
 	}
 
 	public AcquisitionChannel getChannel() {
