@@ -3,9 +3,6 @@ package com.ht.scada.common.tag.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
@@ -14,20 +11,22 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Table(name="T_Tag_Ext_OilA")
 public class TagExtOilA extends AbstractPersistable<Integer> {
 	
-
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 5246876663144724507L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private static final long serialVersionUID = 2707445505322556394L;
 
 	@Column(name="beng_jing")
 	private String bengJing;//泵径
 	
 	private String username;
+	
+	public TagExtOilA() {
+	}
+	
+	public TagExtOilA(int id) {
+		setId(id);
+	}
 
 	public String getBengJing() {
 		return bengJing;

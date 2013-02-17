@@ -22,6 +22,10 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Table(name="T_Area_Minor_Tag")
 public class AreaMinorTag extends AbstractPersistable<Integer> {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5534702454112581237L;
 	private String name;// 名称
 	private String type;// 类型或编号
 	
@@ -35,6 +39,15 @@ public class AreaMinorTag extends AbstractPersistable<Integer> {
 	/*非持久化字段*/
 	@Transient
 	private String path;
+	
+	
+
+	public AreaMinorTag() {
+	}
+	
+	public AreaMinorTag(int id) {
+		setId(id);
+	}
 
 	public String getName() {
 		return name;
