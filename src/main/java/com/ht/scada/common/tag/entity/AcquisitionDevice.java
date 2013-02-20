@@ -28,7 +28,8 @@ public class AcquisitionDevice extends AbstractPersistable<Integer> {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -1795113643786710638L;
+	private static final long serialVersionUID = -5123121115320820590L;
+	
 	private String name;		// 设备名称
 	private String manufacture;	// 生产厂家
 	private String type;		// 设备型号
@@ -43,7 +44,7 @@ public class AcquisitionDevice extends AbstractPersistable<Integer> {
 	@Column(name="ym_max")
 	private Integer ymMax;			// 脉冲计数最大值		
 	
-	private String address;		// 通讯地址
+	private int address;		// 通讯地址
 	private int timeout;		// 通讯超时（ms）
 	private int retry;			// 重发
 	
@@ -134,11 +135,11 @@ public class AcquisitionDevice extends AbstractPersistable<Integer> {
 		this.ymMax = ymMax;
 	}
 
-	public String getAddress() {
+	public int getAddress() {
 		return address;
 	}
 
-	public void setAddress(String address) {
+	public void setAddress(int address) {
 		this.address = address;
 	}
 

@@ -3,6 +3,7 @@ package com.ht.scada.common.tag.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Index;
@@ -12,7 +13,8 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 /**
  * 变量词典模板<br>
  * <p>大部分的监控末端都具有相同的变量类型，所有采用通用的变量词典模板来进行定义，开端节点只需要指定模板名称即可</p>
- * @author user
+ * @author 薄成文
+ * @author 赵磊
  *
  */
 @Entity
@@ -59,6 +61,7 @@ public class TagCfgTpl extends AbstractPersistable<Integer> {
 	 * 遥脉存储器：		ym|0|599999999|1|0 
 	 * 				【存储器类型】|【最小值】|【最大值】|单位脉冲电度量|周期（可以为空）
 	 **/
+	@Lob
 	private String storage = "ym|0|599999999|1|0";
 	
 	
