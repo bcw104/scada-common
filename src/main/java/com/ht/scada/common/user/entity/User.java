@@ -15,7 +15,7 @@ import org.hibernate.annotations.Index;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
-@Table(name="T_Users", uniqueConstraints = @UniqueConstraint(columnNames = "username"))
+@Table(name="T_Users")
 public class User extends AbstractPersistable<Integer> {
 	
 	/**
