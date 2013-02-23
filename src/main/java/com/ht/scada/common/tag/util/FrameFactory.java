@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ht.scada.common.tag.exception.FrameInfoErrorException;
-import com.ht.scada.common.tag.exception.PortInfoErrorException;
 
-public class FrameUtil {
+public class FrameFactory {
 	
 	public static List<ModbusFrame> parseModbusFrames(String frames) throws FrameInfoErrorException {
 		List<ModbusFrame> list = new ArrayList<>();
@@ -26,13 +25,12 @@ public class FrameUtil {
 			try {
 				String slaveInfo = frameInfoArray[0];
 				String regInfo = frameInfoArray[1];
-				String priority = frameInfoArray[2];
 				String name = null;
 				if (frameInfoArray.length == 4) {
 					name = frameInfoArray[3];
 				}
 				
-				if (slaveInfo.isEmpty() || regInfo.isEmpty() || priority.isEmpty()) {
+				if (slaveInfo.isEmpty() || regInfo.isEmpty() || frameInfoArray[2].isEmpty()) {
 					throw new FrameInfoErrorException("modbus帧格式错误：" + frame);
 				}
 				
@@ -51,18 +49,36 @@ public class FrameUtil {
 					throw new FrameInfoErrorException("modbus帧格式错误：" + frame);
 				}
 				
-				ModbusFrame modbusFrame = new ModbusFrame();
-				modbusFrame.setSlave(slave);
-				modbusFrame.setFunCode(Integer.parseInt(regInfoArray[0]));
-				modbusFrame.setStart(Integer.parseInt(regInfoArray[1]));
-				modbusFrame.setLen(Integer.parseInt(regInfoArray[2]));
-				modbusFrame.setPriority(Integer.parseInt(priority));
-				modbusFrame.setName(name);
-				
+				int funCode = Integer.parseInt(regInfoArray[0]);
+				int start = Integer.parseInt(regInfoArray[1]);
+				int len = Integer.parseInt(regInfoArray[2]);
+				int priority = Integer.parseInt(frameInfoArray[2]);
+				ModbusFrame modbusFrame = new ModbusFrame(name, slave, priority, funCode, start, len);
 				return modbusFrame;
 			} catch (Exception e) {
 				throw new FrameInfoErrorException("modbus帧格式错误：" + frame);
 			}
 		}
+	}
+	
+	public static class ModbusFrame {
+
+		public String name;
+		public int[][] slave;
+		public int priority;
+		public int funCode;
+		public int start;
+		public int len;
+		
+		private ModbusFrame(String name, int[][] slave, int priority,
+				int funCode, int start, int len) {
+			this.name = name;
+			this.slave = slave;
+			this.priority = priority;
+			this.funCode = funCode;
+			this.start = start;
+			this.len = len;
+		}
+		
 	}
 }

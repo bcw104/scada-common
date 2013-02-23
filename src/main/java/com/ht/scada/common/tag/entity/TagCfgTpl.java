@@ -9,6 +9,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Index;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
+import com.ht.scada.common.tag.util.DataType;
+
 
 /**
  * 变量词典模板<br>
@@ -20,11 +22,11 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Entity
 @Table(name="T_Tag_Cfg_Tpl")
 public class TagCfgTpl extends AbstractPersistable<Integer> {
-	
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -342203444992438610L;
+	private static final long serialVersionUID = 2045500318135780418L;
 
 	@Index(name="idx_tagcfgtpl_tplname")
 	@Column(name="tpl_name")
@@ -34,11 +36,13 @@ public class TagCfgTpl extends AbstractPersistable<Integer> {
 	@Column(name="var_name") private String 	varNmae;	// 变量名称
 	@Column(name="var_type") private String 	varType;	// 变量类型
 	@Column(name="sub_Type") private String 	subType;	// 变量子类型
-	@Column(name="data_type") private String 	dataType;	// 值类型（bool, int32, int16, bcd, mod10000, float, double）
-	@Column(name="fun_code") private String 	funCode;	// 功能码
-	@Column(name="data_id") private String 		dataID;		// 数据ID
-	@Column(name="byte_offset") private int 	byteOffset;	// 字节偏移量
-	@Column(name="byte_len") private int 	byteLen;	// 字节长度
+	@Column(name="data_type") private DataType 	dataType;	// 值类型（bool, int32, int16, bcd, mod10000, float, double）
+	
+	@Column(name="fun_code") private int 		funCode;	// 功能码
+	@Column(name="data_id") private int 		dataID;		// 数据ID
+	@Column(name="byte_offset") private int 	byteOffset = 0;	// 字节偏移量
+	@Column(name="bit_offset") private int 		bitOffset = -1;	// 位偏移量(-1表)
+	@Column(name="byte_len") private int 		byteLen;	// 字节长度
 	@Column(name="base_value") private float 	baseValue = 0;// 基值 
 	@Column(name="coef_value") private float 	coefValue = 1;// 系数
 	
@@ -54,8 +58,8 @@ public class TagCfgTpl extends AbstractPersistable<Integer> {
 	 * 				【存储器类型】|【报警标志1/0】|【合消息】|【分消息】|【是否推画面】
 	 * 变位存储器： 		rschange|-1|合闸|分闸|true 
 	 * 				【存储器类型】|【报警类型1/0/-1】|【合消息】|【分消息】|【是否推画面】
-	 * 遥测越限存储器：	alarm|[上限]|越上限报警|[下限]|越下限报警|true 【
-	 * 				存储器类型】|【上限】|【上限信息】|【下限】|【下限信息】|【是否推画面】
+	 * 遥测越限存储器：	threshold|500|电流越过上限|true|true 
+	 * 				【存储器类型】|【限值】|【越限信息】|【越限类型（true:上限，false:下限）】|【是否推画面】
 	 * 遥测存储器：		yc||10 
 	 * 				【存储器类型】|【阈值（可以为空）】|【周期(分钟)】
 	 * 遥脉存储器：		ym|0|599999999|1|0 
@@ -63,8 +67,6 @@ public class TagCfgTpl extends AbstractPersistable<Integer> {
 	 **/
 	@Lob
 	private String storage = "ym|0|599999999|1|0";
-	
-	
 
 	public TagCfgTpl() {
 	}
@@ -105,27 +107,27 @@ public class TagCfgTpl extends AbstractPersistable<Integer> {
 		this.subType = subType;
 	}
 
-	public String getDataType() {
+	public DataType getDataType() {
 		return dataType;
 	}
 
-	public void setDataType(String dataType) {
+	public void setDataType(DataType dataType) {
 		this.dataType = dataType;
 	}
 
-	public String getFunCode() {
+	public int getFunCode() {
 		return funCode;
 	}
 
-	public void setFunCode(String funCode) {
+	public void setFunCode(int funCode) {
 		this.funCode = funCode;
 	}
 
-	public String getDataID() {
+	public int getDataID() {
 		return dataID;
 	}
 
-	public void setDataID(String dataID) {
+	public void setDataID(int dataID) {
 		this.dataID = dataID;
 	}
 
@@ -135,6 +137,14 @@ public class TagCfgTpl extends AbstractPersistable<Integer> {
 
 	public void setByteOffset(int byteOffset) {
 		this.byteOffset = byteOffset;
+	}
+
+	public int getBitOffset() {
+		return bitOffset;
+	}
+
+	public void setBitOffset(int bitOffset) {
+		this.bitOffset = bitOffset;
 	}
 
 	public int getByteLen() {

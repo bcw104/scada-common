@@ -1,11 +1,13 @@
 package com.ht.scada.common.tag.util;
 
-import org.testng.annotations.Test;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 import com.ht.scada.common.tag.exception.PortInfoErrorException;
+import com.ht.scada.common.tag.util.PortInfoFactory.DtuInfo;
+import com.ht.scada.common.tag.util.PortInfoFactory.TcpIpInfo;
 
-public class PortInfoUtilTest {
+public class PortInfoFactoryTest {
 	
   @Test(dataProvider = "dtuErrorInfo")
   public void dtuInfoProvider(String s) {
@@ -37,30 +39,30 @@ public class PortInfoUtilTest {
 
   @Test
   public void parseDtuInfo1() throws PortInfoErrorException {
-	  DtuInfo dtuInfo = PortInfoUtil.parseDtuInfo("dtu|2000:9815:hello:180");
+	  DtuInfo dtuInfo = PortInfoFactory.parseDtuInfo("dtu|2000:9815:hello:180");
 	  assert dtuInfo != null;
-	  assert dtuInfo.getDtuId().equals("2000");
-	  assert dtuInfo.getPort() == 9815;
-	  assert dtuInfo.getHeartBeat().equals("hello");
-	  assert dtuInfo.getHeartBeatInterval() == 180;
+	  assert dtuInfo.dtuId.equals("2000");
+	  assert dtuInfo.port == 9815;
+	  assert dtuInfo.heartBeat.equals("hello");
+	  assert dtuInfo.heartBeatInterval == 180;
 			  
   }
   
   @Test(dataProvider="dtuErrorInfo", expectedExceptions=PortInfoErrorException.class)
   public void parseDtuInfo2(String portInfo) throws PortInfoErrorException {
-	  PortInfoUtil.parseDtuInfo(portInfo);
+	  PortInfoFactory.parseDtuInfo(portInfo);
   }
 
   @Test
   public void parseTcpIpInfo() throws PortInfoErrorException {
-	  TcpIpInfo tcpIpInfo = PortInfoUtil.parseTcpIpInfo("tcp/ip|192.168.1.110:4660");
+	  TcpIpInfo tcpIpInfo = PortInfoFactory.parseTcpIpInfo("tcp/ip|192.168.1.110:4660");
 	  assert tcpIpInfo != null;
-	  assert tcpIpInfo.getIp().equals("192.168.1.110");
-	  assert tcpIpInfo.getPort() == 4660;
+	  assert tcpIpInfo.ip.equals("192.168.1.110");
+	  assert tcpIpInfo.port == 4660;
   }
   
   @Test(dataProvider="tcpErrorInfo", expectedExceptions=PortInfoErrorException.class)
   public void parseTcpInfo2(String portInfo) throws PortInfoErrorException {
-	  PortInfoUtil.parseTcpIpInfo(portInfo);
+	  PortInfoFactory.parseTcpIpInfo(portInfo);
   }
 }

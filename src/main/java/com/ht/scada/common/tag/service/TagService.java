@@ -21,6 +21,8 @@ public interface TagService {
 	 */
 	public MajorTag getMajorTag(int id);
 	
+	public TagCfgTpl getTagCfgTpl(int id);
+	
 	/**
 	 * @param id
 	 * @return
