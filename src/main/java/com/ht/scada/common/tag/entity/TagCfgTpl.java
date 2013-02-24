@@ -33,7 +33,7 @@ public class TagCfgTpl extends AbstractPersistable<Integer> {
 	private String tplName;// 模板名称
 	
 	/*变量属性*/
-	@Column(name="var_name") private String 	varNmae;	// 变量名称
+	@Column(name="var_name") private String 	varName;	// 变量名称
 	@Column(name="var_type") private String 	varType;	// 变量类型
 	@Column(name="sub_Type") private String 	subType;	// 变量子类型
 	@Column(name="data_type") private DataType 	dataType;	// 值类型（bool, int32, int16, bcd, mod10000, float, double）
@@ -49,22 +49,10 @@ public class TagCfgTpl extends AbstractPersistable<Integer> {
 	/*变量扩展属性*/
 	private String trigger;		// 触发采集帧名,如"soe", 需要与采集通道中定义的帧名称对应
 	
-	/*
-	 * 持久化属性
-	 * 
-	 * 多个存储器用逗号隔开
-	 * 
-	 * 故障存储器： 		fault|1|合闸|分闸|true 
-	 * 				【存储器类型】|【报警标志1/0】|【合消息】|【分消息】|【是否推画面】
-	 * 变位存储器： 		rschange|-1|合闸|分闸|true 
-	 * 				【存储器类型】|【报警类型1/0/-1】|【合消息】|【分消息】|【是否推画面】
-	 * 遥测越限存储器：	threshold|500|电流越过上限|true|true 
-	 * 				【存储器类型】|【限值】|【越限信息】|【越限类型（true:上限，false:下限）】|【是否推画面】
-	 * 遥测存储器：		yc||10 
-	 * 				【存储器类型】|【阈值（可以为空）】|【周期(分钟)】
-	 * 遥脉存储器：		ym|0|599999999|1|0 
-	 * 				【存储器类型】|【最小值】|【最大值】|单位脉冲电度量|周期（可以为空）
-	 **/
+	/**
+	 * 存储器
+	 * @see com.ht.scada.common.tag.util.StorageFactory
+	 */
 	@Lob
 	private String storage = "ym|0|599999999|1|0";
 
@@ -83,12 +71,12 @@ public class TagCfgTpl extends AbstractPersistable<Integer> {
 		this.tplName = tplName;
 	}
 
-	public String getVarNmae() {
-		return varNmae;
+	public String getVarName() {
+		return varName;
 	}
 
-	public void setVarNmae(String varNmae) {
-		this.varNmae = varNmae;
+	public void setVarName(String varName) {
+		this.varName = varName;
 	}
 
 	public String getVarType() {

@@ -5,7 +5,34 @@ import java.util.List;
 
 import com.ht.scada.common.tag.exception.StorageInfoErrorException;
 
+/**
+ * 存储器工厂：用于解析或生成变量模板中的存储器<br>
+ * <pre>
+ * 故障存储器：fault|1|合闸|分闸|true<br> 
+ * 	【存储器类型】|【报警标志1/0】|【合消息】|【分消息】|【是否推画面】<br> </pre>
+ * <pre>
+ * 遥信变位存储器：yx|-1|合闸|分闸|true <br>
+ * 	【存储器类型】|【报警类型1/0/-1】|【合消息】|【分消息】|【是否推画面】<br> </pre>
+ * <pre>
+ * 越限存储器：offlimits|500|电流越过上限|true|true <br>
+ * 	【存储器类型】|【限值】|【越限信息】|【越限类型（true:上限，false:下限）】|【是否推画面】<br> </pre>
+ * <pre>
+ * 遥测存储器：yc||10 <br>
+ * 	【存储器类型】|【变化范围（可以为空）】|【周期(分钟)】<br> </pre>
+ * <pre>
+ * 遥脉存储器：ym|0|599999999|1|0 <br>
+ * 	【存储器类型】|【最小值】|【最大值】|单位脉冲电度量|周期（可以为空）<br> </pre>
+ * 
+ * 注:越限存储器可以为多个，多个存储器需要用逗号隔开<br>
+ * @author 薄成文
+ **/
 public class StorageFactory {
+	
+	public static final String FAULT_PREFIX = "fault";
+	public static final String OFFLIMITS_PREFIX = "offlimits";
+	public static final String YX_PREFIX = "yx";
+	public static final String YC_PREFIX = "yc";
+	public static final String YM_PREFIX = "ym";
 
 	/*
 	 * 持久化属性
@@ -14,15 +41,30 @@ public class StorageFactory {
 	 * 
 	 * 故障存储器： 		fault|1|合闸|分闸|true 
 	 * 				【存储器类型】|【报警标志1/0】|【合消息】|【分消息】|【是否推画面】
-	 * 变位存储器： 		rschange|-1|合闸|分闸|true 
+	 * 遥信变位存储器： 	yx|-1|合闸|分闸|true 
 	 * 				【存储器类型】|【报警类型1/0/-1】|【合消息】|【分消息】|【是否推画面】
-	 * 遥测越限存储器：	threshold|500|电流越过上限|true|true 
+	 * 遥测越限存储器：	offlimits|500|电流越过上限|true|true 
 	 * 				【存储器类型】|【限值】|【越限信息】|【越限类型（true:上限，false:下限）】|【是否推画面】
 	 * 遥测存储器：		yc||10 
 	 * 				【存储器类型】|【变化范围（可以为空）】|【周期(分钟)】
 	 * 遥脉存储器：		ym|0|599999999|1|0 
 	 * 				【存储器类型】|【最小值】|【最大值】|单位脉冲电度量|周期（可以为空）
 	 **/
+	
+	public static Object parseStorage(String storage) throws StorageInfoErrorException {
+		if (storage.startsWith(YX_PREFIX)) {
+			return parseYXStorage(storage);
+		} else if (storage.startsWith(YC_PREFIX)) {
+			return parseYCStorage(storage);
+		} else if (storage.startsWith(YM_PREFIX)) {
+			return parseYMStorage(storage);
+		} else if (storage.startsWith(FAULT_PREFIX)) {
+			return parseFaultStorage(storage);
+		} else if (storage.startsWith(OFFLIMITS_PREFIX)) {
+			return parseOffLimitsStorages(storage);
+		}
+		return null;
+	}
 	
 	public static FaultStorage parseFaultStorage(String storage) throws StorageInfoErrorException {
 		
@@ -31,7 +73,7 @@ public class StorageFactory {
 			throw new StorageInfoErrorException("存储器格式错误："+storage);
 		} else {
 			String name = storageInfoArray[0];
-			if (!name.equals("fault")) {
+			if (!name.equals(FAULT_PREFIX)) {
 				throw new StorageInfoErrorException("存储器格式错误："+storage);
 			}
 			
@@ -43,20 +85,19 @@ public class StorageFactory {
 				FaultStorage faultStorage = new FaultStorage(name, flag, onInfo, offInfo, pushWnd);
 				return faultStorage;
 			} catch (Exception e) {
-				e.printStackTrace();
 				throw new StorageInfoErrorException("存储器格式解析错误："+storage+","+e.getMessage());
 			}
 		}
 	}
 	
-	public static RSChangeStorage parseRSChangeStorage(String storage) throws StorageInfoErrorException {
+	public static YXStorage parseYXStorage(String storage) throws StorageInfoErrorException {
 		
 		String[] storageInfoArray = storage.split("\\|");
 		if (storageInfoArray.length != 5) {
 			throw new StorageInfoErrorException("存储器格式错误："+storage);
 		} else {
 			String name = storageInfoArray[0];
-			if (!name.equals("rschange")) {
+			if (!name.equals(YX_PREFIX)) {
 				throw new StorageInfoErrorException("存储器格式错误："+storage);
 			}
 			
@@ -65,31 +106,30 @@ public class StorageFactory {
 				String onInfo = storageInfoArray[2];
 				String offInfo = storageInfoArray[3];
 				boolean pushWnd = Boolean.parseBoolean(storageInfoArray[4]);
-				RSChangeStorage rsChangeStorage = new RSChangeStorage(name, alarmType, onInfo, offInfo, pushWnd);
+				YXStorage rsChangeStorage = new YXStorage(name, alarmType, onInfo, offInfo, pushWnd);
 				return rsChangeStorage;
 			} catch (Exception e) {
-				e.printStackTrace();
 				throw new StorageInfoErrorException("存储器格式解析错误："+storage+","+e.getMessage());
 			}
 		}
 	}
 	
-	public static List<ThresholdStorage> parseThresholdStorages(String storages) throws StorageInfoErrorException {
+	public static List<OffLimitsStorage> parseOffLimitsStorages(String storages) throws StorageInfoErrorException {
 		String[] storageInfoArray = storages.split(",");
-		List<ThresholdStorage> list = new ArrayList<>(storageInfoArray.length);
+		List<OffLimitsStorage> list = new ArrayList<>(storageInfoArray.length);
 		for (String storage : storageInfoArray) {
-			list.add(parseThresholdStorage(storage));
+			list.add(parseOffLimitsStorage(storage));
 		}
 		return list;
 	}
 	
-	private static ThresholdStorage parseThresholdStorage(String storage) throws StorageInfoErrorException {
+	private static OffLimitsStorage parseOffLimitsStorage(String storage) throws StorageInfoErrorException {
 		String[] storageInfoArray = storage.split("\\|");
 		if (storageInfoArray.length != 5) {
 			throw new StorageInfoErrorException("存储器格式错误："+storage);
 		} else {
 			String name = storageInfoArray[0];
-			if (!name.equals("threshold")) {
+			if (!name.equals(OFFLIMITS_PREFIX)) {
 				throw new StorageInfoErrorException("存储器格式错误："+storage);
 			}
 			
@@ -98,10 +138,9 @@ public class StorageFactory {
 				String info = storageInfoArray[2];
 				boolean type = Boolean.parseBoolean(storageInfoArray[3]);
 				boolean pushWnd = Boolean.parseBoolean(storageInfoArray[4]);
-				ThresholdStorage thresholdStorage = new ThresholdStorage(name, threshold, info, type, pushWnd);
+				OffLimitsStorage thresholdStorage = new OffLimitsStorage(name, threshold, info, type, pushWnd);
 				return thresholdStorage;
 			} catch (Exception e) {
-				e.printStackTrace();
 				throw new StorageInfoErrorException("存储器格式解析错误："+storage+","+e.getMessage());
 			}
 		}
@@ -114,11 +153,11 @@ public class StorageFactory {
 			throw new StorageInfoErrorException("存储器格式错误："+storage);
 		} else {
 			String name = storageInfoArray[0];
-			if (!name.equals("yc")) {
+			if (!name.equals(YC_PREFIX)) {
 				throw new StorageInfoErrorException("存储器格式错误："+storage);
 			}
 			try {
-				double threshold = Double.NaN;
+				double threshold = -1;
 				if (!storageInfoArray[1].isEmpty()) {
 					threshold = Double.parseDouble(storageInfoArray[1]);
 				}
@@ -129,7 +168,6 @@ public class StorageFactory {
 				YCStorage ycStorage = new YCStorage(name, threshold, interval);
 				return ycStorage;
 			} catch (Exception e) {
-				e.printStackTrace();
 				throw new StorageInfoErrorException("存储器格式解析错误："+storage+","+e.getMessage());
 			}
 		}
@@ -144,7 +182,7 @@ public class StorageFactory {
 		} else {
 			try {
 				String name = storageInfoArray[0];
-				if (!name.equals("ym")) {
+				if (!name.equals(YM_PREFIX)) {
 					throw new StorageInfoErrorException("存储器格式错误："+storage);
 				}
 				double min = Double.parseDouble(storageInfoArray[1]);
@@ -157,7 +195,6 @@ public class StorageFactory {
 				YMStorage ymStorage = new YMStorage(name, min, max, unit, interval);
 				return ymStorage;
 			} catch (Exception e) {
-				e.printStackTrace();
 				throw new StorageInfoErrorException("存储器格式解析错误："+storage+","+e.getMessage());
 			}
 		}
@@ -198,15 +235,23 @@ public class StorageFactory {
 	 * @author 薄成文
 	 *
 	 */
-	public static class ThresholdStorage {
+	public static class OffLimitsStorage {
 		
 		public String name;
 		public double threshold;	// 限值
 		public String info;		// 越限信息
-		public boolean type;		// 越限类型，true表示越上限，false表示越下限
-		public boolean pushWnd;	// 推画面
 		
-		private ThresholdStorage(String name, double threshold, String info, boolean type,
+		/**
+		 * 越限类型，true表示越上限，false表示越下限
+		 */
+		public boolean type;
+		
+		/**
+		 * 推画面
+		 */
+		public boolean pushWnd;	
+		
+		private OffLimitsStorage(String name, double threshold, String info, boolean type,
 				boolean pushWnd) {
 			this.name = name;
 			this.threshold = threshold;
@@ -217,13 +262,13 @@ public class StorageFactory {
 	}
 	
 	
-	public static class RSChangeStorage {
+	public static class YXStorage {
 		public String name;
 		public int alarmType;	// 报警类型
 		public String onInfo;	// 合消息
 		public String offInfo;	// 分消息
 		public boolean pushWnd;// 推画面
-		private RSChangeStorage(String name, int alarmType, String onInfo, String offInfo,
+		private YXStorage(String name, int alarmType, String onInfo, String offInfo,
 				boolean pushWnd) {
 			this.name = name;
 			this.alarmType = alarmType;
@@ -251,4 +296,5 @@ public class StorageFactory {
 		}
 		
 	}
+	
 }

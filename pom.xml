@@ -57,6 +57,11 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>kvclient</artifactId>
+			<version>2.0.26</version>
+		</dependency>
+		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
 			<version>6.8</version>
@@ -197,6 +202,11 @@
 			<groupId>io.netty</groupId>
 			<artifactId>netty</artifactId>
 			<version>3.6.2.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>2.1</version>
 		</dependency>
 	</dependencies>
 </project>
