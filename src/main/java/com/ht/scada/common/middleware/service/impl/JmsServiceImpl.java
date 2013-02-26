@@ -27,6 +27,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.ht.scada.common.middleware.service.JmsService;
+import com.ht.scada.common.tag.entity.WellData;
 
 /**
  * JMS服务实现类，每末端都有一个对应的队列，读取队列中数据采用QueueBrowser获取<br>
@@ -34,7 +35,7 @@ import com.ht.scada.common.middleware.service.JmsService;
  * 实时变化的信息通过/topic/data推送<br>
  * 
  * @author 薄成文
- *
+ * @author 赵磊
  */
 @Service("jmsService")
 public class JmsServiceImpl implements JmsService {
@@ -99,6 +100,24 @@ public class JmsServiceImpl implements JmsService {
 
 	@Override
 	public List<String> getLatestAlarmInfo(String area) {
+		return null;
+	}
+
+	@Override
+	public WellData getLatestWellDataByWellNum(String wellNum) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getLatestProductByWellNum(String wellNum) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getLatestWellFaultByWellNum(String wellNum) throws Exception {
+		// TODO Auto-generated method stub
 		return null;
 	}	
 }
