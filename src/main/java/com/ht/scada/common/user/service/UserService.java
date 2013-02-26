@@ -27,4 +27,6 @@ public interface UserService {
 	void updateUserRole(UserRole userRole);
 	
 	UserRole getUserRoleByName(String name);
+    
+	void updateUserPassword(String password, int id);
 }

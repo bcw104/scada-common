@@ -13,6 +13,7 @@ import com.ht.scada.common.user.dao.UserDao;
 import com.ht.scada.common.user.dao.UserRoleDao;
 import com.ht.scada.common.user.entity.User;
 import com.ht.scada.common.user.entity.UserRole;
+import com.ht.scada.common.user.security.ShiroDbRealm.ShiroUser;
 import com.ht.scada.common.user.service.UserService;
 
 @Transactional
@@ -27,9 +28,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User getCurrentUser() {
-		final Integer currentUserId = (Integer) SecurityUtils.getSubject().getPrincipal();
-        if( currentUserId != null ) {
-            return getUser(currentUserId);
+		//final Integer currentUserId = (Integer) SecurityUtils.getSubject().getPrincipal();
+		final ShiroUser shiroUser = (ShiroUser) SecurityUtils.getSubject().getPrincipal();
+		
+        if( shiroUser != null ) {
+            return getUserByUsername(shiroUser.userame);
         } else {
             return null;
         }
@@ -89,5 +92,9 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserRole getUserRoleByName(String name) {
 		return userRoleDao.findByName(name);
+	}
+	@Override
+	public void updateUserPassword(String password, int id){
+		userDao.updateUserPassword(password, id);
 	}
 }
