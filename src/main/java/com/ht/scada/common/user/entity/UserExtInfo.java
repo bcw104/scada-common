@@ -22,6 +22,8 @@ public class UserExtInfo extends AbstractPersistable<Integer> {
 	private String department;
 	private String email;
 	private String address;
+	private String realName;
+	
 	@Digits(fraction = 0, integer = 12)
 	private String telphone;
 	
@@ -76,4 +78,12 @@ public class UserExtInfo extends AbstractPersistable<Integer> {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	public String getRealName() {
+		return realName;
+	}
+
+	public void setRealName(String realName) {
+		this.realName = realName;
+	}
+
 }

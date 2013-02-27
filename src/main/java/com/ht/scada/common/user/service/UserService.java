@@ -3,6 +3,7 @@ package com.ht.scada.common.user.service;
 import java.util.List;
 
 import com.ht.scada.common.user.entity.User;
+import com.ht.scada.common.user.entity.UserExtInfo;
 import com.ht.scada.common.user.entity.UserRole;
 
 public interface UserService {
@@ -29,4 +30,6 @@ public interface UserService {
 	UserRole getUserRoleByName(String name);
     
 	void updateUserPassword(String password, int id);
+	
+	List<UserExtInfo> getAllUserExtInfo();
 }
