@@ -106,4 +106,8 @@ public class UserServiceImpl implements UserService {
 		
 		return userExtInfoDao.findAll();
 	}
+        @Override
+        public List<UserRole> getAllUserRole(){
+            return userRoleDao.findAll();
+        }
 }
