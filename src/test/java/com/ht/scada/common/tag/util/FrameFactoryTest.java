@@ -6,8 +6,9 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.ht.scada.common.tag.exception.FrameInfoErrorException;
+import com.ht.scada.common.tag.util.FrameFactory.ModbusFrame;
 
-public class FrameUtilTest {
+public class FrameFactoryTest {
 	
   @Test(dataProvider = "modbusErrorFrame")
   public void modbusFrmaeProvider(String s) {
@@ -28,43 +29,43 @@ public class FrameUtilTest {
 
   @Test(dataProvider="modbusErrorFrame", expectedExceptions=FrameInfoErrorException.class)
   public void parseModbusFramesError(String frames) throws FrameInfoErrorException {
-	  FrameUtil.parseModbusFrames(frames);
+	  FrameFactory.parseModbusFrames(frames);
   }
 
   @Test
   public void parseModbusFrames() throws FrameInfoErrorException {
-	  List<ModbusFrame> list = FrameUtil.parseModbusFrames("1|3-1-10|3|");
+	  List<ModbusFrame> list = FrameFactory.parseModbusFrames("1|3-1-10|3|");
 	  assert list != null && !list.isEmpty() : "返回结果为空";
 	  assert list.size() == 1 : "期望的返回结果集为1，实际返回的结果集为"+list.size();
 	  ModbusFrame frame = list.get(0);
-	  assert frame.getSlave()[0][0] == 1;
-	  assert frame.getFunCode() == 3;
-	  assert frame.getStart() == 1;
-	  assert frame.getLen() == 10;
-	  assert frame.getPriority() == 3;
-	  assert frame.getName() == null;
+	  assert frame.slave[0][0] == 1;
+	  assert frame.funCode == 3;
+	  assert frame.start == 1;
+	  assert frame.len == 10;
+	  assert frame.priority == 3;
+	  assert frame.name == null;
 	  
-	  list = FrameUtil.parseModbusFrames("1|3-100-10|0|soe");
+	  list = FrameFactory.parseModbusFrames("1|3-100-10|0|soe");
 	  frame = list.get(0);
-	  assert frame.getName() != null;
+	  assert frame.name != null;
 	  
-	  list = FrameUtil.parseModbusFrames("1-10 13-23|3-1-10|3|");
+	  list = FrameFactory.parseModbusFrames("1-10 13-23|3-1-10|3|");
 	  frame = list.get(0);
-	  assert frame.getSlave().length == 2;
-	  assert frame.getSlave()[0][0] == 1;
-	  assert frame.getSlave()[0][1] == 10;
-	  assert frame.getSlave()[1][0] == 13;
-	  assert frame.getSlave()[1][1] == 23;
-	  assert frame.getName() == null;
+	  assert frame.slave.length == 2;
+	  assert frame.slave[0][0] == 1;
+	  assert frame.slave[0][1] == 10;
+	  assert frame.slave[1][0] == 13;
+	  assert frame.slave[1][1] == 23;
+	  assert frame.name == null;
 	  
-	  list = FrameUtil.parseModbusFrames("1-10 13-23|3-1-10|3|,1|3-100-10|0|soe");
+	  list = FrameFactory.parseModbusFrames("1-10 13-23|3-1-10|3|,1|3-100-10|0|soe");
 	  assert list != null && !list.isEmpty() : "返回结果为空";
 	  assert list.size() == 2 : "期望的返回结果集为2，实际返回的结果集为"+list.size();
 	  frame = list.get(0);
-	  assert frame.getSlave().length == 2;
-	  assert frame.getName() == null;
+	  assert frame.slave.length == 2;
+	  assert frame.name == null;
 	  frame = list.get(1);
-	  assert frame.getSlave().length == 1;
-	  assert frame.getName() != null;
+	  assert frame.slave.length == 1;
+	  assert frame.name != null;
   }
 }

@@ -8,8 +8,10 @@ import com.ht.scada.common.tag.exception.PortInfoErrorException;
  * 包括：TCP/IP通讯的物理信息、DTU通讯的物理信息、 串口通讯通讯的物理信息
  * @author 薄成文
  */
-public class PortInfoUtil {
+public class PortInfoFactory {
+	
 	public static final String DTU_INFO_PREFIX = "dtu";
+	
 	public static DtuInfo parseDtuInfo(String portInfo) throws PortInfoErrorException {
 		if (portInfo.startsWith("dtu|")) {
 			String[] infoArray = portInfo.substring(4).split(":");
@@ -24,12 +26,12 @@ public class PortInfoUtil {
 			}
 			
 			try {
-				DtuInfo dtuInfo = new DtuInfo();
-				dtuInfo.setDtuId(infoArray[0]);
-				dtuInfo.setPort(Integer.parseInt(infoArray[1]));
-				dtuInfo.setHeartBeat(infoArray[2]);
-				dtuInfo.setHeartBeatInterval(Integer.parseInt(infoArray[3]));
+				String dtuId = infoArray[0];
+				int port = Integer.parseInt(infoArray[1]);
+				String heartBeat = infoArray[2];
+				int heartBeatInterval = Integer.parseInt(infoArray[3]);
 				
+				DtuInfo dtuInfo = new DtuInfo(dtuId, port, heartBeat, heartBeatInterval);
 				return dtuInfo;
 			} catch (NumberFormatException e) {
 				throw new PortInfoErrorException("无法按照DTU格式解析:"+portInfo + "," + e.getMessage());
@@ -58,9 +60,9 @@ public class PortInfoUtil {
 			}
 			
 			try {
-				TcpIpInfo tcpIpInfo = new TcpIpInfo();
-				tcpIpInfo.setIp(infoArray[0]);
-				tcpIpInfo.setPort(Integer.parseInt(infoArray[1]));
+				String ip = infoArray[0];
+				int port = Integer.parseInt(infoArray[1]);
+				TcpIpInfo tcpIpInfo = new TcpIpInfo(ip, port);
 				return tcpIpInfo;
 			} catch (NumberFormatException e) {
 				throw new PortInfoErrorException("无法按照TCP格式解析:"+portInfo + "," + e.getMessage());
@@ -92,12 +94,12 @@ public class PortInfoUtil {
 			}
 			
 			try {
-				SerialInfo serialInfo = new SerialInfo();
-				serialInfo.setPort(Integer.parseInt(infoArray[0]));
-				serialInfo.setBaud(Integer.parseInt(infoArray[1]));
-				serialInfo.setDataBit(Integer.parseInt(infoArray[2]));
-				serialInfo.setParity(infoArray[3]);
-				serialInfo.setStopBit(infoArray[4]);
+				int port = Integer.parseInt(infoArray[0]);
+				int baud = Integer.parseInt(infoArray[1]);
+				int dataBit = Integer.parseInt(infoArray[2]);
+				String parity = infoArray[3];
+				String stopBit = infoArray[4];
+				SerialInfo serialInfo = new SerialInfo(port, baud, dataBit, parity, stopBit);
 				return serialInfo;
 			} catch (NumberFormatException e) {
 				throw new PortInfoErrorException("无法按照Serial格式解析:"+portInfo + "," + e.getMessage());
@@ -105,5 +107,49 @@ public class PortInfoUtil {
 		} else {
 			throw new PortInfoErrorException("无法按照Serial格式解析:"+portInfo);
 		}
+	}
+	
+	public static class TcpIpInfo {
+		public String ip;
+		public int port;
+		private TcpIpInfo(String ip, int port) {
+			this.ip = ip;
+			this.port = port;
+		}
+		
+	}
+	
+	public static class SerialInfo {
+		public int port;// 端口1、2、3、4...
+		public int baud;// 波特率
+		public int dataBit;
+		public String parity;
+		public String stopBit;
+		
+		private SerialInfo(int port, int baud, int dataBit, String parity,
+				String stopBit) {
+			this.port = port;
+			this.baud = baud;
+			this.dataBit = dataBit;
+			this.parity = parity;
+			this.stopBit = stopBit;
+		}
+		
+	}
+	
+
+	public static class DtuInfo {
+		public String dtuId;
+		public int port;
+		public String heartBeat;
+		public int heartBeatInterval;
+		private DtuInfo(String dtuId, int port, String heartBeat,
+				int heartBeatInterval) {
+			this.dtuId = dtuId;
+			this.port = port;
+			this.heartBeat = heartBeat;
+			this.heartBeatInterval = heartBeatInterval;
+		}
+		
 	}
 }
