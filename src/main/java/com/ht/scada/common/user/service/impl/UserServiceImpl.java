@@ -10,8 +10,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ht.scada.common.user.dao.UserDao;
+import com.ht.scada.common.user.dao.UserExtInfoDao;
 import com.ht.scada.common.user.dao.UserRoleDao;
 import com.ht.scada.common.user.entity.User;
+import com.ht.scada.common.user.entity.UserExtInfo;
 import com.ht.scada.common.user.entity.UserRole;
 import com.ht.scada.common.user.security.ShiroDbRealm.ShiroUser;
 import com.ht.scada.common.user.service.UserService;
@@ -26,6 +28,8 @@ public class UserServiceImpl implements UserService {
 	@Inject
 	private UserRoleDao userRoleDao;
 
+	@Inject
+	private UserExtInfoDao userExtInfoDao;
 	@Override
 	public User getCurrentUser() {
 		//final Integer currentUserId = (Integer) SecurityUtils.getSubject().getPrincipal();
@@ -96,5 +100,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void updateUserPassword(String password, int id){
 		userDao.updateUserPassword(password, id);
+	}
+	@Override
+	public List<UserExtInfo> getAllUserExtInfo() {
+		
+		return userExtInfoDao.findAll();
 	}
 }
