@@ -10,6 +10,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Digits;
+import org.apache.shiro.crypto.hash.Sha256Hash;
 
 import org.hibernate.annotations.Index;
 import org.springframework.data.jpa.domain.AbstractPersistable;
@@ -68,7 +69,9 @@ public class User extends AbstractPersistable<Integer> {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+        public void setShaPassword(String password){
+            this.password=new Sha256Hash(password).toHex();
+        }
 
 	public UserRole getUserRole() {
 		return userRole;

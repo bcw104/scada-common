@@ -34,4 +34,9 @@ public interface UserService {
     List<UserExtInfo> getAllUserExtInfo();
 
     List<UserRole> getAllUserRole();
+
+    void addUserExtInfo(UserExtInfo newUser);
+
+    UserRole getUserRoleById(int id);
+    
 }
