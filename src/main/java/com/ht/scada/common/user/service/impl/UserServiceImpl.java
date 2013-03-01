@@ -111,11 +111,15 @@ public class UserServiceImpl implements UserService {
             return userRoleDao.findAll();
         }
         @Override
-        public void  addUserExtInfo(UserExtInfo newUser) {
+        public void  saveUserExtInfo(UserExtInfo newUser) {
 		userExtInfoDao.save(newUser);
 	}
         @Override
         public UserRole getUserRoleById(int id){
             return userRoleDao.findOne(id);
+        }
+        @Override
+        public UserExtInfo findByUserID(int id){
+            return userExtInfoDao.findByUserID(id);
         }
 }
