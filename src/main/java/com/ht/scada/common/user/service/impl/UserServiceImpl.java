@@ -74,7 +74,10 @@ public class UserServiceImpl implements UserService {
 	public void deleteUser(int userId) {
 		userDao.delete(userId);
 	}
-
+        @Override
+        public void deleteUserRole(int id){
+            userRoleDao.delete(id);
+        }
 	@Override
 	public void updateUser(User user) {
 		userDao.save(user);
@@ -89,7 +92,7 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public void updateUserRole(UserRole userRole) {
+	public void saveUserRole(UserRole userRole) {
 		userRoleDao.save(userRole);
 	}
 	
@@ -119,7 +122,7 @@ public class UserServiceImpl implements UserService {
             return userRoleDao.findOne(id);
         }
         @Override
-        public UserExtInfo findByUserID(int id){
+        public UserExtInfo findUserExtInfoByUserID(int id){
             return userExtInfoDao.findByUserID(id);
         }
 }

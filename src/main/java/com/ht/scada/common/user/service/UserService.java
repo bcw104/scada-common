@@ -25,7 +25,7 @@ public interface UserService {
 
     void createUserRole(String name, String description);
 
-    void updateUserRole(UserRole userRole);
+    void saveUserRole(UserRole userRole);
 
     UserRole getUserRoleByName(String name);
 
@@ -39,7 +39,9 @@ public interface UserService {
 
     UserRole getUserRoleById(int id);
 
-    UserExtInfo findByUserID(int id);
+    UserExtInfo findUserExtInfoByUserID(int id);
+
+    void deleteUserRole(int id);
     
     
 }
