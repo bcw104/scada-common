@@ -18,6 +18,7 @@ import javax.jms.Session;
 import javax.jms.Topic;
 import javax.naming.Context;
 import javax.naming.InitialContext;
+import javax.naming.NamingException;
 
 import org.hornetq.api.jms.HornetQJMSClient;
 import org.hornetq.api.jms.management.JMSManagementHelper;
@@ -26,6 +27,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.ht.scada.common.data.FaultRecord;
+import com.ht.scada.common.data.OffLimitsRecord;
+import com.ht.scada.common.data.YXData;
+import com.ht.scada.common.middleware.alarm.AlarmListener;
 import com.ht.scada.common.middleware.service.JmsService;
 
 /**
@@ -82,23 +87,90 @@ public class JmsServiceImpl implements JmsService {
 		session.close();
 		connection.close();
 	}
-	
-	@Override
-	public void addAlarmMessageListener(MessageListener listener) throws Exception {
-		Topic topic = (Topic) initialContext.lookup("/topic/alarm");
-		
-		Connection connection = cf.createConnection();
-		connection.start();
-		Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-		
-		MessageConsumer redConsumer = session.createConsumer(topic);
-		redConsumer.setMessageListener(listener);
-		
-		connection.close();
-	}
 
 	@Override
 	public List<String> getLatestAlarmInfo(String area) {
 		return null;
+	}
+
+	@Override
+	public void addFaultAlarmListener(final AlarmListener<FaultRecord> listener) {
+		try {
+			Topic topic = (Topic) initialContext.lookup("/topic/alarm/fault");
+			
+			Connection connection = cf.createConnection();
+			connection.start();
+			Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+			
+			MessageConsumer redConsumer = session.createConsumer(topic);
+			redConsumer.setMessageListener(new MessageListener() {
+				
+				@Override
+				public void onMessage(Message message) {
+					listener.alarmCatched(new FaultRecord());
+				}
+			});
+			
+			connection.close();
+		} catch (NamingException e) {
+			e.printStackTrace();
+		} catch (JMSException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void addOffLimitsAlarmListener(
+			final AlarmListener<OffLimitsRecord> listener) {
+		try {
+			Topic topic = (Topic) initialContext.lookup("/topic/alarm/offLimit");
+			
+			Connection connection = cf.createConnection();
+			connection.start();
+			Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+			
+			MessageConsumer redConsumer = session.createConsumer(topic);
+			redConsumer.setMessageListener(new MessageListener() {
+				
+				@Override
+				public void onMessage(Message message) {
+					listener.alarmCatched(new OffLimitsRecord());
+				}
+			});
+			
+			connection.close();
+		} catch (NamingException e) {
+			e.printStackTrace();
+		} catch (JMSException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public void addYXAlarmListener(final AlarmListener<YXData> listener) {
+		try {
+			Topic topic = (Topic) initialContext.lookup("/topic/alarm/yx");
+			
+			Connection connection = cf.createConnection();
+			connection.start();
+			Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+			
+			MessageConsumer redConsumer = session.createConsumer(topic);
+			redConsumer.setMessageListener(new MessageListener() {
+				
+				@Override
+				public void onMessage(Message message) {
+					listener.alarmCatched(new YXData());
+				}
+			});
+			
+			connection.close();
+		} catch (NamingException e) {
+			e.printStackTrace();
+		} catch (JMSException e) {
+			e.printStackTrace();
+		}
+		
 	}	
 }
