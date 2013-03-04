@@ -1,9 +1,9 @@
 package com.ht.scada.common.middleware.service.impl;
 
-import java.util.List;
 import java.util.Properties;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.jms.Connection;
 import javax.jms.JMSException;
 import javax.jms.Message;
@@ -27,15 +27,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.ht.scada.common.data.FaultRecord;
-import com.ht.scada.common.data.OffLimitsRecord;
-import com.ht.scada.common.data.YXData;
-import com.ht.scada.common.middleware.alarm.AlarmListener;
 import com.ht.scada.common.middleware.service.JmsService;
-import com.ht.scada.common.tag.entity.WellData;
 
 /**
- * JMS服务实现类，每末端都有一个对应的队列，读取队列中数据采用QueueBrowser获取<br>
+ * JMS服务实现类<br>
+ * 每末端都有一个对应的队列，读取队列中数据采用QueueBrowser获取<br>
  * 报警信息通过/topic/alarm进行推送<br>
  * 实时变化的信息通过/topic/data推送<br>
  * 
@@ -54,6 +50,8 @@ public class JmsServiceImpl implements JmsService {
 	
 	private Context initialContext;
 	private HornetQConnectionFactory cf;
+	private Connection connection;
+	
 	
 	@PostConstruct
 	private void initJndiJms() throws Exception {
@@ -64,10 +62,24 @@ public class JmsServiceImpl implements JmsService {
 
 		initialContext = new InitialContext(prop);
 		cf = (HornetQConnectionFactory) initialContext.lookup("/ConnectionFactory");
+		connection = cf.createConnection();
 		
 		// TODO: 创建动态队列
 		createQueue("queue1");
 		createQueue("myqueue");
+	}
+	
+	@PreDestroy
+	private void destroy() {
+		if (connection != null) {
+			try {
+				connection.close();
+			} catch (JMSException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		cf.close();
 	}
 	
 	private void createQueue(String queueName) throws JMSException {
@@ -88,27 +100,21 @@ public class JmsServiceImpl implements JmsService {
 		session.close();
 		connection.close();
 	}
-
-
+	
 	@Override
-	public void addFaultAlarmListener(final AlarmListener<FaultRecord> listener) {
+	public void registTopicMessageListener(String topicPath, MessageListener listener) {
 		try {
-			Topic topic = (Topic) initialContext.lookup("/topic/alarm/fault");
+			Topic topic = (Topic) initialContext.lookup(topicPath);
 			
-			Connection connection = cf.createConnection();
-			connection.start();
 			Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 			
 			MessageConsumer redConsumer = session.createConsumer(topic);
-			redConsumer.setMessageListener(new MessageListener() {
-				
-				@Override
-				public void onMessage(Message message) {
-					listener.alarmCatched(new FaultRecord());
-				}
-			});
+			redConsumer.setMessageListener(listener);
 			
-			connection.close();
+			session.commit();
+			connection.start();
+			//session.close();
+			//connection.close();
 		} catch (NamingException e) {
 			e.printStackTrace();
 		} catch (JMSException e) {
@@ -116,75 +122,6 @@ public class JmsServiceImpl implements JmsService {
 		}
 	}
 
-	@Override
-	public void addOffLimitsAlarmListener(
-			final AlarmListener<OffLimitsRecord> listener) {
-		try {
-			Topic topic = (Topic) initialContext.lookup("/topic/alarm/offLimit");
-			
-			Connection connection = cf.createConnection();
-			connection.start();
-			Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-			
-			MessageConsumer redConsumer = session.createConsumer(topic);
-			redConsumer.setMessageListener(new MessageListener() {
-				
-				@Override
-				public void onMessage(Message message) {
-					listener.alarmCatched(new OffLimitsRecord());
-				}
-			});
-			
-			connection.close();
-		} catch (NamingException e) {
-			e.printStackTrace();
-		} catch (JMSException e) {
-			e.printStackTrace();
-		}
-		
-	}
-	public void addYXAlarmListener(final AlarmListener<YXData> listener) {
-		try {
-			Topic topic = (Topic) initialContext.lookup("/topic/alarm/yx");
-			
-			Connection connection = cf.createConnection();
-			connection.start();
-			Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-			
-			MessageConsumer redConsumer = session.createConsumer(topic);
-			redConsumer.setMessageListener(new MessageListener() {
-				
-				@Override
-				public void onMessage(Message message) {
-					listener.alarmCatched(new YXData());
-				}
-			});
-			
-			connection.close();
-		} catch (NamingException e) {
-			e.printStackTrace();
-		} catch (JMSException e) {
-			e.printStackTrace();
-		}
-		
-	}
-
-	@Override
-	public WellData getLatestWellDataByWellNum(String wellNum) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getLatestProductByWellNum(String wellNum) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getLatestWellFaultByWellNum(String wellNum) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 }
