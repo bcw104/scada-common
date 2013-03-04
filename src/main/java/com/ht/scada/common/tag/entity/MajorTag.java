@@ -23,17 +23,21 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Table(name="T_Major_Tag")
 public class MajorTag extends AbstractPersistable<Integer> {
 
-	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -6243216659606361009L;
+	private static final long serialVersionUID = 3823820398981131135L;
 
 	/**
 	 * 节点名称<br>
 	 * 需要在树形结构中显示的名称
 	 */
 	private String name;
+	
+	/**
+	 * 末端编号
+	 */
+	private String code;
 	
 	/**
 	 * 节点类型<br>
@@ -110,6 +114,14 @@ public class MajorTag extends AbstractPersistable<Integer> {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	public String getType() {

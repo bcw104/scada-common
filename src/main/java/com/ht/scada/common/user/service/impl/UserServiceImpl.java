@@ -10,9 +10,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ht.scada.common.user.dao.UserDao;
+import com.ht.scada.common.user.dao.UserExtInfoDao;
 import com.ht.scada.common.user.dao.UserRoleDao;
 import com.ht.scada.common.user.entity.User;
+import com.ht.scada.common.user.entity.UserExtInfo;
 import com.ht.scada.common.user.entity.UserRole;
+import com.ht.scada.common.user.security.ShiroDbRealm.ShiroUser;
 import com.ht.scada.common.user.service.UserService;
 
 @Transactional
@@ -25,11 +28,15 @@ public class UserServiceImpl implements UserService {
 	@Inject
 	private UserRoleDao userRoleDao;
 
+	@Inject
+	private UserExtInfoDao userExtInfoDao;
 	@Override
 	public User getCurrentUser() {
-		final Integer currentUserId = (Integer) SecurityUtils.getSubject().getPrincipal();
-        if( currentUserId != null ) {
-            return getUser(currentUserId);
+		//final Integer currentUserId = (Integer) SecurityUtils.getSubject().getPrincipal();
+		final ShiroUser shiroUser = (ShiroUser) SecurityUtils.getSubject().getPrincipal();
+		
+        if( shiroUser != null ) {
+            return getUserByUsername(shiroUser.userame);
         } else {
             return null;
         }
@@ -67,7 +74,10 @@ public class UserServiceImpl implements UserService {
 	public void deleteUser(int userId) {
 		userDao.delete(userId);
 	}
-
+        @Override
+        public void deleteUserRole(int id){
+            userRoleDao.delete(id);
+        }
 	@Override
 	public void updateUser(User user) {
 		userDao.save(user);
@@ -82,7 +92,7 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public void updateUserRole(UserRole userRole) {
+	public void saveUserRole(UserRole userRole) {
 		userRoleDao.save(userRole);
 	}
 	
@@ -90,4 +100,29 @@ public class UserServiceImpl implements UserService {
 	public UserRole getUserRoleByName(String name) {
 		return userRoleDao.findByName(name);
 	}
+	@Override
+	public void updateUserPassword(String password, int id){
+		userDao.updateUserPassword(password, id);
+	}
+	@Override
+	public List<UserExtInfo> getAllUserExtInfo() {
+		
+		return userExtInfoDao.findAll();
+	}
+        @Override
+        public List<UserRole> getAllUserRole(){
+            return userRoleDao.findAll();
+        }
+        @Override
+        public void  saveUserExtInfo(UserExtInfo newUser) {
+		userExtInfoDao.save(newUser);
+	}
+        @Override
+        public UserRole getUserRoleById(int id){
+            return userRoleDao.findOne(id);
+        }
+        @Override
+        public UserExtInfo findUserExtInfoByUserID(int id){
+            return userExtInfoDao.findByUserID(id);
+        }
 }

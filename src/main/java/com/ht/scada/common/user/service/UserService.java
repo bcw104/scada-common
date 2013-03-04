@@ -3,28 +3,45 @@ package com.ht.scada.common.user.service;
 import java.util.List;
 
 import com.ht.scada.common.user.entity.User;
+import com.ht.scada.common.user.entity.UserExtInfo;
 import com.ht.scada.common.user.entity.UserRole;
 
 public interface UserService {
-	User getCurrentUser();
+    User getCurrentUser();
 
-	void createUser(String username, String password);
-	
-	void addNewUser(User newUser);
+    void createUser(String username, String password);
 
-	List<User> getAllUsers();
+    void addNewUser(User newUser);
 
-	User getUser(int userId);
+    List<User> getAllUsers();
 
-	User getUserByUsername(String username);
+    User getUser(int userId);
 
-	void deleteUser(int userId);
+    User getUserByUsername(String username);
 
-	void updateUser(User user);
-	
-	void createUserRole(String name, String description);
-	
-	void updateUserRole(UserRole userRole);
-	
-	UserRole getUserRoleByName(String name);
+    void deleteUser(int userId);
+
+    void updateUser(User user);
+
+    void createUserRole(String name, String description);
+
+    void saveUserRole(UserRole userRole);
+
+    UserRole getUserRoleByName(String name);
+
+    void updateUserPassword(String password, int id);
+
+    List<UserExtInfo> getAllUserExtInfo();
+
+    List<UserRole> getAllUserRole();
+
+    void saveUserExtInfo(UserExtInfo newUser);
+
+    UserRole getUserRoleById(int id);
+
+    UserExtInfo findUserExtInfoByUserID(int id);
+
+    void deleteUserRole(int id);
+    
+    
 }

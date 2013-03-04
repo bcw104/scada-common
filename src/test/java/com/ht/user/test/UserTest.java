@@ -53,7 +53,7 @@ public class UserTest extends AbstractTestNGSpringContextTests {
 		UserRole role = userService.getUserRoleByName("管理员");
 		assert role != null;
 		role.setPermissions(new HashSet<>(Arrays.asList("user:*", "a:b")));
-		userService.updateUserRole(role);
+		userService.saveUserRole(role);
 		
 		user.setUserRole(role);
 		userService.updateUser(user);
