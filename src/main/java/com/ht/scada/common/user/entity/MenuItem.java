@@ -8,6 +8,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="T_MenuItem")
@@ -27,6 +28,7 @@ public class MenuItem extends AbstractPersistable<Integer> {
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="type_id")
+        @JsonIgnore
 	private MenuType menuType;
 
 	public String getMenuItemName() {

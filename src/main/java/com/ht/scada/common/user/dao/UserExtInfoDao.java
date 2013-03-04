@@ -4,7 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 
 import com.ht.scada.common.user.entity.UserExtInfo;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 
