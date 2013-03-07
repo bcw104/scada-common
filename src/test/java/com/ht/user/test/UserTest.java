@@ -77,6 +77,7 @@ public class UserTest extends AbstractTestNGSpringContextTests {
 		Subject currentUser = SecurityUtils.getSubject();
 		//3. 登录： 
 		currentUser.login(token);
+		// 登出：currentUser.logout();
 		
 		assert currentUser.hasRole("管理员");
 		assert !currentUser.hasRole("nop");

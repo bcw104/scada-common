@@ -8,6 +8,8 @@ import java.util.Date;
  *
  */
 public class FaultRecord {
+	
+	private String id;	// 唯一主键
 	private String code;// 计量点编号(回路号、井号等)
 	private String name;// 变量名称
 	private String info;// 故障信息
@@ -34,6 +36,14 @@ public class FaultRecord {
 		this.value = value;
 		this.actionTime = actionTime;
 		this.resumeTime = resumeTime;
+	}
+	
+	public String getId() {
+		return id;
+	}
+	
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getCode() {

@@ -25,7 +25,7 @@ public class AreaMinorTag extends AbstractPersistable<Integer> {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -5534702454112581237L;
+	private static final long serialVersionUID = 5811189008466505082L;
 	private String name;// 名称
 	private String type;// 类型或编号
 	
@@ -35,6 +35,9 @@ public class AreaMinorTag extends AbstractPersistable<Integer> {
 	
 	@OneToMany(mappedBy="parent")
 	private List<AreaMinorTag> children;
+	
+	@OneToMany(mappedBy = "areaMinorTag")
+	private List<EndTag> endTagList;
 	
 	/*非持久化字段*/
 	@Transient
@@ -87,6 +90,14 @@ public class AreaMinorTag extends AbstractPersistable<Integer> {
 
 	public void setPath(String path) {
 		this.path = path;
+	}
+
+	public List<EndTag> getEndTagList() {
+		return endTagList;
+	}
+
+	public void setEndTagList(List<EndTag> endTagList) {
+		this.endTagList = endTagList;
 	}
 	
 }

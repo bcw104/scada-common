@@ -38,8 +38,8 @@ public class TagCfgTpl extends AbstractPersistable<Integer> {
 	@Column(name="sub_Type") private String 	subType;	// 变量子类型
 	@Column(name="data_type") private DataType 	dataType;	// 值类型（bool, int32, int16, bcd, mod10000, float, double）
 	
-	@Column(name="fun_code") private int 		funCode;	// 功能码
-	@Column(name="data_id") private int 		dataID;		// 数据ID
+	@Column(name="fun_code") 	private int		funCode;	// 功能码
+	@Column(name="data_id") 	private int 	dataID;		// 数据ID
 	@Column(name="byte_offset") private int 	byteOffset = 0;	// 字节偏移量
 	@Column(name="bit_offset") private int 		bitOffset = -1;	// 位偏移量(-1表)
 	@Column(name="byte_len") private int 		byteLen;	// 字节长度

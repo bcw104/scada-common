@@ -8,6 +8,7 @@ import java.util.Date;
  *
  */
 public class YXData {
+	private String id;	// 唯一主键
 	private String code;// 计量点编号(回路号、井号等)
 	private String name;// 变量名称
 	private String info;

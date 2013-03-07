@@ -1,15 +1,19 @@
 package com.ht.scada.common.user.entity;
 
+import java.util.Set;
+
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import org.apache.shiro.crypto.hash.Sha256Hash;
 
+import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.hibernate.annotations.Index;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
@@ -36,6 +40,11 @@ public class User extends AbstractPersistable<Integer> {
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="role_id")
 	private UserRole userRole;
+	
+	@ElementCollection(fetch=FetchType.LAZY)
+	@CollectionTable(name = "T_Users_MajorTag")
+	@Column(name = "major_tag_id")
+	private Set<Integer> majorTagID;// user:edit,user:add
 	
 	public User() {
 	}

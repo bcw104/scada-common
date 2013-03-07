@@ -25,7 +25,7 @@ public class EnergyMinorTag extends AbstractPersistable<Integer> {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -1117061962233954869L;
+	private static final long serialVersionUID = -8822924796703061008L;
 	private String name;// 名称
 	private String type;// 类型或编号
 	
@@ -35,6 +35,9 @@ public class EnergyMinorTag extends AbstractPersistable<Integer> {
 	
 	@OneToMany(mappedBy="parent")
 	private List<EnergyMinorTag> children;
+	
+	@OneToMany(mappedBy = "energyMinorTag")
+	private List<EndTag> endTagList;
 	
 	/*非持久化字段*/
 	@Transient
@@ -85,6 +88,14 @@ public class EnergyMinorTag extends AbstractPersistable<Integer> {
 
 	public void setPath(String path) {
 		this.path = path;
+	}
+
+	public List<EndTag> getEndTagList() {
+		return endTagList;
+	}
+
+	public void setEndTagList(List<EndTag> endTagList) {
+		this.endTagList = endTagList;
 	}
 	
 }

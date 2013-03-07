@@ -1,9 +1,12 @@
 package com.ht.scada.common.middleware.service;
 
+import java.util.List;
+
+import com.ht.scada.common.data.FaultDiagnoseRecord;
 import com.ht.scada.common.data.FaultRecord;
 import com.ht.scada.common.data.OffLimitsRecord;
 import com.ht.scada.common.data.YXData;
-import com.ht.scada.common.middleware.alarm.PushDataListener;
+import com.ht.scada.common.middleware.AlarmDataListener;
 
 /**
  * 报警服务接口<br>
@@ -14,32 +17,40 @@ import com.ht.scada.common.middleware.alarm.PushDataListener;
 public interface AlarmService {
 	
 	/**
-	 * 注册故障报警监听器.<br>
+	 * 注册故障报警监听器,用于实时推送报警信息.<br>
 	 * <pre>
-	 *  service.addFaultAlarmListern(new PushDataListener<FaultRecord>(){...});
+	 *  service.addFaultAlarmListern(new PushDataListener(){...});
 	 * </pre>
 	 * @param listener
 	 * @throws Exception
 	 */
-	public void addFaultAlarmListener(PushDataListener<FaultRecord> listener);
+	public void addAlarmListener(AlarmDataListener listener);
 	
 	/**
-	 * 注册越限报警监听器.<br>
-	 * <pre>
-	 *  service.addOffLimitsAlarmListern(new PushDataListener<OffLimitsRecord>(){...});
-	 * </pre>
-	 * @param listener
-	 * @throws Exception
+	 * 返回当前的故障报警记录
+	 * @param code
+	 * @return
 	 */
-	public void addOffLimitsAlarmListener(PushDataListener<OffLimitsRecord> listener);
+	public List<FaultRecord> getCurrentFaultRecord(String code);
 	
 	/**
-	 * 注册遥信变位报警监听器.<br>
-	 * <pre>
-	 *  service.addYXAlarmListern(new PushDataListener<YXData>(){...});
-	 * </pre>
-	 * @param listener
-	 * @throws Exception
+	 * 返回当前的遥测越限报警记录
+	 * @param code
+	 * @return
 	 */
-	public void addYXAlarmListener(PushDataListener<YXData> listener);
+	public List<OffLimitsRecord> getCurrentOffLimitsRecord(String code);
+	
+	/**
+	 * 返回当前的遥信变位记录
+	 * @param code
+	 * @return
+	 */
+	public List<YXData> getCurrentYXData(String code);
+	
+	/**
+	 * 返回当前的故障诊断记录
+	 * @param code
+	 * @return
+	 */
+	public List<FaultDiagnoseRecord> getCurrentFaultDiagnoseRecord(String code);
 }

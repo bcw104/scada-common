@@ -1,5 +1,7 @@
 package com.ht.scada.common.middleware.service.impl;
 
+import java.util.Date;
+
 import com.ht.scada.common.middleware.service.WellDataService;
 import com.ht.scada.common.tag.entity.WellData;
 
@@ -21,5 +23,18 @@ public class WellDataServiceImpl implements WellDataService {
 	public String getLatestWellFaultByWellNum(String wellNum) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public WellData getWellDataByWellNumAndDatetime(String wellNum,
+			Date datetime) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public double getDailyOilProduct(String code, Date date) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

@@ -15,7 +15,7 @@ public class WellData {
 	/**
 	 * 井号，可以是中文或英文，如草13-113、C13-P32
 	 */
-	private String wellNum;
+	private String code;
 	/**
 	 * 载荷，示功图纵坐标
 	 */
@@ -25,7 +25,7 @@ public class WellData {
 	 */
 	private float[] weiyi;
 	/**
-	 * 冲程时间
+	 * 冲程时间(s)
 	 */
 	private float chongChengTime;
 	/**
@@ -45,12 +45,14 @@ public class WellData {
 	 */
 	private float minZaihe;
 	
+	private Date datetime;
+	
 	
 	public String getWellNum() {
-		return wellNum;
+		return code;
 	}
 	public void setWellNum(String wellNum) {
-		this.wellNum = wellNum;
+		this.code = wellNum;
 	}
 	public float[] getZaihe() {
 		return zaihe;
@@ -95,7 +97,11 @@ public class WellData {
 		this.minZaihe = minZaihe;
 	}
 	
+	public Date getDatetime() {
+		return datetime;
+	}
 	
-	
-
+	public void setDatetime(Date datetime) {
+		this.datetime = datetime;
+	}
 }
