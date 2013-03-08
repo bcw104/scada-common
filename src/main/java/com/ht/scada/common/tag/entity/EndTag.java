@@ -54,7 +54,7 @@ public class EndTag extends AbstractPersistable<Integer> {
 	@Column(name = "tpl_name")
 	private String tplName;
 
-	@OneToMany(mappedBy = "majorTag")
+	@OneToMany(mappedBy = "endTag")
 	private List<EndTagExtInfo> extInfo;
 
 	/**

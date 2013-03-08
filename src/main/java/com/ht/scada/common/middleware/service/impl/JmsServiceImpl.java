@@ -122,6 +122,12 @@ public class JmsServiceImpl implements JmsService {
 		}
 	}
 
+	@Override
+	public String test(String a) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 
 }

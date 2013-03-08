@@ -30,6 +30,7 @@ public class UserServiceImpl implements UserService {
 
 	@Inject
 	private UserExtInfoDao userExtInfoDao;
+	
 	@Override
 	public User getCurrentUser() {
 		//final Integer currentUserId = (Integer) SecurityUtils.getSubject().getPrincipal();

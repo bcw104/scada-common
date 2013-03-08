@@ -22,7 +22,6 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Table(name = "T_Major_Tag")
 public class MajorTag extends AbstractPersistable<Integer> {
 
-
 	/**
 	 * 
 	 */

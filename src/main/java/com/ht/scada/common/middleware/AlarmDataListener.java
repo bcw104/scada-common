@@ -2,10 +2,10 @@ package com.ht.scada.common.middleware;
 
 import java.util.List;
 
-import com.ht.scada.common.data.FaultDiagnoseRecord;
 import com.ht.scada.common.data.FaultRecord;
 import com.ht.scada.common.data.OffLimitsRecord;
 import com.ht.scada.common.data.YXData;
+import com.ht.scada.common.data.entity.FaultDiagnoseRecord;
 
 /**
  * 推送数据监听器接口<br>

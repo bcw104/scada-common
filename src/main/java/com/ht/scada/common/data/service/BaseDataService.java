@@ -1,5 +1,7 @@
 package com.ht.scada.common.data.service;
 
+import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 
@@ -11,4 +13,6 @@ public interface BaseDataService {
 	 * @return
 	 */
 	Map<String, Object> getRealTimeData(String code);
+	
+	List<Map<String, Object>> getHistoryData(String code, Date start, Date end);
 }

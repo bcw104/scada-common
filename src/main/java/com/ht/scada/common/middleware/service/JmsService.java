@@ -17,4 +17,5 @@ public interface JmsService {
 	 */
 	void registTopicMessageListener(String topicPath, MessageListener listener);
 	
+	String test(String a);
 }

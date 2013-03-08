@@ -8,6 +8,10 @@ import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
+/**
+ * @author 薄成文
+ *
+ */
 @Entity
 @Table(name = "T_End_Ext_Info")
 public class EndTagExtInfo extends AbstractPersistable<Integer> {

@@ -7,15 +7,18 @@ import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.TextMessage;
 
+import org.springframework.stereotype.Service;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ht.scada.common.data.FaultDiagnoseRecord;
 import com.ht.scada.common.data.FaultRecord;
 import com.ht.scada.common.data.OffLimitsRecord;
 import com.ht.scada.common.data.YXData;
+import com.ht.scada.common.data.entity.FaultDiagnoseRecord;
 import com.ht.scada.common.middleware.AlarmDataListener;
 import com.ht.scada.common.middleware.service.AlarmService;
 import com.ht.scada.common.middleware.service.JmsService;
 
+@Service("alarmService")
 public class AlarmServiceImpl implements AlarmService {
 	
 	@Inject

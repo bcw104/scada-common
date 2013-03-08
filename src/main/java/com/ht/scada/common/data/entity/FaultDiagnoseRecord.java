@@ -1,14 +1,24 @@
-package com.ht.scada.common.data;
+package com.ht.scada.common.data.entity;
 
 import java.util.Date;
 
+import com.ht.scada.common.user.entity.User;
+
+/**
+ * 故障诊断记录
+ * @author 薄成文
+ *
+ */
 public class FaultDiagnoseRecord {
 
 	private String id; // 唯一主键
 	private String code;// 计量点编号(回路号、井号等)
 	private String name;// 故障类型
 	private String info;// 故障信息
+	private Integer level;	// 故障程度 
 	private Date actionTime;
+	
+	private User user;
 
 	public String getId() {
 		return id;
@@ -41,6 +51,14 @@ public class FaultDiagnoseRecord {
 	public void setInfo(String info) {
 		this.info = info;
 	}
+	
+	public Integer getLevel() {
+		return level;
+	}
+	
+	public void setLevel(Integer level) {
+		this.level = level;
+	}
 
 	public Date getActionTime() {
 		return actionTime;
@@ -48,6 +66,14 @@ public class FaultDiagnoseRecord {
 
 	public void setActionTime(Date actionTime) {
 		this.actionTime = actionTime;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }

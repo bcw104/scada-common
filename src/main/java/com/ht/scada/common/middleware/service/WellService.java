@@ -1,10 +1,13 @@
 package com.ht.scada.common.middleware.service;
 
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import com.ht.scada.common.tag.entity.WellData;
+import com.ht.scada.common.well.WellStatus;
 
-public interface WellDataService {
+public interface WellService {
 	
 	/**
 	 * 通过井号和时间获得历史的油井示功图及相关信息
@@ -50,5 +53,12 @@ public interface WellDataService {
 	 * @return
 	 */
 	double getDailyOilProduct(String code, Date date);
+	
+	/**
+	 * 获取启停井状态
+	 * @param codes 油井编号集合
+	 * @return
+	 */
+	List<WellStatus> getWellStatus(Collection<String> codes);
 	
 }
