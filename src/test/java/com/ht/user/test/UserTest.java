@@ -34,7 +34,7 @@ public class UserTest extends AbstractTestNGSpringContextTests {
 	private DefaultSecurityManager securityManager;
 	
 	
-	@BeforeClass
+//	@BeforeClass
 	public static void beforClass() throws Exception {
 		
 	}
