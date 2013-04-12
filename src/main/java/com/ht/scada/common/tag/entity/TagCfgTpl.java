@@ -48,14 +48,14 @@ public class TagCfgTpl extends AbstractPersistable<Integer> {
 	@Column(name="coef_value") private float 	coefValue = 1;// 系数
 	
 	/*变量扩展属性*/
-	@Transient
-	private String trigger;		// 触发采集帧名,如"soe", 需要与采集通道中定义的帧名称对应
+//	@Transient
+	private String triggeer;		// 触发采集帧名,如"soe", 需要与采集通道中定义的帧名称对应
 	
 	/**
 	 * 存储器
 	 * @see com.ht.scada.common.tag.util.StorageFactory
 	 */
-	@Transient
+//	@Transient
 	@Lob
 	private String storage = "ym|0|599999999|1|0";
 
@@ -162,12 +162,14 @@ public class TagCfgTpl extends AbstractPersistable<Integer> {
 		this.coefValue = coefValue;
 	}
 
-	public String getTrigger() {
-		return trigger;
+
+
+	public String getTriggeer() {
+		return triggeer;
 	}
 
-	public void setTrigger(String trigger) {
-		this.trigger = trigger;
+	public void setTriggeer(String triggeer) {
+		this.triggeer = triggeer;
 	}
 
 	public String getStorage() {

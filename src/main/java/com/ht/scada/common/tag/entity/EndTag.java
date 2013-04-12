@@ -19,7 +19,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
  * 
  */
 @Entity
-@Table(name = "T_end_tag")
+@Table(name = "T_End_Tag")
 public class EndTag extends AbstractPersistable<Integer> {
 
 	/**
