@@ -48,8 +48,8 @@ public class TagCfgTpl extends AbstractPersistable<Integer> {
 	@Column(name="byte_offset") private int 	byteOffset = 0;	// 字节偏移量
 	@Column(name="bit_offset") 	private int 	bitOffset = -1;	// 位偏移量(-1表)
 	@Column(name="byte_len") 	private int 	byteLen;	// 字节长度
-	@Column(name="base_value") 	private float 	baseValue = 0;// 基值 
-	@Column(name="coef_value") 	private float 	coefValue = 1;// 系数
+	@Column(name="base_value") 	private Float 	baseValue;// 基值 
+	@Column(name="coef_value") 	private Float 	coefValue;// 系数
 	
 	/*YM信息*/
 	@Column(name="max_value") 	private Double 	max;// 最大值 
@@ -57,14 +57,14 @@ public class TagCfgTpl extends AbstractPersistable<Integer> {
 	@Column(name="unit_value") 	private Integer unit;// 遥脉单位
 	
 	/*变量扩展属性*/
-	@Transient
+	@Column(name="comm_trigger")
 	private String trigger;		// 触发采集帧名,如"soe", 需要与采集通道中定义的帧名称对应
 	
 	/**
 	 * 存储器
 	 * @see com.ht.scada.common.tag.util.StorageFactory
 	 */
-	@Transient
+	@Column(name="var_storage ")
 	@Lob
 	private String storage = "ym|0|599999999|1|0";
 
@@ -163,19 +163,19 @@ public class TagCfgTpl extends AbstractPersistable<Integer> {
 		this.byteLen = byteLen;
 	}
 
-	public float getBaseValue() {
+	public Float getBaseValue() {
 		return baseValue;
 	}
 
-	public void setBaseValue(float baseValue) {
+	public void setBaseValue(Float baseValue) {
 		this.baseValue = baseValue;
 	}
 
-	public float getCoefValue() {
+	public Float getCoefValue() {
 		return coefValue;
 	}
 
-	public void setCoefValue(float coefValue) {
+	public void setCoefValue(Float coefValue) {
 		this.coefValue = coefValue;
 	}
 
