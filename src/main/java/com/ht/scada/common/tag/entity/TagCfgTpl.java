@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.Index;
 import org.springframework.data.jpa.domain.AbstractPersistable;
@@ -56,12 +57,14 @@ public class TagCfgTpl extends AbstractPersistable<Integer> {
 	@Column(name="unit_value") 	private Integer unit;// 遥脉单位
 	
 	/*变量扩展属性*/
+	@Transient
 	private String trigger;		// 触发采集帧名,如"soe", 需要与采集通道中定义的帧名称对应
 	
 	/**
 	 * 存储器
 	 * @see com.ht.scada.common.tag.util.StorageFactory
 	 */
+	@Transient
 	@Lob
 	private String storage = "ym|0|599999999|1|0";
 
