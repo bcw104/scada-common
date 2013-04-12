@@ -12,6 +12,7 @@ public class FaultRecord {
 	private String id;	// 唯一主键
 	private String code;// 计量点编号(回路号、井号等)
 	private String name;// 变量名称
+	private String group;
 	private String info;// 故障信息
 	private boolean value;
 	private Date actionTime;
@@ -20,22 +21,13 @@ public class FaultRecord {
 	public FaultRecord() {
 	}
 	
-	public FaultRecord(String code, String name, String info, boolean value, Date actionTime) {
+	public FaultRecord(String code, String name, String group, String info, boolean value, Date actionTime) {
 		this.code = code;
 		this.name = name;
+		this.group = group;
 		this.info = info;
 		this.value = value;
 		this.actionTime = actionTime;
-	}
-	
-	public FaultRecord(String code, String name, String info, boolean value,
-			Date actionTime, Date resumeTime) {
-		this.code = code;
-		this.name = name;
-		this.info = info;
-		this.value = value;
-		this.actionTime = actionTime;
-		this.resumeTime = resumeTime;
 	}
 	
 	public String getId() {
@@ -53,13 +45,21 @@ public class FaultRecord {
 	public void setCode(String code) {
 		this.code = code;
 	}
-
+	
 	public String getName() {
 		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getGroup() {
+		return group;
+	}
+
+	public void setGroup(String group) {
+		this.group = group;
 	}
 
 	public String getInfo() {

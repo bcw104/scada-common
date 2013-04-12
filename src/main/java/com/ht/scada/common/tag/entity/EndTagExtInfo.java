@@ -9,6 +9,7 @@ import javax.persistence.Table;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 /**
+ * 末端节点扩展信息
  * @author 薄成文
  *
  */

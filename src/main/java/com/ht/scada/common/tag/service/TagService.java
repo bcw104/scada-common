@@ -8,6 +8,7 @@ import com.ht.scada.common.tag.entity.EndTag;
 import com.ht.scada.common.tag.entity.MajorTag;
 import com.ht.scada.common.tag.entity.SensorDevice;
 import com.ht.scada.common.tag.entity.TagCfgTpl;
+import com.ht.scada.common.tag.entity.VarIOInfo;
 
 /**
  * 提供标签配置信息查询服务
@@ -46,6 +47,8 @@ public interface TagService {
 	 * @return
 	 */
 	public List<TagCfgTpl> getTagTplByName(String name);
+	
+	public List<VarIOInfo> getTagIOInfoByEndTagID(int endTagID);
 	
 	/**
 	 * 通过主标签名称获取标签列表(用于模拟树型结构)

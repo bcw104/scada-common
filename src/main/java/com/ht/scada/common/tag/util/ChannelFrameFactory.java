@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.ht.scada.common.tag.exception.FrameInfoErrorException;
 
-public class FrameFactory {
+public class ChannelFrameFactory {
 	
 	public static List<ModbusFrame> parseModbusFrames(String frames) throws FrameInfoErrorException {
 		List<ModbusFrame> list = new ArrayList<>();
@@ -61,6 +61,43 @@ public class FrameFactory {
 		}
 	}
 	
+	public static List<IEC104Frame> parseIEC104Frames(String frames) throws FrameInfoErrorException {
+		List<IEC104Frame> list = new ArrayList<>();
+		String[] frameArray = frames.split(",");
+		for (String frame : frameArray) {
+			IEC104Frame iecFrame = parseIEC104Frame(frame);
+			list.add(iecFrame);
+		}
+		return list;
+	}
+	
+	private static IEC104Frame parseIEC104Frame(String frame) throws FrameInfoErrorException {
+		String[] frameInfoArray = frame.split("\\|");
+		if (frameInfoArray.length != 1 && frameInfoArray.length != 2) {
+			throw new FrameInfoErrorException("iec104帧格式错误：" + frame);
+		} else {
+			try {
+				//IEC104FrameType type = IEC104FrameType.valueOf(frameInfoArray[0].toUpperCase());
+				String name = null;
+				if (frameInfoArray.length == 2) {
+					name = frameInfoArray[1];
+				}
+				String[] subArray = frameInfoArray[0].split("\\-");
+				int type = 0;
+				if (subArray[0].startsWith("0x") || subArray[0].startsWith("0X")) {
+					type = Integer.parseInt(subArray[0].substring(2), 16);
+				} else {
+					type = Integer.parseInt(subArray[0]);
+				}
+				int interval = Integer.parseInt(subArray[1]);
+				IEC104Frame iecFrame = new IEC104Frame(type, interval, name);
+				return iecFrame;
+			} catch (Exception e) {
+				throw new FrameInfoErrorException("iec104帧格式错误：" + frame);
+			}
+		}
+	}
+	
 	public static class ModbusFrame {
 
 		public String name;
@@ -81,4 +118,21 @@ public class FrameFactory {
 		}
 		
 	}
+	
+	public static class IEC104Frame {
+		public int type;// 帧类型
+		/**
+		 * 执行间隔(s)
+		 */
+		public int interval;
+		public String name;
+		
+		private IEC104Frame(int type, int interval, String name) {
+			this.type = type;
+			this.interval = interval;
+			this.name = name;
+		}
+
+	}
+	
 }

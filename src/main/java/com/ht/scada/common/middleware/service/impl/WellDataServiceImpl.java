@@ -5,10 +5,22 @@ import java.util.Date;
 import java.util.List;
 
 import com.ht.scada.common.middleware.service.WellService;
-import com.ht.scada.common.tag.entity.WellData;
+import com.ht.scada.common.well.WellData;
 import com.ht.scada.common.well.WellStatus;
 
+/**
+ * @author 薄成文
+ * @author 赵磊
+ *
+ */
 public class WellDataServiceImpl implements WellService {
+	
+	@Override
+	public void saveWellSGTData(String code, float[] zaihe, float[] weiyi,
+			float chongcheng, float chongci) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	@Override
 	public WellData getLatestWellDataByWellNum(String wellNum) throws Exception {
