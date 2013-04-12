@@ -25,7 +25,7 @@ public class EndTag extends AbstractPersistable<Integer> {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1054532899231050687L;
+	private static final long serialVersionUID = 3057724029168765439L;
 
 	private String name;
 
@@ -53,6 +53,9 @@ public class EndTag extends AbstractPersistable<Integer> {
 	 */
 	@Column(name = "tpl_name")
 	private String tplName;
+	
+	@OneToMany(mappedBy = "endTag")
+	private List<VarIOInfo> ioInfo;
 
 	@OneToMany(mappedBy = "endTag")
 	private List<EndTagExtInfo> extInfo;
@@ -127,6 +130,14 @@ public class EndTag extends AbstractPersistable<Integer> {
 
 	public void setTplName(String tplName) {
 		this.tplName = tplName;
+	}
+	
+	public List<VarIOInfo> getIoInfo() {
+		return ioInfo;
+	}
+	
+	public void setIoInfo(List<VarIOInfo> ioInfo) {
+		this.ioInfo = ioInfo;
 	}
 
 	public List<EndTagExtInfo> getExtInfo() {

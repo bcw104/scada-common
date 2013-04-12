@@ -10,6 +10,7 @@ import java.util.Date;
 public class YMData {
 	private String code;// 计量点编号(回路号、井号等)
 	private String name;
+	private String group;
 	private double value;
 	private double change;
 	private Date datetime;
@@ -17,10 +18,11 @@ public class YMData {
 	public YMData() {
 	}
 
-	public YMData(String code, String name, double value, double change,
+	public YMData(String code, String name, String group, double value, double change,
 			Date datetime) {
 		this.code = code;
 		this.name = name;
+		this.group = group;
 		this.value = value;
 		this.change = change;
 		this.datetime = datetime;
@@ -33,13 +35,21 @@ public class YMData {
 	public void setCode(String code) {
 		this.code = code;
 	}
-
+	
 	public String getName() {
 		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getGroup() {
+		return group;
+	}
+
+	public void setGroup(String group) {
+		this.group = group;
 	}
 
 	public double getValue() {

@@ -10,15 +10,17 @@ import java.util.Date;
 public class YCData {
 	private String code;// 计量点编号(回路号、井号等)
 	private String name;// 变量名称
+	private String group;// 变量分组
 	private double value;
 	private Date datetime;
 
 	public YCData() {
 	}
 
-	public YCData(String code, String name, double value, Date datetime) {
+	public YCData(String code, String name, String group, double value, Date datetime) {
 		this.code = code;
 		this.name = name;
+		this.group = group;
 		this.value = value;
 		this.datetime = datetime;
 	}
@@ -37,6 +39,14 @@ public class YCData {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getGroup() {
+		return group;
+	}
+
+	public void setGroup(String group) {
+		this.group = group;
 	}
 
 	public double getValue() {

@@ -31,8 +31,6 @@ public class StorageFactory {
 	public static final String FAULT_PREFIX = "fault";
 	public static final String OFFLIMITS_PREFIX = "offlimits";
 	public static final String YX_PREFIX = "yx";
-	public static final String YC_PREFIX = "yc";
-	public static final String YM_PREFIX = "ym";
 
 	/*
 	 * 持久化属性
@@ -54,10 +52,6 @@ public class StorageFactory {
 	public static Object parseStorage(String storage) throws StorageInfoErrorException {
 		if (storage.startsWith(YX_PREFIX)) {
 			return parseYXStorage(storage);
-		} else if (storage.startsWith(YC_PREFIX)) {
-			return parseYCStorage(storage);
-		} else if (storage.startsWith(YM_PREFIX)) {
-			return parseYMStorage(storage);
 		} else if (storage.startsWith(FAULT_PREFIX)) {
 			return parseFaultStorage(storage);
 		} else if (storage.startsWith(OFFLIMITS_PREFIX)) {
@@ -143,90 +137,6 @@ public class StorageFactory {
 			} catch (Exception e) {
 				throw new StorageInfoErrorException("存储器格式解析错误："+storage+","+e.getMessage());
 			}
-		}
-	}
-	
-	public static YCStorage parseYCStorage(String storage) throws StorageInfoErrorException {
-		
-		String[] storageInfoArray = storage.split("\\|");
-		if (storageInfoArray.length != 3 && storageInfoArray.length != 2) {
-			throw new StorageInfoErrorException("存储器格式错误："+storage);
-		} else {
-			String name = storageInfoArray[0];
-			if (!name.equals(YC_PREFIX)) {
-				throw new StorageInfoErrorException("存储器格式错误："+storage);
-			}
-			try {
-				double threshold = -1;
-				if (!storageInfoArray[1].isEmpty()) {
-					threshold = Double.parseDouble(storageInfoArray[1]);
-				}
-				int interval = -1;
-				if (storageInfoArray.length == 3) {
-					interval = Integer.parseInt(storageInfoArray[2]);
-				}
-				YCStorage ycStorage = new YCStorage(name, threshold, interval);
-				return ycStorage;
-			} catch (Exception e) {
-				throw new StorageInfoErrorException("存储器格式解析错误："+storage+","+e.getMessage());
-			}
-		}
-		
-	}
-	
-	public static YMStorage parseYMStorage(String storage) throws StorageInfoErrorException {
-		
-		String[] storageInfoArray = storage.split("\\|");
-		if (storageInfoArray.length != 5 && storageInfoArray.length != 4) {
-			throw new StorageInfoErrorException("存储器格式错误："+storage);
-		} else {
-			try {
-				String name = storageInfoArray[0];
-				if (!name.equals(YM_PREFIX)) {
-					throw new StorageInfoErrorException("存储器格式错误："+storage);
-				}
-				double min = Double.parseDouble(storageInfoArray[1]);
-				double max = Double.parseDouble(storageInfoArray[2]);
-				int unit = Integer.parseInt(storageInfoArray[3]);
-				int interval = -1;
-				if (storageInfoArray.length == 5) {
-					interval = Integer.parseInt(storageInfoArray[4]);
-				}
-				YMStorage ymStorage = new YMStorage(name, min, max, unit, interval);
-				return ymStorage;
-			} catch (Exception e) {
-				throw new StorageInfoErrorException("存储器格式解析错误："+storage+","+e.getMessage());
-			}
-		}
-		
-	}
-	
-	public static class YMStorage {
-		
-		public String name;
-		public double min;		// 最小值
-		public double max;		// 最大值
-		public int unit;		// 单位脉冲电度量
-		public int interval;	// 周期（分钟）
-		
-		private YMStorage(String name, double min, double max, int unit,
-				int interval) {
-			this.name = name;
-			this.min = min;
-			this.max = max;
-			this.unit = unit;
-			this.interval = interval;
-		}
-	}
-	
-	public static class YCStorage {
-		public String name;
-		public double threshold;	// 限值
-		public int interval;		// 周期(分钟)
-		private YCStorage(String name, double threshold, int interval) {
-			this.name = name;
-			this.threshold = threshold;
-			this.interval = interval;
 		}
 	}
 	

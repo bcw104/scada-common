@@ -11,7 +11,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.ht.scada.common.tag.exception.FrameInfoErrorException;
-import com.ht.scada.common.tag.util.FrameFactory.ModbusFrame;
+import com.ht.scada.common.tag.util.ChannelFrameFactory.ModbusFrame;
 
 public class FrameFactoryTest {
 	
@@ -35,12 +35,12 @@ public class FrameFactoryTest {
 
   @Test(dataProvider="modbusErrorFrame", expectedExceptions=FrameInfoErrorException.class)
   public void parseModbusFramesError(String frames) throws FrameInfoErrorException {
-	  FrameFactory.parseModbusFrames(frames);
+	  ChannelFrameFactory.parseModbusFrames(frames);
   }
 
   @Test
   public void parseModbusFrames() throws FrameInfoErrorException {
-	  List<ModbusFrame> list = FrameFactory.parseModbusFrames("1|3-1-10|3|");
+	  List<ModbusFrame> list = ChannelFrameFactory.parseModbusFrames("1|3-1-10|3|");
 	  assert list != null && !list.isEmpty() : "返回结果为空";
 	  assert list.size() == 1 : "期望的返回结果集为1，实际返回的结果集为"+list.size();
 	  ModbusFrame frame = list.get(0);
@@ -51,11 +51,11 @@ public class FrameFactoryTest {
 	  assert frame.priority == 3;
 	  assert frame.name == null;
 	  
-	  list = FrameFactory.parseModbusFrames("1|3-100-10|0|soe");
+	  list = ChannelFrameFactory.parseModbusFrames("1|3-100-10|0|soe");
 	  frame = list.get(0);
 	  assert frame.name != null;
 	  
-	  list = FrameFactory.parseModbusFrames("1-10 13-23|3-1-10|3|");
+	  list = ChannelFrameFactory.parseModbusFrames("1-10 13-23|3-1-10|3|");
 	  frame = list.get(0);
 	  assert frame.slave.length == 2;
 	  assert frame.slave[0][0] == 1;
@@ -64,7 +64,7 @@ public class FrameFactoryTest {
 	  assert frame.slave[1][1] == 23;
 	  assert frame.name == null;
 	  
-	  list = FrameFactory.parseModbusFrames("1-10 13-23|3-1-10|3|,1|3-100-10|0|soe");
+	  list = ChannelFrameFactory.parseModbusFrames("1-10 13-23|3-1-10|3|,1|3-100-10|0|soe");
 	  assert list != null && !list.isEmpty() : "返回结果为空";
 	  assert list.size() == 2 : "期望的返回结果集为2，实际返回的结果集为"+list.size();
 	  frame = list.get(0);

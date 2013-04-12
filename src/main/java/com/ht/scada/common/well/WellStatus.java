@@ -2,6 +2,11 @@ package com.ht.scada.common.well;
 
 import java.util.Date;
 
+/**
+ * 油井启停状态
+ * @author 薄成文
+ *
+ */
 public class WellStatus {
 	private String code;
 	/**

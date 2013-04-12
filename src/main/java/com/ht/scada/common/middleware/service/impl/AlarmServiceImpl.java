@@ -3,13 +3,9 @@ package com.ht.scada.common.middleware.service.impl;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.jms.Message;
-import javax.jms.MessageListener;
-import javax.jms.TextMessage;
 
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ht.scada.common.data.FaultRecord;
 import com.ht.scada.common.data.OffLimitsRecord;
 import com.ht.scada.common.data.YXData;
@@ -24,8 +20,6 @@ public class AlarmServiceImpl implements AlarmService {
 	@Inject
 	private JmsService jmsService;
 
-	private ObjectMapper mapper = new ObjectMapper(); // create once, reuse
-	
 	@Override
 	public void addAlarmListener(final AlarmDataListener listener) {
 /*		jmsService.registTopicMessageListener("/topic/alarm/fault", new MessageListener() {

@@ -1,4 +1,4 @@
-package com.ht.scada.common.tag.entity;
+package com.ht.scada.common.well;
 
 import java.util.Date;
 

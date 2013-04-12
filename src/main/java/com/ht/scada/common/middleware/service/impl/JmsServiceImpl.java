@@ -18,6 +18,7 @@ import javax.jms.Session;
 import javax.jms.Topic;
 import javax.naming.Context;
 import javax.naming.InitialContext;
+import javax.naming.NameNotFoundException;
 import javax.naming.NamingException;
 
 import org.hornetq.api.jms.HornetQJMSClient;
@@ -54,7 +55,7 @@ public class JmsServiceImpl implements JmsService {
 	
 	
 	@PostConstruct
-	private void initJndiJms() throws Exception {
+	public void initJndiJms() throws Exception {
 		Properties prop = new Properties();
 		prop.put(javax.naming.Context.INITIAL_CONTEXT_FACTORY, JmsServiceImpl.INITIAL_CONTEXT_FACTORY);
 		prop.put(javax.naming.Context.URL_PKG_PREFIXES, JmsServiceImpl.URL_PKG_PREFIXES);
@@ -63,14 +64,16 @@ public class JmsServiceImpl implements JmsService {
 		initialContext = new InitialContext(prop);
 		cf = (HornetQConnectionFactory) initialContext.lookup("/ConnectionFactory");
 		connection = cf.createConnection();
+		connection.start();
 		
-		// TODO: 创建动态队列
-		createQueue("queue1");
-		createQueue("myqueue");
+	}
+	
+	public HornetQConnectionFactory getCf() {
+		return cf;
 	}
 	
 	@PreDestroy
-	private void destroy() {
+	public void destroy() {
 		if (connection != null) {
 			try {
 				connection.close();
@@ -82,8 +85,7 @@ public class JmsServiceImpl implements JmsService {
 		cf.close();
 	}
 	
-	private void createQueue(String queueName) throws JMSException {
-		System.out.println("创建队列："+queueName);
+	private Queue createQueue(String queueName) throws JMSException, NamingException {
 		QueueConnection connection = ((QueueConnectionFactory)cf).createQueueConnection("admin", "admin123");
 		connection.start();
 
@@ -95,10 +97,34 @@ public class JmsServiceImpl implements JmsService {
 		
 		JMSManagementHelper.putOperationInvocation(message, "jms.server", "createQueue", queueName, "/queue/" + queueName);
 		Message reply = requestor.request(message);
+		
+		session.close();
+		connection.close();
+		
+		Queue queue = (Queue) initialContext.lookup("/queue/" + queueName);
+		return queue;
+	}
+	
+	private Topic createTopic(String topicName) throws JMSException, NamingException {
+		System.out.println("创建队列："+topicName);
+		QueueConnection connection = ((QueueConnectionFactory)cf).createQueueConnection("admin", "admin123");
+		connection.start();
+
+		Queue managementQueue = HornetQJMSClient.createQueue("hornetq.management");
+		QueueSession session = connection.createQueueSession(false, Session.AUTO_ACKNOWLEDGE);
+		QueueRequestor requestor = new QueueRequestor(session, managementQueue);
+		
+		Message message = session.createMessage();
+		
+		JMSManagementHelper.putOperationInvocation(message, "jms.server", "createTopic", topicName, "/topic/" + topicName);
+		Message reply = requestor.request(message);
 		System.out.println(reply);
 		
 		session.close();
 		connection.close();
+		
+		Topic topic = (Topic) initialContext.lookup("/topic/" + topicName);
+		return topic;
 	}
 	
 	@Override
@@ -120,6 +146,36 @@ public class JmsServiceImpl implements JmsService {
 		} catch (JMSException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Override
+	public Session createSession() throws JMSException {
+		Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+		return session;
+	}
+	
+	@Override
+	public Queue getQueue(String queueName) throws Exception {
+		Queue queue = null;
+		try {
+			//queue = (Queue) initialContext.lookup("/queue/DLQ");
+			queue = (Queue) initialContext.lookup("/queue/" + queueName);
+		} catch (NameNotFoundException e) {
+			queue = createQueue(queueName);
+		}
+		return queue;
+	}
+	
+	@Override
+	public Topic getTopic(String topicName) throws Exception {
+		Topic queue = null;
+		try {
+			//queue = (Queue) initialContext.lookup("/queue/DLQ");
+			queue = (Topic) initialContext.lookup("/topic/" + topicName);
+		} catch (NameNotFoundException e) {
+			queue = createTopic(topicName);
+		}
+		return queue;
 	}
 
 	@Override

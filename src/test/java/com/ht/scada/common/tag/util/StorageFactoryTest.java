@@ -7,10 +7,8 @@ import org.testng.annotations.Test;
 
 import com.ht.scada.common.tag.exception.StorageInfoErrorException;
 import com.ht.scada.common.tag.util.StorageFactory.FaultStorage;
-import com.ht.scada.common.tag.util.StorageFactory.YXStorage;
 import com.ht.scada.common.tag.util.StorageFactory.OffLimitsStorage;
-import com.ht.scada.common.tag.util.StorageFactory.YCStorage;
-import com.ht.scada.common.tag.util.StorageFactory.YMStorage;
+import com.ht.scada.common.tag.util.StorageFactory.YXStorage;
 
 public class StorageFactoryTest {
 	
@@ -141,40 +139,4 @@ public class StorageFactoryTest {
     StorageFactory.parseOffLimitsStorages(storage);
   }
 
-  @Test
-  public void parseYCStorage() throws StorageInfoErrorException {
-    YCStorage ycStorage = StorageFactory.parseYCStorage("yc|50|10");
-    assert ycStorage.interval == 10;
-    assert ycStorage.threshold == 50;
-    ycStorage = StorageFactory.parseYCStorage("yc||10");
-    assert Double.isNaN(ycStorage.threshold);
-    assert ycStorage.interval == 10;
-    ycStorage = StorageFactory.parseYCStorage("yc|50|");
-    assert ycStorage.threshold == 50;
-    assert ycStorage.interval<0;
-  }
-  
-  @Test(dataProvider="ycDp", expectedExceptions=StorageInfoErrorException.class)
-  public void parseYCStorage2(String storage) throws StorageInfoErrorException {
-    StorageFactory.parseYCStorage(storage);
-  }
-
-  @Test
-  public void parseYMStorage() throws StorageInfoErrorException {
-    YMStorage storage = StorageFactory.parseYMStorage("ym|0|599999999|1|0");
-    assert storage.max == 599999999;
-    assert storage.min == 0;
-    assert storage.unit == 1;
-    assert storage.interval == 0;
-    
-    storage = StorageFactory.parseYMStorage("ym|0|599999999|1|");
-    assert storage.interval == -1;
-    storage = StorageFactory.parseYMStorage("ym|0|599999999|1");
-    assert storage.interval == -1;
-  }
-  
-  @Test(dataProvider="ymDp", expectedExceptions=StorageInfoErrorException.class)
-  public void parseYMStorage2(String storage) throws StorageInfoErrorException {
-    StorageFactory.parseYMStorage(storage);
-  }
 }
