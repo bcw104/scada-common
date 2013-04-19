@@ -7,9 +7,7 @@ package com.ht.scada.common.tag.consts;
  */
 public interface EndTagType {
 	/* 油田专用 */
-	public static final String YOU_JING_A 		= "油井A";
-	public static final String YOU_JING_B 		= "油井B";
-	public static final String YOU_JING_C 		= "油井C";
+	public static final String YOU_JING 		= "油井";
 	public static final String SHUI_YUAN_JING 	= "水源井";
 	public static final String ZHU_SHUI_JING 	= "注水井";
 	public static final String ZENG_YA_ZHAN 	= "增压站";

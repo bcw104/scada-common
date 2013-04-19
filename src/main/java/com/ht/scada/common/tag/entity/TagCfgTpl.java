@@ -37,7 +37,7 @@ public class TagCfgTpl extends AbstractPersistable<Integer> {
 	
 	/*变量属性*/
 	@Column(name="var_name") 	private String 		varName;	// 变量名称
-	@Column(name="group") 		private VarGroup 	varGroup;	// 变量分组,可以为空
+	@Column(name="var_group") 		private VarGroup 	varGroup;	// 变量分组,可以为空
 	@Column(name="type") 		private VarType 	varType;	// 变量类型
 	@Column(name="sub_Type") 	private String 		subType;	// 变量子类型
 	@Column(name="data_type") 	private DataType 	dataType;	// 值类型（bool, int32, int16, bcd, mod10000, float, double）

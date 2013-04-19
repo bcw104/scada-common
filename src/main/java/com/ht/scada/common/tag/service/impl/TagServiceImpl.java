@@ -2,9 +2,12 @@ package com.ht.scada.common.tag.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ht.scada.common.tag.dao.EndTagDao;
+import com.ht.scada.common.tag.dao.MajorTagDao;
 import com.ht.scada.common.tag.entity.AcquisitionDevice;
 import com.ht.scada.common.tag.entity.EndTag;
 import com.ht.scada.common.tag.entity.MajorTag;
@@ -15,6 +18,11 @@ import com.ht.scada.common.tag.service.TagService;
 @Transactional
 @Service("tagService")
 public class TagServiceImpl implements TagService {
+	
+	@Autowired
+	private MajorTagDao majorTagDao;
+	@Autowired
+	private EndTagDao endTagDao;
 
 	@Override
 	public MajorTag getMajorTag(int id) {
@@ -48,8 +56,11 @@ public class TagServiceImpl implements TagService {
 
 	@Override
 	public List<MajorTag> getMajorTagByNodeName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		MajorTag parentMajor = majorTagDao.findByName(name);
+		if(parentMajor == null) {
+			return null;
+		}
+		return majorTagDao.findByParent(parentMajor);
 	}
 
 	@Override
@@ -72,7 +83,6 @@ public class TagServiceImpl implements TagService {
 
 	@Override
 	public List<AcquisitionDevice> getDeviceByChannelName(String name) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -80,6 +90,50 @@ public class TagServiceImpl implements TagService {
 	public List<VarIOInfo> getTagIOInfoByEndTagID(int endTagID) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void createMajorTag(MajorTag majorTag) {
+		majorTagDao.save(majorTag);
+	}
+
+	@Override
+	public void deleteMajorTagById(int id) {
+		majorTagDao.delete(id);
+	}
+
+	@Override
+	public void updateMajorTag(MajorTag majorTag) {
+		majorTagDao.save(majorTag);
+	}
+
+	@Override
+	public List<MajorTag> getMajorTagsByParentId(int id) {
+		MajorTag parentMajor = majorTagDao.findOne(id);
+		if(parentMajor == null) {
+			return null;
+		}
+		return majorTagDao.findByParent(parentMajor);
+	}
+
+	@Override
+	public List<MajorTag> getRootMajorTag() {
+		return majorTagDao.findByParent(null);
+	}
+
+	@Override
+	public void createEndTag(EndTag endTag) {
+		endTagDao.save(endTag);
+		
+	}
+
+	@Override
+	public List<EndTag> getEndTagByParentId(int id) {
+		MajorTag parentMajor = majorTagDao.findOne(id);
+		if(parentMajor == null) {
+			return null;
+		}
+		return endTagDao.findByMajorTag(parentMajor);
 	}
 
 }
