@@ -20,6 +20,45 @@ import com.ht.scada.common.tag.entity.VarIOInfo;
 public interface TagService {
 	
 	/**
+	 * 创建主索引
+	 * @param majorTag
+	 */
+	public void createMajorTag(MajorTag majorTag);
+	
+	/**
+	 * 添加末端节点
+	 * @param endTag
+	 */
+	public void createEndTag(EndTag endTag);
+	
+	/**
+	 * 删除主索引
+	 * @param id
+	 */
+	public void deleteMajorTagById(int id);
+	
+	/**
+	 * 修改主索引
+	 * @param majorTag
+	 */
+	public void updateMajorTag(MajorTag majorTag);
+	
+	/**
+	 * 获取所有子节点
+	 * @param id
+	 * @return
+	 */
+	public List<MajorTag> getMajorTagsByParentId(int id);
+	
+	/**
+	 * 通过id获得所有末端节点
+	 * @param id
+	 * @return
+	 */
+	public List<EndTag> getEndTagByParentId(int id);
+	
+	
+	/**
 	 * 通过主键查询主标签节点
 	 * @param id
 	 * @return
@@ -85,4 +124,10 @@ public interface TagService {
 	 * @return
 	 */
 	public List<AcquisitionDevice> getDeviceByChannelName(String name);
+	
+	/**
+	 * 获得根主索引
+	 * @return
+	 */
+	public List<MajorTag> getRootMajorTag();
 }

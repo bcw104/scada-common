@@ -43,6 +43,12 @@ public class EndTag extends AbstractPersistable<Integer> {
 	 * type=="水井" TagExtWater.class<br>
 	 */
 	private String type;
+	
+	/**
+	 * 节点子类型
+	 * 油井：电滚筒、高原机、油梁式、螺杆泵、电潜泵
+	 */
+	private String subType;
 
 	/**
 	 * 变量模版名称,主要用于数据采集程序<br>
