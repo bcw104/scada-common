@@ -124,7 +124,6 @@ public class TagServiceImpl implements TagService {
 	@Override
 	public void createEndTag(EndTag endTag) {
 		endTagDao.save(endTag);
-		
 	}
 
 	@Override
@@ -134,6 +133,16 @@ public class TagServiceImpl implements TagService {
 			return null;
 		}
 		return endTagDao.findByMajorTag(parentMajor);
+	}
+
+	@Override
+	public void deleteEndTagById(int id) {
+		endTagDao.delete(id);
+	}
+
+	@Override
+	public void updateEndTag(EndTag endTag) {
+		endTagDao.save(endTag);
 	}
 
 }

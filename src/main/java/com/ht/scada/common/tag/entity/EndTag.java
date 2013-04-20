@@ -60,10 +60,10 @@ public class EndTag extends AbstractPersistable<Integer> {
 	@Column(name = "tpl_name")
 	private String tplName;
 	
-	@OneToMany(mappedBy = "endTag")
+	@OneToMany(mappedBy = "endTag",  orphanRemoval=true)
 	private List<VarIOInfo> ioInfo;
 
-	@OneToMany(mappedBy = "endTag")
+	@OneToMany(mappedBy = "endTag", orphanRemoval=true)
 	private List<EndTagExtInfo> extInfo;
 
 	/**

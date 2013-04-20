@@ -38,6 +38,18 @@ public interface TagService {
 	public void deleteMajorTagById(int id);
 	
 	/**
+	 * 删除末端节点
+	 * @param id
+	 */
+	public void deleteEndTagById(int id);
+	
+	/**
+	 * 修改末端节点
+	 * @param endTag
+	 */
+	public void updateEndTag(EndTag endTag);
+	
+	/**
 	 * 修改主索引
 	 * @param majorTag
 	 */
