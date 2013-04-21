@@ -18,5 +18,14 @@ public enum EndTagSubType {
 	public String getValue() {
 		return value;
 	}
+	
+	public static EndTagSubType getByValue(String value) {
+		for(EndTagSubType type : EndTagSubType.values()) {
+			if(type.getValue().equals(value)) {
+				return type;
+			}
+		}
+		return null;
+	}
 
 }

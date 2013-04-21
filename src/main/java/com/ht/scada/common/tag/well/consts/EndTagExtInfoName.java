@@ -10,12 +10,12 @@ public enum EndTagExtInfoName {
 	 * 油井阶段(自喷、注汽、焖井、抽油)
 	 * @see EndTagExtInfoStageType
 	 */
-	stage("油井阶段"),
+	STAGE("油井阶段"),
 	/**
 	 * 油井工艺(稀油、稠油等暂不明确)
 	 */
-	technology("油井工艺"),
-	bengjing("泵径");
+	TECHNOLOGY("油井工艺"),
+	BENGJING("泵径");
 	
 	private String value;
 	

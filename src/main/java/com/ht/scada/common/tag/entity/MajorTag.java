@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -34,6 +36,12 @@ public class MajorTag extends AbstractPersistable<Integer> {
 	 * 需要在树形结构中显示的名称
 	 */
 	private String name;
+	
+	/**
+	 * 节点类型
+	 * 厂、矿、队等
+	 */
+	private String type;
 
 	/**
 	 * 父节点，用于描述树形结构
@@ -89,5 +97,14 @@ public class MajorTag extends AbstractPersistable<Integer> {
 	public void setEndTagList(List<EndTag> endTagList) {
 		this.endTagList = endTagList;
 	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+	
 
 }

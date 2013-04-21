@@ -31,4 +31,13 @@ public enum EndTagType {
 	public String getValue() {
 		return value;
 	}
+	
+	public static EndTagType getByValue(String value) {
+		for(EndTagType type : EndTagType.values()) {
+			if(type.getValue().equals(value)) {
+				return type;
+			}
+		}
+		return null;
+	}
 }
