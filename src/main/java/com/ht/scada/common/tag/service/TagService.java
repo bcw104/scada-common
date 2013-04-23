@@ -4,7 +4,9 @@ import java.util.List;
 
 import com.ht.scada.common.tag.entity.AbstractDevice;
 import com.ht.scada.common.tag.entity.AcquisitionDevice;
+import com.ht.scada.common.tag.entity.AreaMinorTag;
 import com.ht.scada.common.tag.entity.EndTag;
+import com.ht.scada.common.tag.entity.EnergyMinorTag;
 import com.ht.scada.common.tag.entity.MajorTag;
 import com.ht.scada.common.tag.entity.SensorDevice;
 import com.ht.scada.common.tag.entity.TagCfgTpl;
@@ -32,6 +34,18 @@ public interface TagService {
 	public void createEndTag(EndTag endTag);
 	
 	/**
+	 * 创建常规分类索引
+	 * @param areaMinorTag
+	 */
+	public void createAreaMinorTag(AreaMinorTag areaMinorTag);
+	
+	/**
+	 * 创建能耗分类分项
+	 * @param energyMinorTag
+	 */
+	public void createEnergyMinorTag(EnergyMinorTag energyMinorTag);
+	
+	/**
 	 * 删除主索引
 	 * @param id
 	 */
@@ -42,6 +56,18 @@ public interface TagService {
 	 * @param id
 	 */
 	public void deleteEndTagById(int id);
+	
+	/**
+	 * 通过id删除常规索引节点
+	 * @param id
+	 */
+	public void deleteAreaMinorTag(int id);
+	
+	/**
+	 * 通过id删除能耗分类分项
+	 * @param id
+	 */
+	public void deleteEnergyMinorTag(int id);
 	
 	/**
 	 * 修改末端节点

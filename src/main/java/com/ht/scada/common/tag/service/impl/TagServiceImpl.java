@@ -9,7 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ht.scada.common.tag.dao.EndTagDao;
 import com.ht.scada.common.tag.dao.MajorTagDao;
 import com.ht.scada.common.tag.entity.AcquisitionDevice;
+import com.ht.scada.common.tag.entity.AreaMinorTag;
 import com.ht.scada.common.tag.entity.EndTag;
+import com.ht.scada.common.tag.entity.EnergyMinorTag;
 import com.ht.scada.common.tag.entity.MajorTag;
 import com.ht.scada.common.tag.entity.SensorDevice;
 import com.ht.scada.common.tag.entity.TagCfgTpl;
@@ -143,6 +145,30 @@ public class TagServiceImpl implements TagService {
 	@Override
 	public void updateEndTag(EndTag endTag) {
 		endTagDao.save(endTag);
+	}
+
+	@Override
+	public void createAreaMinorTag(AreaMinorTag areaMinorTag) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void createEnergyMinorTag(EnergyMinorTag energyMinorTag) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteAreaMinorTag(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteEnergyMinorTag(int id) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
