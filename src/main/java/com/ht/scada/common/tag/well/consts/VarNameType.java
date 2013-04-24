@@ -12,7 +12,7 @@ import com.ht.scada.common.tag.util.VarGroup;
  */
 public enum VarNameType {
 	/*********油井*************/
-	YOU_YA("油压",VarGroup.YOU_JING),TAO_YA("套压",VarGroup.YOU_JING), HUI_YA("回压", VarGroup.YOU_JING),JING_KOU_WEN_DU("井口温度", VarGroup.YOU_JING),HUI_GUAN_WEN_DU("汇管温度", VarGroup.YOU_JING),
+	YOU_YA("油压",VarGroup.YOU_JING),TAO_YA("套压",VarGroup.YOU_JING), HUI_YA("回压", VarGroup.YOU_JING),JING_KOU_WEN_DU("井口温度", VarGroup.YOU_JING),HUI_GUAN_WEN_DU("汇管温度", VarGroup.YOU_JING),QI_QING_ZHUANG_TAI("启停状态", VarGroup.YOU_JING),
 	
 	/*********示功图**************/
 	CHONG_CHENG("冲程",VarGroup.YOU_JING_SGT),CHONG_CI("冲次",VarGroup.YOU_JING_SGT),SHANG_XING_CHONG_CI("上行冲次",VarGroup.YOU_JING_SGT),XIA_XING_CHONG_CI("下行冲次",VarGroup.YOU_JING_SGT),ZUI_DA_ZAI_HE("最大载荷",VarGroup.YOU_JING_SGT),ZUI_XIAO_ZAI_HE("最小载荷",VarGroup.YOU_JING_SGT),WEI_YI_ARRAY("位移数组",VarGroup.YOU_JING_SGT),ZAI_HE_ARRAY("载荷数组",VarGroup.YOU_JING_SGT),
@@ -87,13 +87,13 @@ public enum VarNameType {
 	
 	/**
 	 * 通过变量分组获得变量列表
-	 * @param value
+	 * @param group
 	 * @return
 	 */
-	public static List<VarNameType> getVarNamesByGroup(String value) {
+	public static List<VarNameType> getVarNamesByGroup(String group) {
 		List<VarNameType> varNameList = new ArrayList<VarNameType>();
 		for(VarNameType type : VarNameType.values()) {
-			if(type.getValue().equals(value)) {
+			if(type.getVarGroup().toString().equals(group)) {
 				varNameList.add(type);
 			}
 		}
@@ -102,13 +102,13 @@ public enum VarNameType {
 	
 	/**
 	 * 通过变量分组获得变量列表
-	 * @param value
+	 * @param group
 	 * @return
 	 */
-	public static List<String> getVarNamesArrayByGroup(String value) {
+	public static List<String> getVarNamesArrayByGroup(String group) {
 		List<String> varNameList = new ArrayList<String>();
 		for(VarNameType type : VarNameType.values()) {
-			if(type.getValue().equals(value)) {
+			if(type.getVarGroup().toString().equals(group)) {
 				varNameList.add(type.getValue());
 			}
 		}
