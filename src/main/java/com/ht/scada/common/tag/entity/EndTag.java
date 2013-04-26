@@ -1,16 +1,9 @@
 package com.ht.scada.common.tag.entity;
 
-import java.util.List;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
 import org.springframework.data.jpa.domain.AbstractPersistable;
+
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * 单井、回路等末端节点
@@ -22,10 +15,11 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Table(name = "T_End_Tag")
 public class EndTag extends AbstractPersistable<Integer> {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 3057724029168765439L;
+    @Column(name = "channel_idx")
+    private Integer channelIdx;
+
+    @Column(name = "device_addr")
+    private Integer deviceAddr;
 
 	private String name;
 
@@ -106,7 +100,23 @@ public class EndTag extends AbstractPersistable<Integer> {
 	@JoinColumn(name = "energy_id")
 	private EnergyMinorTag energyMinorTag;
 
-	public String getName() {
+    public Integer getChannelIdx() {
+        return channelIdx;
+    }
+
+    public void setChannelIdx(Integer channelIdx) {
+        this.channelIdx = channelIdx;
+    }
+
+    public Integer getDeviceAddr() {
+        return deviceAddr;
+    }
+
+    public void setDeviceAddr(Integer deviceAddr) {
+        this.deviceAddr = deviceAddr;
+    }
+
+    public String getName() {
 		return name;
 	}
 
@@ -130,7 +140,15 @@ public class EndTag extends AbstractPersistable<Integer> {
 		this.type = type;
 	}
 
-	public String getTplName() {
+    public String getSubType() {
+        return subType;
+    }
+
+    public void setSubType(String subType) {
+        this.subType = subType;
+    }
+
+    public String getTplName() {
 		return tplName;
 	}
 

@@ -120,7 +120,7 @@ public class ChannelFrameFactory {
 	}
 	
 	public static class IEC104Frame {
-		public int type;// 帧类型
+		public int ti;// 帧类型
 		/**
 		 * 执行间隔(s)
 		 */
@@ -128,7 +128,7 @@ public class ChannelFrameFactory {
 		public String name;
 		
 		private IEC104Frame(int type, int interval, String name) {
-			this.type = type;
+			this.ti = type;
 			this.interval = interval;
 			this.name = name;
 		}

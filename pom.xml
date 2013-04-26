@@ -1,13 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<!-- <modelVersion>4.0.0</modelVersion> <groupId>com.ht.scada</groupId> 
-		<artifactId>scada-common</artifactId> <version>0.0.1-SNAPSHOT</version> -->
-
 	<modelVersion>4.0.0</modelVersion>
-  	<groupId>com.ht.scada</groupId>
-  	<artifactId>scada-common</artifactId>
-  	<version>0.0.1-SNAPSHOT</version>
-
+	<groupId>com.ht.scada</groupId>
+	<artifactId>scada-common</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
@@ -18,7 +14,6 @@
 		<slf4j.version>1.6.6</slf4j.version>
 		<aspectj.version>1.6.12</aspectj.version>
 		<jodatime.version>2.1</jodatime.version>
-		<tycho-version>0.17.0</tycho-version>
 	</properties>
 
 	<build>
@@ -53,23 +48,10 @@
 					<!-- <testFailureIgnore>true</testFailureIgnore> -->
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.felix</groupId>
-				<artifactId>maven-bundle-plugin</artifactId>
-				<extensions>true</extensions>
-			</plugin>
-
-			
-
 		</plugins>
 	</build>
 
 	<dependencies>
-		<dependency>
-			<groupId>com.oracle</groupId>
-			<artifactId>kvclient</artifactId>
-			<version>2.0.26</version>
-		</dependency>
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
@@ -88,21 +70,6 @@
 			<version>1.0.1.Final</version>
 		</dependency>
 		<dependency>
-			<groupId>commons-dbcp</groupId>
-			<artifactId>commons-dbcp</artifactId>
-			<version>1.4</version>
-		</dependency>
-		<dependency>
-			<groupId>net.sourceforge.jtds</groupId>
-			<artifactId>jtds</artifactId>
-			<version>1.3.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-jdbc</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
 			<version>${spring.version}</version>
@@ -119,26 +86,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-aop</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-orm</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context-support</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-expression</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
@@ -147,74 +95,9 @@
 			<version>1</version>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.shiro</groupId>
-			<artifactId>shiro-spring</artifactId>
-			<version>1.2.1</version>
-		</dependency>
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<version>1.3.165</version>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-core</artifactId>
-			<version>4.1.9.Final</version>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-ehcache</artifactId>
-			<version>4.1.9.Final</version>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-entitymanager</artifactId>
-			<version>4.1.9.Final</version>
-		</dependency>
-		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
 			<version>1.0.0.GA</version>
-		</dependency>
-		<dependency>
-			<groupId>net.sf.ehcache</groupId>
-			<artifactId>ehcache-core</artifactId>
-			<version>2.6.3</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.naming</groupId>
-			<artifactId>jnp-client</artifactId>
-			<version>5.0.5.Final</version>
-		</dependency>
-		<dependency>
-			<groupId>org.hornetq</groupId>
-			<artifactId>hornetq-jms-client</artifactId>
-			<version>2.2.14.Final</version>
-		</dependency>
-		<dependency>
-			<groupId>org.hornetq</groupId>
-			<artifactId>hornetq-core-client</artifactId>
-			<version>2.2.14.Final</version>
-		</dependency>
-		<dependency>
-			<groupId>org.hornetq</groupId>
-			<artifactId>hornetq-logging</artifactId>
-			<version>2.2.14.Final</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.javaee</groupId>
-			<artifactId>jboss-jms-api</artifactId>
-			<version>1.1.0.20070913080910</version>
-		</dependency>
-		<dependency>
-			<groupId>io.netty</groupId>
-			<artifactId>netty</artifactId>
-			<version>3.6.2.Final</version>
-		</dependency>
-		<dependency>
-			<groupId>joda-time</groupId>
-			<artifactId>joda-time</artifactId>
-			<version>2.1</version>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -232,19 +115,10 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>2.1.3</version>
 		</dependency>
-		<dependency>
-			<groupId>redis.clients</groupId>
-			<artifactId>jedis</artifactId>
-			<version>2.1.0</version>
-		</dependency>
-	</dependencies>
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-aop</artifactId>
-				<version>${spring.version}</version>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>4.1.9.Final</version>
+        </dependency>
+    </dependencies>
 </project>
