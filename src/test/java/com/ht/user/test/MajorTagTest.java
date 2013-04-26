@@ -17,10 +17,6 @@ import org.testng.annotations.Test;
 import com.ht.scada.common.tag.dao.MajorTagDao;
 import com.ht.scada.common.tag.entity.MajorTag;
 import com.ht.scada.common.tag.service.TagService;
-import com.ht.scada.common.user.dao.UserDao;
-import com.ht.scada.common.user.entity.User;
-import com.ht.scada.common.user.entity.UserRole;
-import com.ht.scada.common.user.service.UserService;
 
 @ContextConfiguration(locations = { "classpath:applicationContext.xml" })
 public class MajorTagTest {
