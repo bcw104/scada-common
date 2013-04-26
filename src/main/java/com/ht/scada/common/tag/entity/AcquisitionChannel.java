@@ -4,6 +4,8 @@ package com.ht.scada.common.tag.entity;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -36,6 +38,7 @@ public class AcquisitionChannel extends AbstractPersistable<Integer> {
 	 * ModbusRTU
 	 * DL645
 	 */
+	@Enumerated(EnumType.STRING)
 	private CommunicationProtocal protocal = CommunicationProtocal.IEC104;
 	private int offline;// 离线阈值
 	private int interval = 100;//ms
