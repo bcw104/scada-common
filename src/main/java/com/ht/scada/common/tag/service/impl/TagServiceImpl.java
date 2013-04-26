@@ -10,6 +10,8 @@ import com.ht.scada.common.tag.entity.EndTag;
 import com.ht.scada.common.tag.entity.MajorTag;
 import com.ht.scada.common.tag.entity.SensorDevice;
 import com.ht.scada.common.tag.entity.TagCfgTpl;
+import com.ht.scada.common.tag.entity.VarGroupCfg;
+import com.ht.scada.common.tag.entity.VarIOInfo;
 import com.ht.scada.common.tag.service.TagService;
 @Transactional
 @Service("tagService")
@@ -71,6 +73,36 @@ public class TagServiceImpl implements TagService {
 
 	@Override
 	public List<AcquisitionDevice> getDeviceByChannelName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<VarIOInfo> getTagIOInfoByEndTagID(int endTagID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<EndTag> getEndTag4Comm() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<VarGroupCfg> getAllVarGroupCfg() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<TagCfgTpl> getAllTagTpl() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<VarIOInfo> getAllTagIOInfo() {
 		// TODO Auto-generated method stub
 		return null;
 	}

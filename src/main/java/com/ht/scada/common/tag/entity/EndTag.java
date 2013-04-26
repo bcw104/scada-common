@@ -25,7 +25,7 @@ public class EndTag extends AbstractPersistable<Integer> {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 3057724029168765439L;
+	private static final long serialVersionUID = -6516138150704687294L;
 
 	private String name;
 
@@ -54,6 +54,12 @@ public class EndTag extends AbstractPersistable<Integer> {
 	@Column(name = "tpl_name")
 	private String tplName;
 	
+	@Column(name = "channel_idx")
+	private Integer channelIdx;
+	
+	@Column(name = "device_addr")
+	private Integer deviceAddr;
+	
 	@OneToMany(mappedBy = "endTag")
 	private List<VarIOInfo> ioInfo;
 
@@ -69,7 +75,7 @@ public class EndTag extends AbstractPersistable<Integer> {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "device_id")
 	private AcquisitionDevice device;
-
+	
 	/**
 	 * 能耗索引节点（树形结构）<br>
 	 * <p>
@@ -132,6 +138,23 @@ public class EndTag extends AbstractPersistable<Integer> {
 		this.tplName = tplName;
 	}
 	
+
+	public Integer getChannelIdx() {
+		return channelIdx;
+	}
+
+	public void setChannelIdx(Integer channelIdx) {
+		this.channelIdx = channelIdx;
+	}
+
+	public Integer getDeviceAddr() {
+		return deviceAddr;
+	}
+
+	public void setDeviceAddr(Integer deviceAddr) {
+		this.deviceAddr = deviceAddr;
+	}
+
 	public List<VarIOInfo> getIoInfo() {
 		return ioInfo;
 	}

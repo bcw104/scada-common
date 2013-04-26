@@ -2,12 +2,12 @@ package com.ht.scada.common.tag.service;
 
 import java.util.List;
 
-import com.ht.scada.common.tag.entity.AbstractDevice;
 import com.ht.scada.common.tag.entity.AcquisitionDevice;
 import com.ht.scada.common.tag.entity.EndTag;
 import com.ht.scada.common.tag.entity.MajorTag;
 import com.ht.scada.common.tag.entity.SensorDevice;
 import com.ht.scada.common.tag.entity.TagCfgTpl;
+import com.ht.scada.common.tag.entity.VarGroupCfg;
 import com.ht.scada.common.tag.entity.VarIOInfo;
 
 /**
@@ -48,7 +48,19 @@ public interface TagService {
 	 */
 	public List<TagCfgTpl> getTagTplByName(String name);
 	
+	/**
+	 * 获取所有模板变量
+	 * @return
+	 */
+	public List<TagCfgTpl> getAllTagTpl();
+	
 	public List<VarIOInfo> getTagIOInfoByEndTagID(int endTagID);
+	
+	/**
+	 * 获取所有变量IO信息
+	 * @return
+	 */
+	public List<VarIOInfo> getAllTagIOInfo();
 	
 	/**
 	 * 通过主标签名称获取标签列表(用于模拟树型结构)
@@ -65,6 +77,12 @@ public interface TagService {
 	 * @return
 	 */
 	public List<EndTag> getEndTagByMajorTagAndType(int majorTagID, String type);
+	
+	/**
+	 * 获取所有已经关联了采集通道和设备的末端(deviceIsNotNull)
+	 * @return
+	 */
+	public List<EndTag> getEndTag4Comm();
 	
 	/**
 	 * 获取RTU设备下面的所有传感器设备
@@ -85,4 +103,10 @@ public interface TagService {
 	 * @return
 	 */
 	public List<AcquisitionDevice> getDeviceByChannelName(String name);
+	
+	/**
+	 * 获取所有变量分组配置信息
+	 * @return
+	 */
+	public List<VarGroupCfg> getAllVarGroupCfg();
 }

@@ -1,8 +1,10 @@
 package com.ht.scada.common.tag.entity;
 
 
+import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
@@ -25,8 +27,11 @@ public class AcquisitionChannel extends AbstractPersistable<Integer> {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -5934798556825570864L;
+	private static final long serialVersionUID = 329169404864422993L;
 	
+	@Column(name="update_time")
+	private Date updateTime;// 上次更新时间
+	private Integer idx;// 序号
 	private String name;
 	
 	/**
@@ -76,6 +81,14 @@ public class AcquisitionChannel extends AbstractPersistable<Integer> {
 	
 	public AcquisitionChannel(Integer id) {
 		setId(id);
+	}
+
+	public Integer getIdx() {
+		return idx;
+	}
+
+	public void setIdx(Integer idx) {
+		this.idx = idx;
 	}
 
 	public String getName() {
@@ -140,6 +153,14 @@ public class AcquisitionChannel extends AbstractPersistable<Integer> {
 
 	public void setDevices(List<AcquisitionDevice> devices) {
 		this.devices = devices;
+	}
+
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
 	}
 	
 	
