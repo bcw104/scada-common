@@ -19,13 +19,13 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
  * 
  */
 @Entity
-@Table(name = "T_end_tag")
+@Table(name = "T_End_Tag")
 public class EndTag extends AbstractPersistable<Integer> {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -6516138150704687294L;
+	private static final long serialVersionUID = 3057724029168765439L;
 
 	private String name;
 
@@ -43,6 +43,12 @@ public class EndTag extends AbstractPersistable<Integer> {
 	 * type=="水井" TagExtWater.class<br>
 	 */
 	private String type;
+	
+	/**
+	 * 节点子类型
+	 * 油井：电滚筒、高原机、油梁式、螺杆泵、电潜泵
+	 */
+	private String subType;
 
 	/**
 	 * 变量模版名称,主要用于数据采集程序<br>
@@ -54,16 +60,10 @@ public class EndTag extends AbstractPersistable<Integer> {
 	@Column(name = "tpl_name")
 	private String tplName;
 	
-	@Column(name = "channel_idx")
-	private Integer channelIdx;
-	
-	@Column(name = "device_addr")
-	private Integer deviceAddr;
-	
-	@OneToMany(mappedBy = "endTag")
+	@OneToMany(mappedBy = "endTag",  orphanRemoval=true)
 	private List<VarIOInfo> ioInfo;
 
-	@OneToMany(mappedBy = "endTag")
+	@OneToMany(mappedBy = "endTag", orphanRemoval=true)
 	private List<EndTagExtInfo> extInfo;
 
 	/**
@@ -75,7 +75,7 @@ public class EndTag extends AbstractPersistable<Integer> {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "device_id")
 	private AcquisitionDevice device;
-	
+
 	/**
 	 * 能耗索引节点（树形结构）<br>
 	 * <p>
@@ -138,23 +138,6 @@ public class EndTag extends AbstractPersistable<Integer> {
 		this.tplName = tplName;
 	}
 	
-
-	public Integer getChannelIdx() {
-		return channelIdx;
-	}
-
-	public void setChannelIdx(Integer channelIdx) {
-		this.channelIdx = channelIdx;
-	}
-
-	public Integer getDeviceAddr() {
-		return deviceAddr;
-	}
-
-	public void setDeviceAddr(Integer deviceAddr) {
-		this.deviceAddr = deviceAddr;
-	}
-
 	public List<VarIOInfo> getIoInfo() {
 		return ioInfo;
 	}

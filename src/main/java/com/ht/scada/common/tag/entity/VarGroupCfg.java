@@ -2,8 +2,6 @@ package com.ht.scada.common.tag.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -27,13 +25,12 @@ public class VarGroupCfg extends AbstractPersistable<Integer> {
 	 */
 	private static final long serialVersionUID = 7009578228205867170L;
 
-	@Enumerated(EnumType.STRING)
 	private VarGroup varGroup;
 	
 	private String name;// 分组名称
 	
 	@Column(name = "interval")
-	private int interval = 0;// 历史存储间隔(分钟)
+	private int interval = 0;// 存储间隔
 
 	public VarGroup getVarGroup() {
 		return varGroup;

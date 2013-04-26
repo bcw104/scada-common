@@ -2,13 +2,17 @@ package com.ht.scada.common.tag.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 /**
@@ -32,6 +36,12 @@ public class MajorTag extends AbstractPersistable<Integer> {
 	 * 需要在树形结构中显示的名称
 	 */
 	private String name;
+	
+	/**
+	 * 节点类型
+	 * 厂、矿、队等
+	 */
+	private String type;
 
 	/**
 	 * 父节点，用于描述树形结构
@@ -43,10 +53,10 @@ public class MajorTag extends AbstractPersistable<Integer> {
 	/**
 	 * 该节点下的的所有子节点
 	 */
-	@OneToMany(mappedBy = "parent")
+	@OneToMany(mappedBy = "parent", orphanRemoval=true)
 	private List<MajorTag> children; // 子节点
 
-	@OneToMany(mappedBy = "majorTag")
+	@OneToMany(mappedBy = "majorTag",orphanRemoval=true)
 	private List<EndTag> endTagList;
 
 	public MajorTag() {
@@ -87,5 +97,14 @@ public class MajorTag extends AbstractPersistable<Integer> {
 	public void setEndTagList(List<EndTag> endTagList) {
 		this.endTagList = endTagList;
 	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+	
 
 }
