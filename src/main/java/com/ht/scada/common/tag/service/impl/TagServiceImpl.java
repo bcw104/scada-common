@@ -12,6 +12,7 @@ import com.ht.scada.common.tag.dao.MajorTagDao;
 import com.ht.scada.common.tag.entity.AcquisitionDevice;
 import com.ht.scada.common.tag.entity.AreaMinorTag;
 import com.ht.scada.common.tag.entity.EndTag;
+import com.ht.scada.common.tag.entity.EnergyMinorTag;
 import com.ht.scada.common.tag.entity.MajorTag;
 import com.ht.scada.common.tag.entity.SensorDevice;
 import com.ht.scada.common.tag.entity.TagCfgTpl;
@@ -166,5 +167,11 @@ public class TagServiceImpl implements TagService {
 	@Override
 	public void deleteAreaMinorTagById(int id) {
 		areaMinorTagDao.delete(id);
+	}
+
+	@Override
+	public void deleteEnergyMinorTag(int id) {
+		// TODO Auto-generated method stub
+		
 	}
 }
