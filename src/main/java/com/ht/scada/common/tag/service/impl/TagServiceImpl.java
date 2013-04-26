@@ -160,4 +160,24 @@ public class TagServiceImpl implements TagService {
 	public void deleteAreaMinorTagById(int id) {
 		areaMinorTagDao.delete(id);
 	}
+
+    @Override
+    public List<EndTag> getEndTag4Comm() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public List<VarGroupCfg> getAllVarGroupCfg() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public List<VarIOInfo> getAllTagIOInfo() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public List<TagCfgTpl> getAllTagTpl() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
 }

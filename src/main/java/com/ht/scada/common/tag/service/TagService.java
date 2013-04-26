@@ -179,4 +179,6 @@ public interface TagService {
     List<VarGroupCfg> getAllVarGroupCfg();
 
     List<VarIOInfo> getAllTagIOInfo();
+
+    List<TagCfgTpl> getAllTagTpl();
 }
