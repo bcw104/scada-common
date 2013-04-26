@@ -6,12 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ht.scada.common.tag.dao.AreaMinorTagDao;
 import com.ht.scada.common.tag.dao.EndTagDao;
 import com.ht.scada.common.tag.dao.MajorTagDao;
 import com.ht.scada.common.tag.entity.AcquisitionDevice;
 import com.ht.scada.common.tag.entity.AreaMinorTag;
 import com.ht.scada.common.tag.entity.EndTag;
-import com.ht.scada.common.tag.entity.EnergyMinorTag;
 import com.ht.scada.common.tag.entity.MajorTag;
 import com.ht.scada.common.tag.entity.SensorDevice;
 import com.ht.scada.common.tag.entity.TagCfgTpl;
@@ -25,6 +25,8 @@ public class TagServiceImpl implements TagService {
 	private MajorTagDao majorTagDao;
 	@Autowired
 	private EndTagDao endTagDao;
+	@Autowired
+	private AreaMinorTagDao areaMinorTagDao;
 
 	@Override
 	public MajorTag getMajorTag(int id) {
@@ -148,27 +150,21 @@ public class TagServiceImpl implements TagService {
 	}
 
 	@Override
-	public void createAreaMinorTag(AreaMinorTag areaMinorTag) {
-		// TODO Auto-generated method stub
-		
+	public List<AreaMinorTag> getRootAreaMinorTag() {
+		return areaMinorTagDao.findByParent(null);
 	}
 
 	@Override
-	public void createEnergyMinorTag(EnergyMinorTag energyMinorTag) {
-		// TODO Auto-generated method stub
-		
+	public List<AreaMinorTag> getAreaMinorTagsByParentId(Integer id) {
+		AreaMinorTag parentMajor = areaMinorTagDao.findOne(id);
+		if(parentMajor == null) {
+			return null;
+		}
+		return areaMinorTagDao.findByParent(parentMajor);
 	}
 
 	@Override
-	public void deleteAreaMinorTag(int id) {
-		// TODO Auto-generated method stub
-		
+	public void deleteAreaMinorTagById(int id) {
+		areaMinorTagDao.delete(id);
 	}
-
-	@Override
-	public void deleteEnergyMinorTag(int id) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
