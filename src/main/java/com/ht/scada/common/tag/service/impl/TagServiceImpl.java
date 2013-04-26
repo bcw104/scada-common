@@ -1,22 +1,15 @@
 package com.ht.scada.common.tag.service.impl;
 
-import java.util.List;
-
+import com.ht.scada.common.tag.dao.AreaMinorTagDao;
+import com.ht.scada.common.tag.dao.EndTagDao;
+import com.ht.scada.common.tag.dao.MajorTagDao;
+import com.ht.scada.common.tag.entity.*;
+import com.ht.scada.common.tag.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ht.scada.common.tag.dao.AreaMinorTagDao;
-import com.ht.scada.common.tag.dao.EndTagDao;
-import com.ht.scada.common.tag.dao.MajorTagDao;
-import com.ht.scada.common.tag.entity.AcquisitionDevice;
-import com.ht.scada.common.tag.entity.AreaMinorTag;
-import com.ht.scada.common.tag.entity.EndTag;
-import com.ht.scada.common.tag.entity.MajorTag;
-import com.ht.scada.common.tag.entity.SensorDevice;
-import com.ht.scada.common.tag.entity.TagCfgTpl;
-import com.ht.scada.common.tag.entity.VarIOInfo;
-import com.ht.scada.common.tag.service.TagService;
+import java.util.List;
 @Transactional
 @Service("tagService")
 public class TagServiceImpl implements TagService {
