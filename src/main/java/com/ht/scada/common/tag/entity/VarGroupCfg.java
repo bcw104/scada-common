@@ -2,6 +2,8 @@ package com.ht.scada.common.tag.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -25,6 +27,7 @@ public class VarGroupCfg extends AbstractPersistable<Integer> {
 	 */
 	private static final long serialVersionUID = 7009578228205867170L;
 
+	@Enumerated(EnumType.STRING)
 	private VarGroup varGroup;
 	
 	private String name;// 分组名称
