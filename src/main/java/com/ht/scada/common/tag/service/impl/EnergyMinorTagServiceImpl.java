@@ -1,5 +1,7 @@
 package com.ht.scada.common.tag.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,6 +34,20 @@ public class EnergyMinorTagServiceImpl implements EnergyMinorTagService {
 	@Override
 	public EnergyMinorTag getById(int id) {
 		return energyMinorTagDao.findOne(id);
+	}
+
+	@Override
+	public List<EnergyMinorTag> getEnergyMinorTagsByParentId(int parentId) {
+		EnergyMinorTag parentMajor = energyMinorTagDao.findOne(parentId);
+		if(parentMajor == null) {
+			return null;
+		}
+		return energyMinorTagDao.findByParent(parentMajor);
+	}
+
+	@Override
+	public List<EnergyMinorTag> getRootEnergyMinorTag() {
+		return energyMinorTagDao.findByParent(null);
 	}
 
 }
