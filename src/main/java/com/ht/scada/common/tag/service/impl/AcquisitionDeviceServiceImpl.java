@@ -21,25 +21,19 @@ public class AcquisitionDeviceServiceImpl implements AcquisitionDeviceService {
 	AcquisitionChannelDao acquisitionChannelDao;
 
 	@Override
-	public void create(AcquisitionDeviceService domain) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public void deleteById(int id) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void update(AcquisitionDeviceService domain) {
-		// TODO Auto-generated method stub
+	public void update(AcquisitionDevice domain) {
+		acquisitionDeviceDao.save(domain);
 
 	}
 
 	@Override
-	public AcquisitionDeviceService getById(int id) {
+	public AcquisitionDevice getById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
