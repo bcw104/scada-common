@@ -1,8 +1,14 @@
 package com.ht.scada.common.tag.service;
 
-import com.ht.scada.common.tag.entity.*;
-
 import java.util.List;
+
+import com.ht.scada.common.tag.entity.AcquisitionDevice;
+import com.ht.scada.common.tag.entity.AreaMinorTag;
+import com.ht.scada.common.tag.entity.EndTag;
+import com.ht.scada.common.tag.entity.MajorTag;
+import com.ht.scada.common.tag.entity.SensorDevice;
+import com.ht.scada.common.tag.entity.TagCfgTpl;
+import com.ht.scada.common.tag.entity.VarIOInfo;
 
 /**
  * 提供标签配置信息查询服务
@@ -162,7 +168,7 @@ public interface TagService {
 	public List<AreaMinorTag> getRootAreaMinorTag();
 	/**
 	 * 通过父id获得所有末端节点
-	 * @param id
+	 * @param name
 	 * @return
 	 */
 	public List<AreaMinorTag> getAreaMinorTagsByParentId(Integer id);
@@ -184,16 +190,4 @@ public interface TagService {
 	 * @param areaMinorTag
 	 */
 	public void updateAreaMinorTag(AreaMinorTag areaMinorTag);
-
-    List<VarGroupCfg> getAllVarGroupCfg();
-
-    /**
-     * 获取通道序号设备地址均不为空的所有末端
-     * @return
-     */
-    List<EndTag> getEndTag4Comm();
-
-    List<VarIOInfo> getAllTagIOInfo();
-
-    List<TagCfgTpl> getAllTagTpl();
 }

@@ -30,6 +30,10 @@ public class AcquisitionChannel extends AbstractPersistable<Integer> {
 	 * 
 	 */
 	private static final long serialVersionUID = 329169404864422993L;
+	/**
+	 * 
+	 */
+	//private static final long serialVersionUID = 329169404864422993L;
 	
 	@Column(name="update_time")
 	private Date updateTime;// 上次更新时间
@@ -73,7 +77,7 @@ public class AcquisitionChannel extends AbstractPersistable<Integer> {
 	 * 0x65-1200|召唤电能<br>
 	 * 0x8e-600|召唤定时示功图数据</p>
 	 */
-	@Lob
+//	@Lob
 	private String frames;
 	
 	@OneToMany(mappedBy="channel")
@@ -84,6 +88,14 @@ public class AcquisitionChannel extends AbstractPersistable<Integer> {
 	
 	public AcquisitionChannel(Integer id) {
 		setId(id);
+	}
+
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
 	}
 
 	public Integer getIdx() {
@@ -158,13 +170,6 @@ public class AcquisitionChannel extends AbstractPersistable<Integer> {
 		this.devices = devices;
 	}
 
-	public Date getUpdateTime() {
-		return updateTime;
-	}
-
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
-	}
 	
 	
 }
