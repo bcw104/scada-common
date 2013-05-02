@@ -15,5 +15,12 @@ public interface TagCfgTplDao extends JpaRepository<TagCfgTpl, Integer>{
 	 */
 	@Query("select distinct t.tplName from TagCfgTpl t")
 	public List<String> findDistinctByTplName();
+	
+	/**
+	 * 通过模板名字获得所有变量
+	 * @return
+	 */
+	@Query("select t from TagCfgTpl t where t.tplName = ?1")
+	public List<TagCfgTpl> findVariablesByTplName(String tplName);
 
 }

@@ -243,4 +243,12 @@ public class TagCfgTpl extends AbstractPersistable<Integer> {
 		this.unit = unit;
 	}
 
+	public String getTagName() {
+		return tagName;
+	}
+
+	public void setTagName(String tagName) {
+		this.tagName = tagName;
+	}
+
 }
