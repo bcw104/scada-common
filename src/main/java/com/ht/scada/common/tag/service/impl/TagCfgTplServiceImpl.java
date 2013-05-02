@@ -47,5 +47,11 @@ public class TagCfgTplServiceImpl implements TagCfgTplService {
 		return tagCfgTplDao.findVariablesByTplName(tplName);
 	}
 
+	@Override
+	public List<TagCfgTpl> getAllTagTpl() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

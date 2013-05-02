@@ -21,30 +21,6 @@ public class AcquisitionDeviceServiceImpl implements AcquisitionDeviceService {
 	AcquisitionChannelDao acquisitionChannelDao;
 
 	@Override
-	public void create(AcquisitionDeviceService domain) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void deleteById(int id) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void update(AcquisitionDeviceService domain) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public AcquisitionDeviceService getById(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<AcquisitionDevice> getDeviceByChannelId(Integer id) {
 		AcquisitionChannel channelObject = acquisitionChannelDao.findOne(id);
 		if(channelObject == null) {
@@ -56,6 +32,23 @@ public class AcquisitionDeviceServiceImpl implements AcquisitionDeviceService {
 	@Override
 	public void create(AcquisitionDevice acquisitionDevice) {
 		acquisitionDeviceDao.save(acquisitionDevice);
+	}
+
+	@Override
+	public void deleteById(int id) {
+		acquisitionDeviceDao.delete(id);
+		
+	}
+
+	@Override
+	public void update(AcquisitionDevice domain) {
+		acquisitionDeviceDao.saveAndFlush(domain);
+		
+	}
+
+	@Override
+	public AcquisitionDevice getById(int id) {
+		return acquisitionDeviceDao.findOne(id);
 	}
 
 }
