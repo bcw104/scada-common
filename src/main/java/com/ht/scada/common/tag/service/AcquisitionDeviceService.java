@@ -14,4 +14,11 @@ public interface AcquisitionDeviceService extends
 	 */
 	List<AcquisitionDevice> getDeviceByChannelId(Integer id);
 
+	/**
+	 * 创建采集设备
+	 * 
+	 * @param acquisitionDevice
+	 */
+	void create(AcquisitionDevice acquisitionDevice);
+
 }

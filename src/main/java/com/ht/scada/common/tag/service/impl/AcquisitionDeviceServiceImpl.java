@@ -53,4 +53,9 @@ public class AcquisitionDeviceServiceImpl implements AcquisitionDeviceService {
 		return acquisitionDeviceDao.findByChannel(channelObject);
 	}
 
+	@Override
+	public void create(AcquisitionDevice acquisitionDevice) {
+		acquisitionDeviceDao.save(acquisitionDevice);
+	}
+
 }

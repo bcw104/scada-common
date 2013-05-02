@@ -11,7 +11,7 @@ import com.ht.scada.common.tag.entity.AcquisitionChannel;
  * 
  */
 public interface AcquisitionChannelService extends
-		BaseService<AcquisitionChannelService> {
+		BaseService<AcquisitionChannel> {
 
 	/**
 	 * 获得根通道
@@ -27,5 +27,6 @@ public interface AcquisitionChannelService extends
 	 * @return
 	 */
 	List<AcquisitionChannel> getDeviceByChannelId(Integer channelId);
+
 
 }
