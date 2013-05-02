@@ -1,14 +1,13 @@
 package com.ht.scada.common.tag.service.impl;
 
-import java.util.List;
-
+import com.ht.scada.common.tag.dao.TagCfgTplDao;
+import com.ht.scada.common.tag.entity.TagCfgTpl;
+import com.ht.scada.common.tag.service.TagCfgTplService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ht.scada.common.tag.dao.TagCfgTplDao;
-import com.ht.scada.common.tag.entity.TagCfgTpl;
-import com.ht.scada.common.tag.service.TagCfgTplService;
+import java.util.List;
 
 @Transactional
 @Service("tagCfgTplService")
@@ -41,5 +40,10 @@ public class TagCfgTplServiceImpl implements TagCfgTplService {
 	public List<String> findAllTplName() {
 		return tagCfgTplDao.findDistinctByTplName();
 	}
+
+    @Override
+    public List<TagCfgTpl> getAllTagTpl() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
 
 }

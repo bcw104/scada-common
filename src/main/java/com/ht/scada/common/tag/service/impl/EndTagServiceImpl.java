@@ -1,16 +1,15 @@
 package com.ht.scada.common.tag.service.impl;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.ht.scada.common.tag.dao.EndTagDao;
 import com.ht.scada.common.tag.dao.MajorTagDao;
 import com.ht.scada.common.tag.entity.EndTag;
 import com.ht.scada.common.tag.entity.MajorTag;
 import com.ht.scada.common.tag.service.EndTagService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Transactional
 @Service("endTagService")
@@ -49,5 +48,10 @@ public class EndTagServiceImpl implements EndTagService {
 		}
 		return endTagDao.findByMajorTag(parentMajor);
 	}
+
+    @Override
+    public List<EndTag> getEndTag4Comm() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
 
 }

@@ -1,8 +1,8 @@
 package com.ht.scada.common.tag.service;
 
-import java.util.List;
-
 import com.ht.scada.common.tag.entity.EndTag;
+
+import java.util.List;
 
 public interface EndTagService extends BaseService<EndTag>{
 	
@@ -14,4 +14,5 @@ public interface EndTagService extends BaseService<EndTag>{
 	 */
 	public List<EndTag> getEndTagByParentId(int id);
 
+    List<EndTag> getEndTag4Comm();
 }
