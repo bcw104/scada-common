@@ -42,4 +42,16 @@ public class TagCfgTplServiceImpl implements TagCfgTplService {
 		return tagCfgTplDao.findDistinctByTplName();
 	}
 
+	@Override
+	public List<TagCfgTpl> findVariablesByTplName(String tplName) {
+		return tagCfgTplDao.findVariablesByTplName(tplName);
+	}
+
+	@Override
+	public List<TagCfgTpl> getAllTagTpl() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 }

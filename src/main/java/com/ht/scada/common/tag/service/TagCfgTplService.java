@@ -1,8 +1,8 @@
 package com.ht.scada.common.tag.service;
 
-import java.util.List;
-
 import com.ht.scada.common.tag.entity.TagCfgTpl;
+
+import java.util.List;
 
 public interface TagCfgTplService extends BaseService<TagCfgTpl> {
 	/**
@@ -11,5 +11,14 @@ public interface TagCfgTplService extends BaseService<TagCfgTpl> {
 	 * @return
 	 */
 	public List<String> findAllTplName();
+	
+	/**
+	 * 通过模板名获得变量
+	 * @author 赵磊
+	 * @return
+	 */
+	public List<TagCfgTpl> findVariablesByTplName(String tplName);
 
+
+    List<TagCfgTpl> getAllTagTpl();
 }
