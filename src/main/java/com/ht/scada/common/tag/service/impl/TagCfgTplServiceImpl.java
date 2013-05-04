@@ -49,8 +49,13 @@ public class TagCfgTplServiceImpl implements TagCfgTplService {
 
 	@Override
 	public List<TagCfgTpl> getAllTagTpl() {
-		// TODO Auto-generated method stub
-		return null;
+		return tagCfgTplDao.findAll();
+	}
+
+	@Override
+	public void deleteAllVariablesByTplName(String tplName) {
+		tagCfgTplDao.deleteByTplName(tplName);
+		
 	}
 
 

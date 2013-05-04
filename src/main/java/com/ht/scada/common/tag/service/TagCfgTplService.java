@@ -21,4 +21,10 @@ public interface TagCfgTplService extends BaseService<TagCfgTpl> {
 
 
     List<TagCfgTpl> getAllTagTpl();
+    
+    /**
+     * 删除变量模板里所有变量
+     * @param tplName
+     */
+    void deleteAllVariablesByTplName(String tplName);
 }
