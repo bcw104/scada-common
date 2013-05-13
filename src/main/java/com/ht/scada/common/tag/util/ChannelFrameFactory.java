@@ -1,9 +1,9 @@
 package com.ht.scada.common.tag.util;
 
+import com.ht.scada.common.tag.exception.FrameInfoErrorException;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.ht.scada.common.tag.exception.FrameInfoErrorException;
 
 public class ChannelFrameFactory {
 	
@@ -52,8 +52,8 @@ public class ChannelFrameFactory {
 				int funCode = Integer.parseInt(regInfoArray[0]);
 				int start = Integer.parseInt(regInfoArray[1]);
 				int len = Integer.parseInt(regInfoArray[2]);
-				int priority = Integer.parseInt(frameInfoArray[2]);
-				ModbusFrame modbusFrame = new ModbusFrame(name, slave, priority, funCode, start, len);
+				int interval = Integer.parseInt(frameInfoArray[2]);
+				ModbusFrame modbusFrame = new ModbusFrame(name, slave, interval, funCode, start, len);
 				return modbusFrame;
 			} catch (Exception e) {
 				throw new FrameInfoErrorException("modbus帧格式错误：" + frame);
@@ -102,16 +102,19 @@ public class ChannelFrameFactory {
 
 		public String name;
 		public int[][] slave;
-		public int priority;
+        /**
+         * 执行间隔（ms）
+         */
+		public int interval;
 		public int funCode;
 		public int start;
 		public int len;
 		
-		private ModbusFrame(String name, int[][] slave, int priority,
+		private ModbusFrame(String name, int[][] slave, int interval,
 				int funCode, int start, int len) {
 			this.name = name;
 			this.slave = slave;
-			this.priority = priority;
+			this.interval = interval;
 			this.funCode = funCode;
 			this.start = start;
 			this.len = len;
@@ -120,11 +123,19 @@ public class ChannelFrameFactory {
 	}
 	
 	public static class IEC104Frame {
-		public int ti;// 帧类型
+        /**
+         * IEC104标识编码
+         */
+		public int ti;
 		/**
-		 * 执行间隔(s)
+		 * 执行间隔(s)<br/>
+         * 如果是历史数据召唤帧，执行间隔表示每次历史数据召唤的时间范围
+         * 如果执行间隔请设置为0, 则只在每次建立连接时执行1次召唤
 		 */
 		public int interval;
+        /**
+         * 帧名称（可以为空）
+         */
 		public String name;
 		
 		private IEC104Frame(int type, int interval, String name) {

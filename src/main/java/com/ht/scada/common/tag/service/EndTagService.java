@@ -15,4 +15,6 @@ public interface EndTagService extends BaseService<EndTag>{
 	public List<EndTag> getEndTagByParentId(int id);
 
     List<EndTag> getEndTag4Comm();
+
+    EndTag getByCode(String code);
 }

@@ -46,4 +46,9 @@ public class TagCfgTplServiceImpl implements TagCfgTplService {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
+    @Override
+    public Integer getDataIDByVarName(String tplName, String varName) {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
 }

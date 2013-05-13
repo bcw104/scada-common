@@ -43,7 +43,7 @@ public class FrameFactoryTest {
 	  assert frame.funCode == 3;
 	  assert frame.start == 1;
 	  assert frame.len == 10;
-	  assert frame.priority == 3;
+	  assert frame.interval == 3;
 	  assert frame.name == null;
 	  
 	  list = ChannelFrameFactory.parseModbusFrames("1|3-100-10|0|soe");
