@@ -1,13 +1,14 @@
 package com.ht.scada.common.tag.service.impl;
 
-import com.ht.scada.common.tag.dao.TagCfgTplDao;
-import com.ht.scada.common.tag.entity.TagCfgTpl;
-import com.ht.scada.common.tag.service.TagCfgTplService;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import com.ht.scada.common.tag.dao.TagCfgTplDao;
+import com.ht.scada.common.tag.entity.TagCfgTpl;
+import com.ht.scada.common.tag.service.TagCfgTplService;
 
 @Transactional
 @Service("tagCfgTplService")
@@ -41,10 +42,22 @@ public class TagCfgTplServiceImpl implements TagCfgTplService {
 		return tagCfgTplDao.findDistinctByTplName();
 	}
 
-    @Override
-    public List<TagCfgTpl> getAllTagTpl() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
-    }
+	@Override
+	public List<TagCfgTpl> findVariablesByTplName(String tplName) {
+		return tagCfgTplDao.findVariablesByTplName(tplName);
+	}
+
+	@Override
+	public List<TagCfgTpl> getAllTagTpl() {
+		return tagCfgTplDao.findAll();
+	}
+
+	@Override
+	public void deleteAllVariablesByTplName(String tplName) {
+		tagCfgTplDao.deleteByTplName(tplName);
+		
+	}
+
 
     @Override
     public Integer getDataIDByVarName(String tplName, String varName) {

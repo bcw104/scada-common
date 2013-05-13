@@ -12,6 +12,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import com.ht.scada.common.tag.util.DataType;
 import com.ht.scada.common.tag.util.VarGroup;
+import com.ht.scada.common.tag.util.VarSubType;
 import com.ht.scada.common.tag.util.VarType;
 
 /**
@@ -49,23 +50,25 @@ public class TagCfgTpl extends AbstractPersistable<Integer> {
 	@Enumerated(EnumType.STRING)
 	private VarType varType; // 变量类型
 	@Column(name = "sub_Type")
-	private String subType; // 变量子类型
-	@Column(name = "data_type")
 	@Enumerated(EnumType.STRING)
-	private DataType dataType; // 值类型（bool, int32, int16, bcd, mod10000, float,
-								// double）
+	private VarSubType subType; // 变量子类型
+	
 
 	/* IO信息 */
 	@Column(name = "fun_code")
-	private int funCode; // 功能码
+	private int funCode = -1; // 功能码
 	@Column(name = "data_id")
-	private int dataID; // 数据ID
+	private int dataID = -1; // 数据ID
 	@Column(name = "byte_offset")
 	private int byteOffset = 0; // 字节偏移量
 	@Column(name = "bit_offset")
 	private int bitOffset = -1; // 位偏移量(-1表)
 	@Column(name = "byte_len")
-	private int byteLen; // 字节长度
+	private int byteLen = -1; // 字节长度
+	@Column(name = "data_type")
+	@Enumerated(EnumType.STRING)
+	private DataType dataType; // 值类型（bool, int32, int16, bcd, mod10000, float,
+								// double）
 	@Column(name = "base_value")
 	private Float baseValue;// 基值
 	@Column(name = "coef_value")
@@ -89,7 +92,7 @@ public class TagCfgTpl extends AbstractPersistable<Integer> {
 	 * @see com.ht.scada.common.tag.util.StorageFactory
 	 */
 	@Column(name = "var_storage ")
-	@Lob
+//	@Lob
 	private String storage = "ym|0|599999999|1|0";
 
 	public TagCfgTpl() {
@@ -131,11 +134,13 @@ public class TagCfgTpl extends AbstractPersistable<Integer> {
 		this.varType = varType;
 	}
 
-	public String getSubType() {
+
+
+	public VarSubType getSubType() {
 		return subType;
 	}
 
-	public void setSubType(String subType) {
+	public void setSubType(VarSubType subType) {
 		this.subType = subType;
 	}
 
@@ -241,6 +246,14 @@ public class TagCfgTpl extends AbstractPersistable<Integer> {
 
 	public void setUnit(Integer unit) {
 		this.unit = unit;
+	}
+
+	public String getTagName() {
+		return tagName;
+	}
+
+	public void setTagName(String tagName) {
+		this.tagName = tagName;
 	}
 
 }

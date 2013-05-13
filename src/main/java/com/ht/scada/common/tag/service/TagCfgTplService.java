@@ -13,18 +13,5 @@ public interface TagCfgTplService extends BaseService<TagCfgTpl> {
 	public List<String> findAllTplName();
 
 
-    /**
-     * 用于采集程序解析
-     * @author 薄成文
-     * @return
-     */
     List<TagCfgTpl> getAllTagTpl();
-
-    /**
-     * 根据模板名和变量名获取单个变量
-     * @param tplName 模板名称
-     * @param varName 变量名称
-     * @return
-     */
-    Integer getDataIDByVarName(String tplName, String varName);
 }
