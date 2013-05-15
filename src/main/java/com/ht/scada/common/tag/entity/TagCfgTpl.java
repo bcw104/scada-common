@@ -40,7 +40,7 @@ public class TagCfgTpl extends AbstractPersistable<Integer> {
 
 	/* 变量属性 */
 	@Column(name = "var_name")
-	private String varName; // 变量key
+	private String varName; // 变量key,用于程序脚本
 	@Column(name = "tag_name")
 	private String tagName;	//变量名，中文
 	@Column(name = "var_group")

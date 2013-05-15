@@ -32,7 +32,7 @@ public class VarGroupCfg extends AbstractPersistable<Integer> {
 	
 	private String name;// 分组名称
 	
-	@Column(name = "interval")
+	@Column(name = "storage_interval")
 	private int interval = 0;// 存储间隔
 
 	public VarGroup getVarGroup() {

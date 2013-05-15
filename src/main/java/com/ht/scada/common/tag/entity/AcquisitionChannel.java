@@ -50,6 +50,7 @@ public class AcquisitionChannel extends AbstractPersistable<Integer> {
 	@Enumerated(EnumType.STRING)
 	private CommunicationProtocal protocal = CommunicationProtocal.IEC104;
 	private int offline;// 离线阈值
+	@Column(name="acquisition_interval")
 	private int interval = 100;//ms
 	private String schedule = "* * * * * ?";// cron 任务调度表达式(误差1秒)
 	
