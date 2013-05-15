@@ -1,9 +1,9 @@
 package com.ht.scada.common.tag.util;
 
+import com.ht.scada.common.tag.exception.StorageInfoErrorException;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.ht.scada.common.tag.exception.StorageInfoErrorException;
 
 /**
  * 存储器工厂：用于解析或生成变量模板中的存储器<br>
@@ -43,10 +43,6 @@ public class StorageFactory {
 	 * 				【存储器类型】|【报警类型1/0/-1】|【合消息】|【分消息】|【是否推画面】
 	 * 遥测越限存储器：	offlimits|500|电流越过上限|true|true 
 	 * 				【存储器类型】|【限值】|【越限信息】|【越限类型（true:上限，false:下限）】|【是否推画面】
-	 * 遥测存储器：		yc||10 
-	 * 				【存储器类型】|【变化范围（可以为空）】|【周期(分钟)】
-	 * 遥脉存储器：		ym|0|599999999|1|0 
-	 * 				【存储器类型】|【最小值】|【最大值】|单位脉冲电度量|周期（可以为空）
 	 **/
 	
 	public static Object parseStorage(String storage) throws StorageInfoErrorException {

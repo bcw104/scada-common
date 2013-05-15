@@ -54,4 +54,9 @@ public class EndTagServiceImpl implements EndTagService {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
+    @Override
+    public EndTag getByCode(String code) {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
 }

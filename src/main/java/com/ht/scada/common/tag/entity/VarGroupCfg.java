@@ -1,16 +1,9 @@
 package com.ht.scada.common.tag.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
+import com.ht.scada.common.tag.util.VarGroup;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
-import com.ht.scada.common.tag.util.VarGroup;
+import javax.persistence.*;
 
 /**
  * 变量分组配置信息，包括分组名称，存储间隔
@@ -32,6 +25,7 @@ public class VarGroupCfg extends AbstractPersistable<Integer> {
 	
 	private String name;// 分组名称
 	
+
 	@Column(name = "storage_interval")
 	private int interval = 0;// 存储间隔
 
@@ -51,6 +45,10 @@ public class VarGroupCfg extends AbstractPersistable<Integer> {
 		this.name = name;
 	}
 
+    /**
+     * 存储间隔(分钟)
+     * @return
+     */
 	public int getInterval() {
 		return interval;
 	}
