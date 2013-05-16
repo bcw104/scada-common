@@ -120,5 +120,10 @@
             <artifactId>hibernate-core</artifactId>
             <version>4.1.9.Final</version>
         </dependency>
+        <dependency>
+			<groupId>org.jumpmind.symmetric.jdbc</groupId>
+			<artifactId>mariadb-java-client</artifactId>
+			<version>1.1.1</version>
+		</dependency>
     </dependencies>
 </project>
