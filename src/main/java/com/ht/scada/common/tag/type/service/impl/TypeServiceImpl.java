@@ -6,6 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ht.scada.common.tag.type.EndTagExtInfoName;
+import com.ht.scada.common.tag.type.EndTagExtInfoValue;
+import com.ht.scada.common.tag.type.EndTagSubType;
+import com.ht.scada.common.tag.type.EndTagType;
+import com.ht.scada.common.tag.type.MajorTagType;
 import com.ht.scada.common.tag.type.VarGroupType;
 import com.ht.scada.common.tag.type.VarSubType;
 import com.ht.scada.common.tag.type.VarType;
@@ -60,6 +65,83 @@ public class TypeServiceImpl implements TypeService {
 	 */
 	public void initOilProject() {
 		
+	}
+	@Override
+	public List<VarGroupType> getAllVarGroupType() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<VarType> getAllVarType() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<MajorTagType> getAllMajorTagType() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<EndTagType> getAllEndTagType() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<EndTagSubType> getSubTypeByEndTagTypeName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<EndTagSubType> getSubTypeByEndTagTypeValue(String value) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<VarSubType> getAllVarSubType() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<VarSubType> getVarSubTypeByGroupName(String groupName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<VarSubType> getVarSubTypeByGroupValue(String groupValue) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<VarSubType> getVarSubTypeByVarTypeName(String varTypeName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<VarSubType> getVarSubTypeByVarTypeValue(String varTypeValue) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<EndTagExtInfoName> getExtInfoNamesByEndTagName(
+			String endTagTypeName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<EndTagExtInfoName> getExtInfoNamesByEndTagValue(
+			String endTagTypeNValue) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<EndTagExtInfoValue> getExtInfoValuesByInfoName(String infoName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<EndTagExtInfoValue> getExtInfoValuesByInfoValue(String infoValue) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 
