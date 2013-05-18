@@ -16,18 +16,18 @@ import javax.persistence.*;
 public class VarGroupCfg extends AbstractPersistable<Integer> {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 7009578228205867170L;
 
 	@Enumerated(EnumType.STRING)
+    @Column(name = "var_group")
 	private VarGroup varGroup;
 	
 	private String name;// 分组名称
 	
 
-	@Column(name = "storage_interval")
-	private int interval = 0;// 存储间隔
+	private int intvl = 0;// 存储间隔
 
 	public VarGroup getVarGroup() {
 		return varGroup;
@@ -49,12 +49,12 @@ public class VarGroupCfg extends AbstractPersistable<Integer> {
      * 存储间隔(分钟)
      * @return
      */
-	public int getInterval() {
-		return interval;
+	public int getIntvl() {
+		return intvl;
 	}
 
-	public void setInterval(int interval) {
-		this.interval = interval;
+	public void setIntvl(int interval) {
+		this.intvl = interval;
 	}
 	
 }

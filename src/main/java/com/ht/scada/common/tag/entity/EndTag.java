@@ -42,6 +42,7 @@ public class EndTag extends AbstractPersistable<Integer> {
 	 * 节点子类型
 	 * 油井：电滚筒、高原机、油梁式、螺杆泵、电潜泵
 	 */
+    @Column(name = "sub_type")
 	private String subType;
 
 	/**
