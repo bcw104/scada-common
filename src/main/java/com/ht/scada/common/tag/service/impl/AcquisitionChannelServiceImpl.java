@@ -1,14 +1,13 @@
 package com.ht.scada.common.tag.service.impl;
 
-import java.util.List;
-
+import com.ht.scada.common.tag.dao.AcquisitionChannelDao;
+import com.ht.scada.common.tag.entity.AcquisitionChannel;
+import com.ht.scada.common.tag.service.AcquisitionChannelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ht.scada.common.tag.dao.AcquisitionChannelDao;
-import com.ht.scada.common.tag.entity.AcquisitionChannel;
-import com.ht.scada.common.tag.service.AcquisitionChannelService;
+import java.util.List;
 
 @Transactional
 @Service("acquisitionChannelService")
@@ -33,7 +32,12 @@ public class AcquisitionChannelServiceImpl implements AcquisitionChannelService 
 		return acquisitionChannelDao.findAll();
 	}
 
-	@Override
+    @Override
+    public List<AcquisitionChannel> getAllChannel() {
+        return acquisitionChannelDao.findAll();  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
 	public void create(AcquisitionChannel domain) {
 		acquisitionChannelDao.save(domain);
 		

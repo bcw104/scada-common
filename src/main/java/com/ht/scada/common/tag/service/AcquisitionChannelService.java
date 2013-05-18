@@ -1,8 +1,8 @@
 package com.ht.scada.common.tag.service;
 
-import java.util.List;
-
 import com.ht.scada.common.tag.entity.AcquisitionChannel;
+
+import java.util.List;
 
 /**
  * 提供通道查询服务
@@ -23,10 +23,15 @@ public interface AcquisitionChannelService extends
 	/***
 	 * 根据父id获取通道
 	 * 
-	 * @param id
+	 * @param channelId
 	 * @return
 	 */
 	List<AcquisitionChannel> getDeviceByChannelId(Integer channelId);
 
+    /**
+     * 获取所有采集通道
+     * @return
+     */
+    List<AcquisitionChannel> getAllChannel();
 
 }

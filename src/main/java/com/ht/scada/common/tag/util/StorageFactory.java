@@ -46,6 +46,9 @@ public class StorageFactory {
 	 **/
 	
 	public static Object parseStorage(String storage) throws StorageInfoErrorException {
+        if (storage == null) {
+            return null;
+        }
 		if (storage.startsWith(YX_PREFIX)) {
 			return parseYXStorage(storage);
 		} else if (storage.startsWith(FAULT_PREFIX)) {

@@ -185,6 +185,5 @@ public interface TagService {
 	 */
 	public void updateAreaMinorTag(AreaMinorTag areaMinorTag);
 
-    List<VarGroupCfg> getAllVarGroupCfg();
     List<VarIOInfo> getAllTagIOInfo();
 }

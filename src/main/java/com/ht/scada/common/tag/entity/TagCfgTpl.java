@@ -1,19 +1,13 @@
 package com.ht.scada.common.tag.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Lob;
-import javax.persistence.Table;
-
-import org.hibernate.annotations.Index;
-import org.springframework.data.jpa.domain.AbstractPersistable;
-
 import com.ht.scada.common.tag.util.DataType;
 import com.ht.scada.common.tag.util.VarGroup;
 import com.ht.scada.common.tag.util.VarSubType;
 import com.ht.scada.common.tag.util.VarType;
+import org.hibernate.annotations.Index;
+import org.springframework.data.jpa.domain.AbstractPersistable;
+
+import javax.persistence.*;
 
 /**
  * 变量词典模板<br>
@@ -46,7 +40,7 @@ public class TagCfgTpl extends AbstractPersistable<Integer> {
 	@Column(name = "var_group")
 	@Enumerated(EnumType.STRING)
 	private VarGroup varGroup; // 变量分组,可以为空
-	@Column(name = "type")
+	@Column(name = "var_type")
 	@Enumerated(EnumType.STRING)
 	private VarType varType; // 变量类型
 	@Column(name = "sub_Type")
@@ -58,7 +52,7 @@ public class TagCfgTpl extends AbstractPersistable<Integer> {
 	@Column(name = "fun_code")
 	private int funCode = -1; // 功能码
 	@Column(name = "data_id")
-	private int dataID = -1; // 数据ID
+	private int dataId = -1; // 数据ID
 	@Column(name = "byte_offset")
 	private int byteOffset = 0; // 字节偏移量
 	@Column(name = "bit_offset")
@@ -76,15 +70,15 @@ public class TagCfgTpl extends AbstractPersistable<Integer> {
 
 	/* YM信息 */
 	@Column(name = "max_value")
-	private Double max;// 最大值
+	private Double maxValue;// 最大值
 	@Column(name = "min_value")
-	private Double min;// 最小值
+	private Double minValue;// 最小值
 	@Column(name = "unit_value")
-	private Integer unit;// 遥脉单位
+	private Integer unitValue;// 遥脉单位
 
 	/* 变量扩展属性 */
-	@Column(name = "comm_trigger")
-	private String trigger; // 触发采集帧名,如"soe", 需要与采集通道中定义的帧名称对应
+	@Column(name = "trigger_name")
+	private String triggerName; // 触发采集帧名,如"soe", 需要与采集通道中定义的帧名称对应
 
 	/**
 	 * 存储器
@@ -92,7 +86,7 @@ public class TagCfgTpl extends AbstractPersistable<Integer> {
 	 * @see com.ht.scada.common.tag.util.StorageFactory
 	 */
 	@Column(name = "var_storage ")
-//	@Lob
+	@Lob
 	private String storage = "ym|0|599999999|1|0";
 
 	public TagCfgTpl() {
@@ -160,12 +154,12 @@ public class TagCfgTpl extends AbstractPersistable<Integer> {
 		this.funCode = funCode;
 	}
 
-	public int getDataID() {
-		return dataID;
+	public int getDataId() {
+		return dataId;
 	}
 
-	public void setDataID(int dataID) {
-		this.dataID = dataID;
+	public void setDataId(int dataID) {
+		this.dataId = dataID;
 	}
 
 	public int getByteOffset() {
@@ -208,12 +202,12 @@ public class TagCfgTpl extends AbstractPersistable<Integer> {
 		this.coefValue = coefValue;
 	}
 
-	public String getTrigger() {
-		return trigger;
+	public String getTriggerName() {
+		return triggerName;
 	}
 
-	public void setTrigger(String trigger) {
-		this.trigger = trigger;
+	public void setTriggerName(String trigger) {
+		this.triggerName = trigger;
 	}
 
 	public String getStorage() {
@@ -224,28 +218,28 @@ public class TagCfgTpl extends AbstractPersistable<Integer> {
 		this.storage = storage;
 	}
 
-	public Double getMax() {
-		return max;
+	public Double getMaxValue() {
+		return maxValue;
 	}
 
-	public void setMax(Double max) {
-		this.max = max;
+	public void setMaxValue(Double max) {
+		this.maxValue = max;
 	}
 
-	public Double getMin() {
-		return min;
+	public Double getMinValue() {
+		return minValue;
 	}
 
-	public void setMin(Double min) {
-		this.min = min;
+	public void setMinValue(Double min) {
+		this.minValue = min;
 	}
 
-	public Integer getUnit() {
-		return unit;
+	public Integer getUnitValue() {
+		return unitValue;
 	}
 
-	public void setUnit(Integer unit) {
-		this.unit = unit;
+	public void setUnitValue(Integer unit) {
+		this.unitValue = unit;
 	}
 
 	public String getTagName() {

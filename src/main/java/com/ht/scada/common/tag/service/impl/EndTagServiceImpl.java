@@ -51,12 +51,12 @@ public class EndTagServiceImpl implements EndTagService {
 
     @Override
     public List<EndTag> getEndTag4Comm() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return endTagDao.findByChannelIdxNotNullAndDeviceAddrNotNull();
     }
 
     @Override
     public EndTag getByCode(String code) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return endTagDao.findByCode(code);
     }
 
 }

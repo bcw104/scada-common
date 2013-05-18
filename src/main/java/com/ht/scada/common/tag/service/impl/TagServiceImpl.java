@@ -3,6 +3,7 @@ package com.ht.scada.common.tag.service.impl;
 import com.ht.scada.common.tag.dao.AreaMinorTagDao;
 import com.ht.scada.common.tag.dao.EndTagDao;
 import com.ht.scada.common.tag.dao.MajorTagDao;
+import com.ht.scada.common.tag.dao.VarIOInfoDao;
 import com.ht.scada.common.tag.entity.*;
 import com.ht.scada.common.tag.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,8 @@ public class TagServiceImpl implements TagService {
 	private EndTagDao endTagDao;
 	@Autowired
 	private AreaMinorTagDao areaMinorTagDao;
+    @Autowired
+    private VarIOInfoDao varIOInfoDao;
 
 	@Override
 	public MajorTag getMajorTag(int id) {
@@ -174,12 +177,7 @@ public class TagServiceImpl implements TagService {
 	}
 
     @Override
-    public List<VarGroupCfg> getAllVarGroupCfg() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
     public List<VarIOInfo> getAllTagIOInfo() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return varIOInfoDao.findAll();  //To change body of implemented methods use File | Settings | File Templates.
     }
 }

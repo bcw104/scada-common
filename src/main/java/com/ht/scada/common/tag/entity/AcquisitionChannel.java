@@ -1,20 +1,12 @@
 package com.ht.scada.common.tag.entity;
 
 
-import java.util.Date;
-import java.util.List;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Lob;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
+import com.ht.scada.common.tag.util.CommunicationProtocal;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
-import com.ht.scada.common.tag.util.CommunicationProtocal;
+import javax.persistence.*;
+import java.util.Date;
+import java.util.List;
 
 /**
  * 采集通道模型<br>
@@ -23,13 +15,14 @@ import com.ht.scada.common.tag.util.CommunicationProtocal;
  *
  */
 @Entity
-@Table(name="T_Acquisition_Channel ")
+@Table(name="T_Acquisition_Channel")
 public class AcquisitionChannel extends AbstractPersistable<Integer> {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 329169404864422993L;
+
 	/**
 	 * 
 	 */
@@ -50,8 +43,7 @@ public class AcquisitionChannel extends AbstractPersistable<Integer> {
 	@Enumerated(EnumType.STRING)
 	private CommunicationProtocal protocal = CommunicationProtocal.IEC104;
 	private int offline;// 离线阈值
-	@Column(name="acquisition_interval")
-	private int interval = 100;//ms
+	private int intvl = 100;//ms
 	private String schedule = "* * * * * ?";// cron 任务调度表达式(误差1秒)
 	
 	/**
@@ -63,6 +55,7 @@ public class AcquisitionChannel extends AbstractPersistable<Integer> {
 	 * 串口通讯方式:		【通讯方式】|【端口】：【波特率】:【数据位(5/6/7/8)】:【校验位(无/奇/偶)】:【停止位(1/1.5/2)】
 	 * 					serial|1:9600:8:无:1
 	 */
+    @Column(name="port_info")
 	private String portInfo = "10.67.111.176:4660";
 	
 	/**
@@ -78,7 +71,7 @@ public class AcquisitionChannel extends AbstractPersistable<Integer> {
 	 * 0x65-1200|召唤电能<br>
 	 * 0x8e-600|召唤定时示功图数据</p>
 	 */
-//	@Lob
+	@Lob
 	private String frames;
 	
 	@OneToMany(mappedBy="channel")
@@ -131,12 +124,12 @@ public class AcquisitionChannel extends AbstractPersistable<Integer> {
 		this.offline = offline;
 	}
 
-	public int getInterval() {
-		return interval;
+	public int getIntvl() {
+		return intvl;
 	}
 
-	public void setInterval(int interval) {
-		this.interval = interval;
+	public void setIntvl(int interval) {
+		this.intvl = interval;
 	}
 
 	public String getSchedule() {
