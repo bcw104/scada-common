@@ -3,7 +3,8 @@ package com.ht.scada.common.tag.util;
 /**
  * 变量类型
  * @author 赵磊
- *
+ * @deprecated
+ * @see com.ht.scada.common.tag.type.VarType
  */
 public enum VarType {
 	YX("遥信"), YC("遥测"), YM("遥脉"), YK("遥控"), YT("遥调"), /** 其它 **/QT("其他");

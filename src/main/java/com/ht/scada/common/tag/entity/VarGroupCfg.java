@@ -1,9 +1,9 @@
 package com.ht.scada.common.tag.entity;
 
-import com.ht.scada.common.tag.util.VarGroup;
-import org.springframework.data.jpa.domain.AbstractPersistable;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
-import javax.persistence.*;
+import org.springframework.data.jpa.domain.AbstractPersistable;
 
 /**
  * 变量分组配置信息，包括分组名称，存储间隔
@@ -20,22 +20,13 @@ public class VarGroupCfg extends AbstractPersistable<Integer> {
 	 */
 	private static final long serialVersionUID = 7009578228205867170L;
 
-	@Enumerated(EnumType.STRING)
-    @Column(name = "var_group")
-	private VarGroup varGroup;
+	private String value;//中文名
 	
-	private String name;// 分组名称
+	private String name;// 英文名
 	
 
 	private int intvl = 0;// 存储间隔
 
-	public VarGroup getVarGroup() {
-		return varGroup;
-	}
-
-	public void setVarGroup(VarGroup varGroup) {
-		this.varGroup = varGroup;
-	}
 
 	public String getName() {
 		return name;
@@ -55,6 +46,14 @@ public class VarGroupCfg extends AbstractPersistable<Integer> {
 
 	public void setIntvl(int interval) {
 		this.intvl = interval;
+	}
+
+	public String getValue() {
+		return value;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
 	}
 	
 }

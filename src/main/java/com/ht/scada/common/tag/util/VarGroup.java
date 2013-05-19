@@ -5,6 +5,8 @@ package com.ht.scada.common.tag.util;
  * 
  * @author 薄成文
  * @author 赵磊
+ * @deprecated
+ * @see com.ht.scada.common.tag.varGroupCfg
  */
 public enum VarGroup {
 	DIAN_YC("电力数据"), DIAN_YM("电能数据"), DIAN_XB("谐波"), YOU_JING("油井"), YOU_JING_SGT(

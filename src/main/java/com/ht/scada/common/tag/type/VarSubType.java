@@ -8,6 +8,8 @@ import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
+import com.ht.scada.common.tag.entity.VarGroupCfg;
+
 /**
  * 变量子类型
  * @author 赵磊
@@ -31,7 +33,7 @@ public class VarSubType extends AbstractPersistable<Integer> {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "group_id")
-	private VarGroupType varGroupType;
+	private VarGroupCfg varGroupCfg;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "var_id")
@@ -49,17 +51,17 @@ public class VarSubType extends AbstractPersistable<Integer> {
 	public void setValue(String value) {
 		this.value = value;
 	}
-	public VarGroupType getVarGroupType() {
-		return varGroupType;
-	}
-	public void setVarGroupType(VarGroupType varGroupType) {
-		this.varGroupType = varGroupType;
-	}
 	public VarType getVarType() {
 		return varType;
 	}
 	public void setVarType(VarType varType) {
 		this.varType = varType;
+	}
+	public VarGroupCfg getVarGroupCfg() {
+		return varGroupCfg;
+	}
+	public void setVarGroupCfg(VarGroupCfg varGroupCfg) {
+		this.varGroupCfg = varGroupCfg;
 	}
 	
 	

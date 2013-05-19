@@ -30,6 +30,8 @@ public class MajorTagType extends AbstractPersistable<Integer> {
 	 */
 	private String value;
 	
+	private int level;
+	
 	public String getName() {
 		return name;
 	}
@@ -41,6 +43,12 @@ public class MajorTagType extends AbstractPersistable<Integer> {
 	}
 	public void setValue(String value) {
 		this.value = value;
+	}
+	public int getLevel() {
+		return level;
+	}
+	public void setLevel(int level) {
+		this.level = level;
 	}
 	
 	

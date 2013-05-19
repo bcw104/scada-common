@@ -2,12 +2,12 @@ package com.ht.scada.common.tag.type.service;
 
 import java.util.List;
 
+import com.ht.scada.common.tag.entity.VarGroupCfg;
 import com.ht.scada.common.tag.type.EndTagExtInfoName;
 import com.ht.scada.common.tag.type.EndTagExtInfoValue;
 import com.ht.scada.common.tag.type.EndTagSubType;
 import com.ht.scada.common.tag.type.EndTagType;
 import com.ht.scada.common.tag.type.MajorTagType;
-import com.ht.scada.common.tag.type.VarGroupType;
 import com.ht.scada.common.tag.type.VarSubType;
 import com.ht.scada.common.tag.type.VarType;
 
@@ -17,12 +17,45 @@ import com.ht.scada.common.tag.type.VarType;
  *
  */
 public interface TypeService {
+	/**
+	 * 增加主索引类型
+	 * @author 赵磊
+	 * @param majorTagType
+	 */
+	public void insertMajorTagType(MajorTagType majorTagType);
+	/**
+	 * 增加主索引类型
+	 * @author 赵磊
+	 * @param majorTagType
+	 */
+	public void insertMajorTagType(List<MajorTagType> majorTagTypeList);
 	
+	/**
+	 * 增加末端节点类型
+	 * @param endTaType
+	 */
+	public void insertEndTagType(EndTagType endTagType);
+	
+	/**
+	 * 增加末端节点类型
+	 * @param endTaType
+	 */
+	public void insertEndTagType(List<EndTagType> endTagTypeList);
+	/**
+	 * 增加末端节点子类型
+	 * @param endTagSubType
+	 */
+	public void insertEndTagSubType(EndTagSubType endTagSubType);
+	/**
+	 * 增加末端节点子类型
+	 * @param endTagSubType
+	 */
+	public void insertEndTagSubType(List<EndTagSubType> endTagSubTypeList);
 	/**
 	 * 增加变量分组类型
 	 * @author 赵磊
 	 */
-	public void insertVarGroupType(VarGroupType varGroupType);
+	public void insertVarGroupCgf(VarGroupCfg varGroupCfg);
 	
 	/**
 	 * 增加变量类型
@@ -40,21 +73,21 @@ public interface TypeService {
 	 * 增加变量分组类型
 	 * @author 赵磊
 	 */
-	public void insertVarGroupTypeList(List<VarGroupType> varGroupTypeList);
+	public void insertVarGroupCfg(List<VarGroupCfg> varGroupCfgList);
 	
 	/**
 	 * 增加变量类型
 	 * @author 赵磊
 	 */
-	public void insertVarTypeList(List<VarType> varTypeList);
+	public void insertVarType(List<VarType> varTypeList);
 	
 	/**
 	 * 增加变量子类型
 	 * @author 赵磊
 	 */
-	public void insertVarSubTypeList(List<VarSubType> varSubTypeList);
+	public void insertVarSubType(List<VarSubType> varSubTypeList);
 	
-	public List<VarGroupType> getAllVarGroupType();
+	public List<VarGroupCfg> getAllVarGroupCfg();
 	public List<VarType> getAllVarType();
 	public List<MajorTagType> getAllMajorTagType();
 	public List<EndTagType> getAllEndTagType();
