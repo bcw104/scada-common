@@ -100,13 +100,11 @@ public class TypeServiceImpl implements TypeService {
 	}
 	@Override
 	public List<EndTagSubType> getSubTypeByEndTagTypeName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		return endTagSubTypeDao.findByEndTagTypeName(name);
 	}
 	@Override
 	public List<EndTagSubType> getSubTypeByEndTagTypeValue(String value) {
-		// TODO Auto-generated method stub
-		return null;
+		return endTagSubTypeDao.findByEndTagTypeValue(value);
 	}
 	@Override
 	public List<VarSubType> getAllVarSubType() {
