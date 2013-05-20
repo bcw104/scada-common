@@ -29,6 +29,14 @@ public class VarType extends AbstractPersistable<Integer> {
 	 */
 	private String value;
 	
+	public VarType() {
+		
+	}
+	
+	public VarType(String name, String value) {
+		this.name = name;
+		this.value = value;
+	}
 	@OneToMany(mappedBy = "varType")
 	private List<VarSubType> varSubTypeList;
 	

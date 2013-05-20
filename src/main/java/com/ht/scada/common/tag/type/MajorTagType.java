@@ -32,6 +32,14 @@ public class MajorTagType extends AbstractPersistable<Integer> {
 	
 	private int level;
 	
+	
+	
+	public MajorTagType() {
+	}
+	public MajorTagType(String name, String value) {
+		this.name = name;
+		this.value = value;
+	}
 	public String getName() {
 		return name;
 	}

@@ -25,6 +25,8 @@ public class EndTagExtInfoValue extends AbstractPersistable<Integer> {
 	 */
 	private static final long serialVersionUID = -3475086757734005579L;
 	
+	public EndTagExtInfoValue() {
+	}
 	/**
 	 * 英文名
 	 */
@@ -34,6 +36,10 @@ public class EndTagExtInfoValue extends AbstractPersistable<Integer> {
 	 */
 	private String value;
 	
+	public EndTagExtInfoValue(String name, String value) {
+		this.name = name;
+		this.value = value;
+	}
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "extName_id")
 	private EndTagExtInfoName endTagExtInfoName;

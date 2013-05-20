@@ -31,6 +31,14 @@ public class EndTagSubType extends AbstractPersistable<Integer> {
 	 */
 	private String value;
 	
+	
+	
+	public EndTagSubType() {
+	}
+	public EndTagSubType(String name, String value) {
+		this.name = name;
+		this.value = value;
+	}
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "endTag_id")
 	private EndTagType endTagType;

@@ -22,6 +22,8 @@ public class EndTagExtInfoName extends AbstractPersistable<Integer> {
 	 */
 	private static final long serialVersionUID = -3475086757734005579L;
 	
+	public EndTagExtInfoName() {
+	}
 	/**
 	 * 英文名
 	 */
@@ -31,6 +33,12 @@ public class EndTagExtInfoName extends AbstractPersistable<Integer> {
 	 */
 	private String value;
 	
+	
+	
+	public EndTagExtInfoName(String name, String value) {
+		this.name = name;
+		this.value = value;
+	}
 	@OneToMany(mappedBy = "endTagExtInfoName")
 	private List<EndTagExtInfoValue> endTagExtInfoValueList;
 	

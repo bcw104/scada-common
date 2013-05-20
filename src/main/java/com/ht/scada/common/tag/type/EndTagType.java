@@ -38,6 +38,16 @@ public class EndTagType extends AbstractPersistable<Integer> {
 	 * 中文值
 	 */
 	private String value;
+	
+	
+
+	public EndTagType() {
+	}
+
+	public EndTagType(String name, String value) {
+		this.name = name;
+		this.value = value;
+	}
 
 	@OneToMany(mappedBy = "endTagType")
 	private List<EndTagSubType> endTagSubTypeList;

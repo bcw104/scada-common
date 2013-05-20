@@ -31,6 +31,25 @@ public class VarSubType extends AbstractPersistable<Integer> {
 	 */
 	private String value;
 	
+	
+	
+	public VarSubType() {
+	}
+	public VarSubType(String name, String value) {
+		this.name = name;
+		this.value = value;
+	}
+	
+	
+	public VarSubType(String name, String value, VarGroupCfg varGroupCfg,
+			VarType varType) {
+		this.name = name;
+		this.value = value;
+		this.varGroupCfg = varGroupCfg;
+		this.varType = varType;
+	}
+
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "group_id")
 	private VarGroupCfg varGroupCfg;
