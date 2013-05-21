@@ -16,10 +16,11 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Entity
 @Table(name = "T_Type_Var")
 public class VarType extends AbstractPersistable<Integer> {
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 2217695722650752315L;
+	private static final long serialVersionUID = 459214192672340896L;
 	/**
 	 * 英文名
 	 */

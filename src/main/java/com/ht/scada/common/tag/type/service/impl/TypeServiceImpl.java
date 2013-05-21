@@ -15,6 +15,8 @@ import com.ht.scada.common.tag.type.EndTagType;
 import com.ht.scada.common.tag.type.MajorTagType;
 import com.ht.scada.common.tag.type.VarSubType;
 import com.ht.scada.common.tag.type.VarType;
+import com.ht.scada.common.tag.type.dao.EndTagExtInfoNameDao;
+import com.ht.scada.common.tag.type.dao.EndTagExtInfoValueDao;
 import com.ht.scada.common.tag.type.dao.EndTagSubTypeDao;
 import com.ht.scada.common.tag.type.dao.EndTagTypeDao;
 import com.ht.scada.common.tag.type.dao.MajorTagTypeDao;
@@ -39,6 +41,10 @@ public class TypeServiceImpl implements TypeService {
 	private EndTagTypeDao endTagTypeDao;
 	@Autowired
 	private EndTagSubTypeDao endTagSubTypeDao;
+	@Autowired
+	private EndTagExtInfoNameDao endTagExtInfoNameDao;
+	@Autowired
+	private EndTagExtInfoValueDao endTagExtInfoValueDao;
 	
 	@Override
 	public void insertMajorTagType(MajorTagType majorTagType) {
@@ -112,45 +118,37 @@ public class TypeServiceImpl implements TypeService {
 	}
 	@Override
 	public List<VarSubType> getVarSubTypeByGroupName(String groupName) {
-		// TODO Auto-generated method stub
-		return null;
+		return varSubTypeDao.findByVarGroupName(groupName);
 	}
 	@Override
 	public List<VarSubType> getVarSubTypeByGroupValue(String groupValue) {
-		// TODO Auto-generated method stub
-		return null;
+		return varSubTypeDao.findByVarGroupValue(groupValue);
 	}
 	@Override
 	public List<VarSubType> getVarSubTypeByVarTypeName(String varTypeName) {
-		// TODO Auto-generated method stub
-		return null;
+		return varSubTypeDao.findByVarTypeName(varTypeName);
 	}
 	@Override
 	public List<VarSubType> getVarSubTypeByVarTypeValue(String varTypeValue) {
-		// TODO Auto-generated method stub
-		return null;
+		return varSubTypeDao.findByVarTypeValue(varTypeValue);
 	}
 	@Override
 	public List<EndTagExtInfoName> getExtInfoNamesByEndTagName(
 			String endTagTypeName) {
-		// TODO Auto-generated method stub
-		return null;
+		return endTagExtInfoNameDao.findByEndTagName(endTagTypeName);
 	}
 	@Override
 	public List<EndTagExtInfoName> getExtInfoNamesByEndTagValue(
 			String endTagTypeNValue) {
-		// TODO Auto-generated method stub
-		return null;
+		return endTagExtInfoNameDao.findByEndTagValue(endTagTypeNValue);
 	}
 	@Override
 	public List<EndTagExtInfoValue> getExtInfoValuesByInfoName(String infoName) {
-		// TODO Auto-generated method stub
-		return null;
+		return endTagExtInfoValueDao.findByExtName(infoName);
 	}
 	@Override
 	public List<EndTagExtInfoValue> getExtInfoValuesByInfoValue(String infoValue) {
-		// TODO Auto-generated method stub
-		return null;
+		return endTagExtInfoValueDao.findByExtValue(infoValue);
 	}
 	@Override
 	public void insertMajorTagType(List<MajorTagType> majorTagTypeList) {
@@ -167,8 +165,28 @@ public class TypeServiceImpl implements TypeService {
 		endTagSubTypeDao.save(endTagSubTypeList);
 		
 	}
-	
-
-	
+	@Override
+	public void deleteAllType() {
+		endTagExtInfoValueDao.deleteAll();
+		endTagExtInfoNameDao.deleteAll();
+		varSubTypeDao.deleteAll();
+		varTypeDao.deleteAll();
+		endTagSubTypeDao.deleteAll();
+		varGroupCfgDao.deleteAll();
+		endTagTypeDao.deleteAll();
+		majorTagTypeDao.deleteAll();
+	}
+	@Override
+	public void insertEndTagExtInfoName(
+			List<EndTagExtInfoName> endTagExtInfoNameList) {
+		endTagExtInfoNameDao.save(endTagExtInfoNameList);
+		
+	}
+	@Override
+	public void insertEndTagExtInfoValue(
+			List<EndTagExtInfoValue> endTagExtInfoValueList) {
+		endTagExtInfoValueDao.save(endTagExtInfoValueList);
+		
+	}
 
 }

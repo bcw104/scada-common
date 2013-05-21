@@ -14,11 +14,8 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Table(name = "T_Type_MajorTag")
 public class MajorTagType extends AbstractPersistable<Integer> {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -3475086757734005579L;
-	
+
+	private static final long serialVersionUID = 334795810620629156L;
 	/**
 	 * 英文名
 	 * CHANG_LEVEL,KUANG_LEVEL,DUI_LEVEL

@@ -18,10 +18,12 @@ import com.ht.scada.common.tag.entity.VarGroupCfg;
 @Entity
 @Table(name = "T_Type_VarSubType")
 public class VarSubType extends AbstractPersistable<Integer> {
+
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 2217695722650752315L;
+	private static final long serialVersionUID = -6198292677535761396L;
 	/**
 	 * 英文名
 	 */

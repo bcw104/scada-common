@@ -20,8 +20,11 @@ public class EndTagSubType extends AbstractPersistable<Integer> {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -3475086757734005579L;
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1244714691581606734L;
 	/**
 	 * 英文名
 	 */

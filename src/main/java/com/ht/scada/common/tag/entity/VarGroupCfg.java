@@ -32,7 +32,7 @@ public class VarGroupCfg extends AbstractPersistable<Integer> {
 	public VarGroupCfg() {
 	}
 
-	public VarGroupCfg(String value, String name) {
+	public VarGroupCfg(String name, String value) {
 		this.value = value;
 		this.name = name;
 	}

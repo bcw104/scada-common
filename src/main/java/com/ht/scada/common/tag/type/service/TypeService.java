@@ -87,14 +87,33 @@ public interface TypeService {
 	 */
 	public void insertVarSubType(List<VarSubType> varSubTypeList);
 	
+	/**
+	 * 增加末端节点扩展属性名
+	 * @author 赵磊
+	 */
+	public void insertEndTagExtInfoName(List<EndTagExtInfoName> endTagExtInfoNameList);
+	/**
+	 * 增加末端节点扩展属性值
+	 * @author 赵磊
+	 */
+	public void insertEndTagExtInfoValue(List<EndTagExtInfoValue> endTagExtInfoValueList);
+	
+	/**
+	 * 删除所有类型
+	 * @author 赵磊
+	 */
+	public void deleteAllType();
+	
 	public List<VarGroupCfg> getAllVarGroupCfg();
 	public List<VarType> getAllVarType();
 	public List<MajorTagType> getAllMajorTagType();
 	public List<EndTagType> getAllEndTagType();
+	public List<VarSubType> getAllVarSubType();
+	
+	
 	public List<EndTagSubType> getSubTypeByEndTagTypeName(String name);
 	public List<EndTagSubType> getSubTypeByEndTagTypeValue(String value);
 	
-	public List<VarSubType> getAllVarSubType();
 	public List<VarSubType> getVarSubTypeByGroupName(String groupName);
 	public List<VarSubType> getVarSubTypeByGroupValue(String groupValue);
 	public List<VarSubType> getVarSubTypeByVarTypeName(String varTypeName);
