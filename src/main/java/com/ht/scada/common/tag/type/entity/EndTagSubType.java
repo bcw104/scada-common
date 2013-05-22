@@ -1,30 +1,30 @@
-package com.ht.scada.common.tag.type;
-
-import java.util.List;
+package com.ht.scada.common.tag.type.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 /**
- * 监控对象扩展信息属性列表值
+ * 监控对象子类型类型
  * @author 赵磊
  *
  */
 @Entity
-@Table(name = "T_Type_ExtName")
-public class EndTagExtInfoValue extends AbstractPersistable<Integer> {
+@Table(name = "T_Type_EndTagSub")
+public class EndTagSubType extends AbstractPersistable<Integer> {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -3475086757734005579L;
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1244714691581606734L;
 	/**
 	 * 英文名
 	 */
@@ -34,9 +34,17 @@ public class EndTagExtInfoValue extends AbstractPersistable<Integer> {
 	 */
 	private String value;
 	
+	
+	
+	public EndTagSubType() {
+	}
+	public EndTagSubType(String name, String value) {
+		this.name = name;
+		this.value = value;
+	}
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "extName_id")
-	private EndTagExtInfoName endTagExtInfoName;
+	@JoinColumn(name = "endTag_id")
+	private EndTagType endTagType;
 	
 	public String getName() {
 		return name;
@@ -49,6 +57,12 @@ public class EndTagExtInfoValue extends AbstractPersistable<Integer> {
 	}
 	public void setValue(String value) {
 		this.value = value;
+	}
+	public EndTagType getEndTagType() {
+		return endTagType;
+	}
+	public void setEndTagType(EndTagType endTagType) {
+		this.endTagType = endTagType;
 	}
 	
 	

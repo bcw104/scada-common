@@ -1,4 +1,4 @@
-package com.ht.scada.common.tag.type;
+package com.ht.scada.common.tag.type.entity;
 
 import java.util.List;
 import java.util.Set;
@@ -28,8 +28,11 @@ public class EndTagType extends AbstractPersistable<Integer> {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -3475086757734005579L;
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -840731598127978638L;
 	/**
 	 * 英文名
 	 */
@@ -38,9 +41,23 @@ public class EndTagType extends AbstractPersistable<Integer> {
 	 * 中文值
 	 */
 	private String value;
+	
+	
+
+	public EndTagType() {
+	}
+
+	public EndTagType(String name, String value) {
+		this.name = name;
+		this.value = value;
+	}
 
 	@OneToMany(mappedBy = "endTagType")
 	private List<EndTagSubType> endTagSubTypeList;
+	
+	@OneToMany(mappedBy = "endTagType")
+	private List<EndTagExtInfoName> endTagExtInfoNameList;
+	
 
 	@ManyToMany(targetEntity = com.ht.scada.common.tag.entity.VarGroupCfg.class, cascade = {
 			CascadeType.MERGE, CascadeType.PERSIST })
@@ -77,6 +94,15 @@ public class EndTagType extends AbstractPersistable<Integer> {
 
 	public void setVarGroupCfgSet(Set<VarGroupCfg> varGroupCfgSet) {
 		this.varGroupCfgSet = varGroupCfgSet;
+	}
+
+	public List<EndTagExtInfoName> getEndTagExtInfoNameList() {
+		return endTagExtInfoNameList;
+	}
+
+	public void setEndTagExtInfoNameList(
+			List<EndTagExtInfoName> endTagExtInfoNameList) {
+		this.endTagExtInfoNameList = endTagExtInfoNameList;
 	}
 
 }

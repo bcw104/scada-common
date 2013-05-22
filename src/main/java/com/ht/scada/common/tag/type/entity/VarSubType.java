@@ -1,4 +1,4 @@
-package com.ht.scada.common.tag.type;
+package com.ht.scada.common.tag.type.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,10 +18,12 @@ import com.ht.scada.common.tag.entity.VarGroupCfg;
 @Entity
 @Table(name = "T_Type_VarSubType")
 public class VarSubType extends AbstractPersistable<Integer> {
+
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 2217695722650752315L;
+	private static final long serialVersionUID = -6198292677535761396L;
 	/**
 	 * 英文名
 	 */
@@ -31,6 +33,25 @@ public class VarSubType extends AbstractPersistable<Integer> {
 	 */
 	private String value;
 	
+	
+	
+	public VarSubType() {
+	}
+	public VarSubType(String name, String value) {
+		this.name = name;
+		this.value = value;
+	}
+	
+	
+	public VarSubType(String name, String value, VarGroupCfg varGroupCfg,
+			VarType varType) {
+		this.name = name;
+		this.value = value;
+		this.varGroupCfg = varGroupCfg;
+		this.varType = varType;
+	}
+
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "group_id")
 	private VarGroupCfg varGroupCfg;

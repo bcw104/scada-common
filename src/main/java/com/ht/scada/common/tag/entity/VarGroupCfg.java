@@ -27,6 +27,15 @@ public class VarGroupCfg extends AbstractPersistable<Integer> {
 
 	private int intvl = 0;// 存储间隔
 
+	
+
+	public VarGroupCfg() {
+	}
+
+	public VarGroupCfg(String name, String value) {
+		this.value = value;
+		this.name = name;
+	}
 
 	public String getName() {
 		return name;

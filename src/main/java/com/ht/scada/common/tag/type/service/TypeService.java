@@ -3,13 +3,13 @@ package com.ht.scada.common.tag.type.service;
 import java.util.List;
 
 import com.ht.scada.common.tag.entity.VarGroupCfg;
-import com.ht.scada.common.tag.type.EndTagExtInfoName;
-import com.ht.scada.common.tag.type.EndTagExtInfoValue;
-import com.ht.scada.common.tag.type.EndTagSubType;
-import com.ht.scada.common.tag.type.EndTagType;
-import com.ht.scada.common.tag.type.MajorTagType;
-import com.ht.scada.common.tag.type.VarSubType;
-import com.ht.scada.common.tag.type.VarType;
+import com.ht.scada.common.tag.type.entity.EndTagExtInfoName;
+import com.ht.scada.common.tag.type.entity.EndTagExtInfoValue;
+import com.ht.scada.common.tag.type.entity.EndTagSubType;
+import com.ht.scada.common.tag.type.entity.EndTagType;
+import com.ht.scada.common.tag.type.entity.MajorTagType;
+import com.ht.scada.common.tag.type.entity.VarSubType;
+import com.ht.scada.common.tag.type.entity.VarType;
 
 /**
  * 系统初始配置相关接口
@@ -87,14 +87,33 @@ public interface TypeService {
 	 */
 	public void insertVarSubType(List<VarSubType> varSubTypeList);
 	
+	/**
+	 * 增加末端节点扩展属性名
+	 * @author 赵磊
+	 */
+	public void insertEndTagExtInfoName(List<EndTagExtInfoName> endTagExtInfoNameList);
+	/**
+	 * 增加末端节点扩展属性值
+	 * @author 赵磊
+	 */
+	public void insertEndTagExtInfoValue(List<EndTagExtInfoValue> endTagExtInfoValueList);
+	
+	/**
+	 * 删除所有类型
+	 * @author 赵磊
+	 */
+	public void deleteAllType();
+	
 	public List<VarGroupCfg> getAllVarGroupCfg();
 	public List<VarType> getAllVarType();
 	public List<MajorTagType> getAllMajorTagType();
 	public List<EndTagType> getAllEndTagType();
+	public List<VarSubType> getAllVarSubType();
+	
+	
 	public List<EndTagSubType> getSubTypeByEndTagTypeName(String name);
 	public List<EndTagSubType> getSubTypeByEndTagTypeValue(String value);
 	
-	public List<VarSubType> getAllVarSubType();
 	public List<VarSubType> getVarSubTypeByGroupName(String groupName);
 	public List<VarSubType> getVarSubTypeByGroupValue(String groupValue);
 	public List<VarSubType> getVarSubTypeByVarTypeName(String varTypeName);
