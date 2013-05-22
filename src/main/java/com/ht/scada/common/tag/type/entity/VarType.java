@@ -1,4 +1,4 @@
-package com.ht.scada.common.tag.type;
+package com.ht.scada.common.tag.type.entity;
 
 import java.util.List;
 

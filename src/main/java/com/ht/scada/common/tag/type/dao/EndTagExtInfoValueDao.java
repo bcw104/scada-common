@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import com.ht.scada.common.tag.type.EndTagExtInfoValue;
+import com.ht.scada.common.tag.type.entity.EndTagExtInfoValue;
 
 public interface EndTagExtInfoValueDao extends JpaRepository<EndTagExtInfoValue, Integer> {
 	/**

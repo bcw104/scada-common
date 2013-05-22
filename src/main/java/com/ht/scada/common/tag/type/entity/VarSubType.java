@@ -1,4 +1,4 @@
-package com.ht.scada.common.tag.type;
+package com.ht.scada.common.tag.type.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
