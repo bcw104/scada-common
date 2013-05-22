@@ -33,7 +33,10 @@ public class VarSubType extends AbstractPersistable<Integer> {
 	 */
 	private String value;
 	
-	
+	/**
+	 * 备注
+	 */
+	private String remark;
 	
 	public VarSubType() {
 	}
@@ -84,7 +87,11 @@ public class VarSubType extends AbstractPersistable<Integer> {
 	public void setVarGroupCfg(VarGroupCfg varGroupCfg) {
 		this.varGroupCfg = varGroupCfg;
 	}
-	
-	
+	public String getRemark() {
+		return remark;
+	}
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
 
 }

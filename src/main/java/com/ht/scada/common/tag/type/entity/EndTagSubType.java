@@ -35,7 +35,6 @@ public class EndTagSubType extends AbstractPersistable<Integer> {
 	private String value;
 	
 	
-	
 	public EndTagSubType() {
 	}
 	public EndTagSubType(String name, String value) {
@@ -64,7 +63,6 @@ public class EndTagSubType extends AbstractPersistable<Integer> {
 	public void setEndTagType(EndTagType endTagType) {
 		this.endTagType = endTagType;
 	}
-	
-	
+
 
 }
