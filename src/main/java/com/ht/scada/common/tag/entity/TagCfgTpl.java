@@ -1,9 +1,9 @@
 package com.ht.scada.common.tag.entity;
 
 import com.ht.scada.common.tag.util.DataType;
-import com.ht.scada.common.tag.util.VarGroup;
-import com.ht.scada.common.tag.util.VarSubType;
-import com.ht.scada.common.tag.util.VarType;
+import com.ht.scada.common.tag.util.VarGroupEnum;
+import com.ht.scada.common.tag.util.VarSubTypeEnum;
+import com.ht.scada.common.tag.util.VarTypeEnum;
 import org.hibernate.annotations.Index;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
@@ -39,13 +39,13 @@ public class TagCfgTpl extends AbstractPersistable<Integer> {
 	private String tagName;	//变量名，中文
 	@Column(name = "var_group")
 	@Enumerated(EnumType.STRING)
-	private VarGroup varGroup; // 变量分组,可以为空
+	private VarGroupEnum varGroup; // 变量分组,可以为空
 	@Column(name = "var_type")
 	@Enumerated(EnumType.STRING)
-	private VarType varType; // 变量类型
+	private VarTypeEnum varType; // 变量类型
 	@Column(name = "sub_Type")
 	@Enumerated(EnumType.STRING)
-	private VarSubType subType; // 变量子类型
+	private VarSubTypeEnum subType; // 变量子类型
 	
 
 	/* IO信息 */
@@ -112,29 +112,29 @@ public class TagCfgTpl extends AbstractPersistable<Integer> {
 		this.varName = varName;
 	}
 
-	public VarGroup getVarGroup() {
+	public VarGroupEnum getVarGroup() {
 		return varGroup;
 	}
 
-	public void setVarGroup(VarGroup varGroup) {
+	public void setVarGroup(VarGroupEnum varGroup) {
 		this.varGroup = varGroup;
 	}
 
-	public VarType getVarType() {
+	public VarTypeEnum getVarType() {
 		return varType;
 	}
 
-	public void setVarType(VarType varType) {
+	public void setVarType(VarTypeEnum varType) {
 		this.varType = varType;
 	}
 
 
 
-	public VarSubType getSubType() {
+	public VarSubTypeEnum getSubType() {
 		return subType;
 	}
 
-	public void setSubType(VarSubType subType) {
+	public void setSubType(VarSubTypeEnum subType) {
 		this.subType = subType;
 	}
 
