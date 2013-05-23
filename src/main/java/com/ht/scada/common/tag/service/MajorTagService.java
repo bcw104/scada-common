@@ -19,5 +19,11 @@ public interface MajorTagService extends BaseService<MajorTag>{
 	 * @return
 	 */
 	public List<MajorTag> getRootMajorTag();
+void create(MajorTag domain);
 
+    void deleteById(int id);
+
+    MajorTag getById(int id);
+
+    void update(MajorTag domain);
 }
