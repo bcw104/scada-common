@@ -1,7 +1,5 @@
 package com.ht.scada.common.tag.util;
 
-import com.ht.scada.common.tag.entity.VarGroupCfg;
-
 /**
  * 变量分组
  * 
