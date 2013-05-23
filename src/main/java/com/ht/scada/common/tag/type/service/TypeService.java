@@ -3,13 +3,13 @@ package com.ht.scada.common.tag.type.service;
 import java.util.List;
 
 import com.ht.scada.common.tag.entity.VarGroupCfg;
-import com.ht.scada.common.tag.type.EndTagExtInfoName;
-import com.ht.scada.common.tag.type.EndTagExtInfoValue;
-import com.ht.scada.common.tag.type.EndTagSubType;
-import com.ht.scada.common.tag.type.EndTagType;
-import com.ht.scada.common.tag.type.MajorTagType;
-import com.ht.scada.common.tag.type.VarSubType;
-import com.ht.scada.common.tag.type.VarType;
+import com.ht.scada.common.tag.type.entity.EndTagExtInfoName;
+import com.ht.scada.common.tag.type.entity.EndTagExtInfoValue;
+import com.ht.scada.common.tag.type.entity.EndTagSubType;
+import com.ht.scada.common.tag.type.entity.EndTagType;
+import com.ht.scada.common.tag.type.entity.MajorTagType;
+import com.ht.scada.common.tag.type.entity.VarSubType;
+import com.ht.scada.common.tag.type.entity.VarType;
 
 /**
  * 系统初始配置相关接口

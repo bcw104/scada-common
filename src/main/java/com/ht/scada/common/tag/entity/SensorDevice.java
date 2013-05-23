@@ -22,6 +22,10 @@ public class SensorDevice extends AbstractDevice {
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="rtu_device_id")
 	private AcquisitionDevice rtuDevice;
+	/**
+	 * 传感器别名
+	 */
+	private String nickName;
 
 	public AcquisitionDevice getRtuDevice() {
 		return rtuDevice;
@@ -29,6 +33,14 @@ public class SensorDevice extends AbstractDevice {
 
 	public void setRtuDevice(AcquisitionDevice rtuDevice) {
 		this.rtuDevice = rtuDevice;
+	}
+
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 	
 }

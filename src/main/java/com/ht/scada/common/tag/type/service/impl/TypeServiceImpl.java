@@ -8,13 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ht.scada.common.tag.dao.VarGroupCfgDao;
 import com.ht.scada.common.tag.entity.VarGroupCfg;
-import com.ht.scada.common.tag.type.EndTagExtInfoName;
-import com.ht.scada.common.tag.type.EndTagExtInfoValue;
-import com.ht.scada.common.tag.type.EndTagSubType;
-import com.ht.scada.common.tag.type.EndTagType;
-import com.ht.scada.common.tag.type.MajorTagType;
-import com.ht.scada.common.tag.type.VarSubType;
-import com.ht.scada.common.tag.type.VarType;
 import com.ht.scada.common.tag.type.dao.EndTagExtInfoNameDao;
 import com.ht.scada.common.tag.type.dao.EndTagExtInfoValueDao;
 import com.ht.scada.common.tag.type.dao.EndTagSubTypeDao;
@@ -22,6 +15,13 @@ import com.ht.scada.common.tag.type.dao.EndTagTypeDao;
 import com.ht.scada.common.tag.type.dao.MajorTagTypeDao;
 import com.ht.scada.common.tag.type.dao.VarSubTypeDao;
 import com.ht.scada.common.tag.type.dao.VarTypeDao;
+import com.ht.scada.common.tag.type.entity.EndTagExtInfoName;
+import com.ht.scada.common.tag.type.entity.EndTagExtInfoValue;
+import com.ht.scada.common.tag.type.entity.EndTagSubType;
+import com.ht.scada.common.tag.type.entity.EndTagType;
+import com.ht.scada.common.tag.type.entity.MajorTagType;
+import com.ht.scada.common.tag.type.entity.VarSubType;
+import com.ht.scada.common.tag.type.entity.VarType;
 import com.ht.scada.common.tag.type.service.TypeService;
 
 @Transactional
