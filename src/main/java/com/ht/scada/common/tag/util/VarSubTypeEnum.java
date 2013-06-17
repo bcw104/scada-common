@@ -59,6 +59,10 @@ public enum VarSubTypeEnum {
 	/****************传感器运行********************/
 	CGQ_RTU_STATUS("传感器通讯状态"),CGQ_RTU_TIME("传感器运行时间"),CGQ_REMAINED_TIME("剩余工作时间"),CGQ_REMAINED_DIANLIANG("剩余电量"),
 	
+	/****************增压站遥测*************************/
+	ZYZ_RU_KOU_WEN_DU("入口温度"),ZYZ_CHU_KOU_WEN_DU("出口温度"),ZYZ_WAI_SHU_YA_LI("外输压力"),ZYZ_HAN_SHUI_LV("原油含水率"),
+	ZYZ_SHUN_SHI_LIU_LIANG("瞬时流量"),ZYZ_LEI_JI_LIU_LIANG("累积流量"),	ZYZ_YE_WEI("缓冲罐液位"),
+	ZYZ_WEN_DU_1("环境温度#1"),ZYZ_WEN_DU_2("环境温度#2"),ZYZ_DIAN_DONG_DIE_FA("电动蝶阀值")
 	;
 
 	private String value;
