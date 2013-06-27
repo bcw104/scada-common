@@ -62,7 +62,19 @@ public enum VarSubTypeEnum {
 	/****************增压站遥测*************************/
 	ZYZ_RU_KOU_WEN_DU("入口温度"),ZYZ_CHU_KOU_WEN_DU("出口温度"),ZYZ_WAI_SHU_YA_LI("外输压力"),ZYZ_HAN_SHUI_LV("原油含水率"),
 	ZYZ_SHUN_SHI_LIU_LIANG("瞬时流量"),ZYZ_LEI_JI_LIU_LIANG("累积流量"),	ZYZ_YE_WEI("缓冲罐液位"),
-	ZYZ_WEN_DU_1("环境温度#1"),ZYZ_WEN_DU_2("环境温度#2"),ZYZ_DIAN_DONG_DIE_FA("电动蝶阀值")
+	ZYZ_WEN_DU_1("环境温度#1"),ZYZ_WEN_DU_2("环境温度#2"),ZYZ_DIAN_DONG_DIE_FA("电动蝶阀值"),
+	
+	/********************遥控遥测值*********************/
+	YT_CHONGCI_SHANG_YC("上行冲次值"),YT_CHONGCI_XIA_YC("下行冲次值"),YT_CHONGCHENG_SHANG_YC("上行冲程值"),YT_CHONGCHENG_XIA_YC("下行冲程值"),
+	
+	/********************遥控**************************/
+	
+	YK_QI_TING_JING("启停井"),
+	
+	/********************遥调**************************/
+	YT_CHONGCI_SHANG("上行冲次"),YT_CHONGCI_XIA("下行冲次"),YT_CHONGCHENG_SHANG("上行冲程"),YT_CHONGCHENG_XIA("下行冲程"),
+	
+	
 	;
 
 	private String value;
