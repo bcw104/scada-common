@@ -10,7 +10,10 @@ public enum VarGroupEnum {
 	DIAN_YC("电力数据"), DIAN_YM("电能数据"), DIAN_XB("谐波"), YOU_JING("油井"), YOU_JING_SGT(
 			"示功图"), YOU_JING_DGT("电功图"), SHUI_JING("水井"), JI_LIANG("计量车"), ZHU_CAI(
 			"注采"), RTU_ZHUANG_TAI("RTU状态"), SENSOR_RUN("传感器运行"), ZYZ_YC(
-			"增压站遥测量"), ZSZ_YC("注水站遥测量"), JZZ_YC("接转站遥测量"), LHZ_YC("联合站遥测量"),YT_YC("遥调遥测值");
+			"增压站遥测量"), ZSZ_YC("注水站遥测量"), JZZ_YC("接转站遥测量"), LHZ_YC("联合站遥测量"),YT_YC("遥调遥测值"),
+			CAN_SHU_DEVICE("设备参数"),
+			
+			;
 
 	private String value;
 
