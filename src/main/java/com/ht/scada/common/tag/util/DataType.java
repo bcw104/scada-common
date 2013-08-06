@@ -7,6 +7,8 @@ public enum DataType {
     BYTE_L("低字节"),
     INT32("整型32位"),
     INT16("整型16位"),
+    UINT32("无符号整型32位"),
+    UINT16("无符号整型16位"),
     BCD("BCD码"),
     MOD10000("MOD10000"),
     FLOAT("浮点型32位"),
@@ -14,7 +16,7 @@ public enum DataType {
     /* 遥测数组  */
     INT16_ARRAY("双字节数组"),
     ASCII("ASCII码"),
-    /* 高字节乘以1000加上低字节 */
+    /* 高字节*1000+低字节/10 */
     MOD1000("变频器用电量");
 
     private String value;
