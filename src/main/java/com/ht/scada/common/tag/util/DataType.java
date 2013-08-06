@@ -13,7 +13,9 @@ public enum DataType {
     DOUBLE("双浮点型64位"),
     /* 遥测数组  */
     INT16_ARRAY("双字节数组"),
-    ASCII("ASCII码");
+    ASCII("ASCII码"),
+    /* 高字节乘以1000加上低字节 */
+    MOD1000("变频器用电量");
 
     private String value;
 
